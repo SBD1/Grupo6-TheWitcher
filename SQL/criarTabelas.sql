@@ -79,3 +79,34 @@ CREATE TABLE monstro_dropa_item (
 	CONSTRAINT instancia_item_fk FOREIGN KEY (id_instancia_monstro) REFERENCES instancia_item(id),
 	CONSTRAINT instancia_monstro_fk FOREIGN KEY (id_instancia_monstro) REFERENCES instancia_monstro(id)
 );
+
+CREATE TABLE pontos_habilidade ( 
+  pontos INTEGER NOT NULL,
+  CONSTRAINT pk_pontos_habilidade PRIMARY KEY(personagem, habilidade),
+  CONSTRAINT fk_pontos_habilidades_personagem FOREIGN KEY (personagem) REFERENCES Personagem(ID) ON DELETE RESTRICT,
+  CONSTRAINT fk_pontos_habilidades_habilidades FOREIGN KEY (habilidade) REFERENCES Habilidade(ID) ON DELETE RESTRICT
+);
+
+
+CREATE TABLE esta_com_condição_especial (
+  efeito VARCHAR(60) NOT NULL UNIQUE,
+  tipo VARCHAR(60) NOT NULL UNIQUE,
+  duracao INTEGER NOT NULL,
+  CONSTRAINT pk_esta_com_condição_especial PRIMARY KEY(efeito, tipo),
+  CONSTRAINT fk_esta_com_condição_especial_personagem FOREIGN KEY (personagem) REFERENCES Personagem(ID) ON DELETE RESTRICT
+);
+
+CREATE TABLE Habilidade ( 
+  ID INTEGER NOT NULL,
+  nome VARCHAR(60) NOT NULL UNIQUE,
+  tipo VARCHAR(60) NOT NULL UNIQUE,
+  CONSTRAINT pk_habilidade PRIMARY KEY(ID)
+);
+
+CREATE TABLE Negocia ( 
+  CONSTRAINT pk_negocia PRIMARY KEY(personagem, npc, item),
+  CONSTRAINT fk_negocia_personagem FOREIGN KEY (personagem) REFERENCES Personagem(ID) ON DELETE RESTRICT,
+  CONSTRAINT fk_negocia_npc FOREIGN KEY (npc) REFERENCES NPC(ID) ON DELETE RESTRICT,
+  CONSTRAINT fk_negocia_item FOREIGN KEY (item) REFERENCES Item(ID) ON DELETE RESTRICT
+);
+
