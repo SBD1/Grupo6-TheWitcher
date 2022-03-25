@@ -110,9 +110,9 @@ CREATE TABLE Negocia (
   CONSTRAINT fk_negocia_item FOREIGN KEY (item) REFERENCES Item(ID) ON DELETE RESTRICT
 );
 
-CREATE  Item_drop {
+CREATE TABLE Item_drop {
     CONSTRAINT fk_itens_drop_monstro FOREIGN KEY (Monstro) REFERENCES Monstro(ID) ON DELETE RESTRICT,
-    CONSTRAINT fk_itens_drop_item FOREIGN KEY (Item) REFERENCES Personagem(ID) ON DELETE RESTRICT,
+    CONSTRAINT fk_itens_drop_item FOREIGN KEY (Item) REFERENCES Personagem(ID) ON DELETE RESTRICT
 }
 
 CREATE TABLE  Classe_monstro {
