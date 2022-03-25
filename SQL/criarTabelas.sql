@@ -122,3 +122,34 @@ CREATE TABLE  Classe_monstro {
     tipo varchar(20) NOT NULL
 }
 
+
+
+CREATE TABLE npc ( 
+	id SERIAL PRIMARY KEY,
+	nome VARCHAR(255) NOT NULL,
+	raca VARCHAR(255) NOT NULL,
+	classe VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE missao ( 
+	id SERIAL PRIMARY KEY,
+	titulo VARCHAR(255) NOT NULL,
+	descricao TEXT NULL,
+	tipo VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE contrato ( 
+	id SERIAL PRIMARY KEY,
+	gold float4 NULL,
+	npc INTEGER NOT NULL,
+	missao INTEGER NOT NULL,
+	FOREIGN KEY (npc) REFERENCES npc (id),
+	FOREIGN KEY (missao) REFERENCES missao (id)
+);
+
+CREATE TABLE contratos_ativos (
+	contrato INTEGER NOT NULL,
+	FOREIGN KEY (contrato) REFERENCES contrato (id),
+	FOREIGN KEY (personagem) REFERENCES contrato (id)
+);
+
