@@ -81,33 +81,38 @@ CREATE TABLE monstro_dropa_item (
 );
 
 CREATE TABLE pontos_habilidade ( 
-  pontos INTEGER NOT NULL,
-  CONSTRAINT pk_pontos_habilidade PRIMARY KEY(personagem, habilidade),
-  CONSTRAINT fk_pontos_habilidades_personagem FOREIGN KEY (personagem) REFERENCES Personagem(ID) ON DELETE RESTRICT,
-  CONSTRAINT fk_pontos_habilidades_habilidades FOREIGN KEY (habilidade) REFERENCES Habilidade(ID) ON DELETE RESTRICT
+	pontos INTEGER NOT NULL,
+	id_personagem int4 NULL,
+	id_habilidade int4 NULL,
+	CONSTRAINT fk_pontos_habilidades_personagem FOREIGN KEY (id_personagem) REFERENCES personagem(id) ON DELETE RESTRICT,
+	CONSTRAINT fk_pontos_habilidades_habilidades FOREIGN KEY (id_habilidade) REFERENCES habilidade(id) ON DELETE RESTRICT
 );
 
 
-CREATE TABLE esta_com_condição_especial (
+CREATE TABLE esta_com_condicao_especial (
   efeito VARCHAR(60) NOT NULL UNIQUE,
   tipo VARCHAR(60) NOT NULL UNIQUE,
   duracao INTEGER NOT NULL,
+  id_personagem int4 NULL,
   CONSTRAINT pk_esta_com_condição_especial PRIMARY KEY(efeito, tipo),
-  CONSTRAINT fk_esta_com_condição_especial_personagem FOREIGN KEY (personagem) REFERENCES Personagem(ID) ON DELETE RESTRICT
+  CONSTRAINT fk_esta_com_condição_especial_personagem FOREIGN KEY (id_personagem) REFERENCES Personagem(id) ON DELETE RESTRICT
 );
 
 CREATE TABLE Habilidade ( 
-  ID INTEGER NOT NULL,
+  id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
   nome VARCHAR(60) NOT NULL UNIQUE,
   tipo VARCHAR(60) NOT NULL UNIQUE,
   CONSTRAINT pk_habilidade PRIMARY KEY(ID)
 );
 
 CREATE TABLE Negocia ( 
-  CONSTRAINT pk_negocia PRIMARY KEY(personagem, npc, item),
-  CONSTRAINT fk_negocia_personagem FOREIGN KEY (personagem) REFERENCES Personagem(ID) ON DELETE RESTRICT,
-  CONSTRAINT fk_negocia_npc FOREIGN KEY (npc) REFERENCES NPC(ID) ON DELETE RESTRICT,
-  CONSTRAINT fk_negocia_item FOREIGN KEY (item) REFERENCES Item(ID) ON DELETE RESTRICT
+	id_personagem int4 NULL,
+	id_npc int4 NULL,
+	it_item int4 NULL,
+  CONSTRAINT pk_negocia PRIMARY KEY(id_personagem, id_npc, id_personagem),
+  CONSTRAINT fk_negocia_personagem FOREIGN KEY (id_personagem) REFERENCES Personagem(id) ON DELETE RESTRICT,
+  CONSTRAINT fk_negocia_npc FOREIGN KEY (id_npc) REFERENCES NPC(id) ON DELETE RESTRICT,
+  CONSTRAINT fk_negocia_item FOREIGN KEY (it_item) REFERENCES Item(id) ON DELETE RESTRICT
 );
 
 CREATE TABLE Item_drop {
