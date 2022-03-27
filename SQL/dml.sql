@@ -1,16 +1,18 @@
 INSERT INTO Habilidade (nome, tipo) VALUES 
-('Fast Attack', 'Combat'), 
-('Aard Intensity', 'Signs'), 
-('Refreshment', 'Alchemy'), 
-('Heightened Tolerance', 'Alchemy'), 
-('Survival Instinct', 'Combat'); 
+('Ataque Rápido', 'Combate'),
+('Ataque Forte', 'Combate'), 
+('Sinal Igni', 'Sinais'), 
+('Sinal Axii', 'Sinais'),
+('Preparação', 'Alquimia'), 
+('Criação de Bomba', 'Alquimia'), 
+('Instinto de Sobrevivência', 'Combat'); 
 
 INSERT INTO Personagem (nome, gold, vida, ataque, defesa) VALUES 
-('Geralt of Rivia', 0, 100, 20, 5),
-('Lambert', 2000, 1000, 50, 20),
-('Triss Merigold', 500, 100, 50, 5),
-('Eskel', 3000, 100, 50, 20),
-('Vesemir', 100, 2000, 200, 30);
+('Geralt of Rivia', 0, 100, 20, 10),
+('Lambert', 0, 100, 15, 15),
+('Triss Merigold', 0, 100, 25, 5),
+('Eskel', 0, 100, 15, 15),
+('Vesemir', 0, 100, 18, 12);
 
 INSERT INTO item (nome, tipo, descricao, preco, efeito, peso, alcance, ataque, defesa, vida) VALUES
 ('Cerveja', 'consumivel', NULL, 10.0, 'Cura a vida perdida em 7 pontos', 0.1, NULL, NULL, NULL, 7.0),
