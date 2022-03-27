@@ -1,5 +1,5 @@
 create domain tipo_item as VARCHAR(20) not null 
-check (value in ('equipamento', 'consumivel', 'flecha'));
+check (value in ('equipamento', 'arma', 'consumivel', 'flecha'));
 
 CREATE TABLE monstro (
 	id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
@@ -66,7 +66,9 @@ CREATE TABLE instancia_monstro (
 	id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
 	id_monstro int4 NULL,
 	nivel int4 NULL,
+	instancia_item int4 NULL,
 	CONSTRAINT instancia_monstro_pk PRIMARY KEY (id),
+	CONSTRAINT instancia_item_fk FOREIGN KEY (instancia_item) REFERENCES instancia_item(id),
 	CONSTRAINT instancia_monstro_fk FOREIGN KEY (id) REFERENCES monstro(id)
 );
 
@@ -74,7 +76,7 @@ CREATE TABLE instancia_monstro (
 CREATE TABLE monstro_dropa_item (
 	id_instancia_monstro int4 NULL,
 	id_instancia_item int4 NULL,
-	CONSTRAINT instancia_item_fk FOREIGN KEY (id_instancia_monstro) REFERENCES instancia_item(id),
+	CONSTRAINT instancia_item_fk FOREIGN KEY (id_instancia_item) REFERENCES instancia_item(id),
 	CONSTRAINT instancia_monstro_fk FOREIGN KEY (id_instancia_monstro) REFERENCES instancia_monstro(id)
 );
 
@@ -99,7 +101,7 @@ CREATE TABLE esta_com_condicao_especial (
   duracao INTEGER NOT NULL,
   id_personagem int4 NULL,
   CONSTRAINT pk_esta_com_condição_especial PRIMARY KEY(efeito, tipo),
-  CONSTRAINT fk_esta_com_condição_especial_personagem FOREIGN KEY (id_personagem) REFERENCES Personagem(id) ON DELETE RESTRICT
+  CONSTRAINT fk_esta_com_condição_especial_personagem FOREIGN KEY (id_personagem) REFERENCES personagem(id) ON DELETE RESTRICT
 );
 
 CREATE TABLE npc ( 
@@ -114,7 +116,7 @@ CREATE TABLE Negocia (
 	id_npc int4 NULL,
 	id_item int4 NULL,
   CONSTRAINT pk_negocia PRIMARY KEY(id_personagem, id_npc, id_item),
-  CONSTRAINT fk_negocia_personagem FOREIGN KEY (id_personagem) REFERENCES Personagem(id) ON DELETE RESTRICT,
+  CONSTRAINT fk_negocia_personagem FOREIGN KEY (id_personagem) REFERENCES personagem(id) ON DELETE RESTRICT,
   CONSTRAINT fk_negocia_npc FOREIGN KEY (id_npc) REFERENCES NPC(id) ON DELETE RESTRICT,
   CONSTRAINT fk_negocia_item FOREIGN KEY (id_item) REFERENCES Item(id) ON DELETE RESTRICT
 );
@@ -123,8 +125,8 @@ CREATE TABLE Item_drop (
 	id_monstro int4 NULL,
 	id_item int4 NULL,
 	CONSTRAINT pk_item_drop PRIMARY KEY(id_monstro, id_item),
-    CONSTRAINT fk_itens_drop_monstro FOREIGN KEY (id_monstro) REFERENCES Monstro(id) ON DELETE RESTRICT,
-    CONSTRAINT fk_itens_drop_item FOREIGN KEY (id_item) REFERENCES Personagem(id) ON DELETE RESTRICT
+    CONSTRAINT fk_itens_drop_monstro FOREIGN KEY (id_monstro) REFERENCES monstro(id) ON DELETE RESTRICT,
+    CONSTRAINT fk_itens_drop_item FOREIGN KEY (id_item) REFERENCES personagem(id) ON DELETE RESTRICT
 );
 
 CREATE TABLE  Classe_monstro (
@@ -132,7 +134,7 @@ CREATE TABLE  Classe_monstro (
     classe SERIAL primary key unique NOT NULL,
     descricao varchar(100),
     tipo varchar(20) NOT NULL,
-    CONSTRAINT fk_classe_monstro_monstro FOREIGN KEY (id_monstro) REFERENCES Monstro(id) ON DELETE RESTRICT
+    CONSTRAINT fk_classe_monstro_monstro FOREIGN KEY (id_monstro) REFERENCES monstro(id) ON DELETE RESTRICT
 );
 
 CREATE TABLE missao ( 
@@ -193,8 +195,8 @@ CREATE TABLE encontrado_em
 (
     id_area integer NOT NULL,
     id_ncp integer NULL,
-    id_monstro integer NULL,
-    id_item integer NULL,
+    id_instancia_monstro integer NULL,
+    id_instancia_item integer NULL,
     CONSTRAINT id_mapa_fk FOREIGN KEY (id_area)
         REFERENCES Area (ID) MATCH SIMPLE
         ON UPDATE RESTRICT
@@ -203,12 +205,12 @@ CREATE TABLE encontrado_em
         REFERENCES npc(id)
         ON UPDATE RESTRICT
         ON DELETE RESTRICT,
-	CONSTRAINT id_monstro_fk FOREIGN KEY (id_monstro)
-        REFERENCES monstro(ID)
+	CONSTRAINT id_instancia_monstro_fk FOREIGN KEY (id_instancia_monstro)
+        REFERENCES instancia_monstro(id)
         ON UPDATE RESTRICT
         ON DELETE RESTRICT,
-	CONSTRAINT id_item_fk FOREIGN KEY (id_item)
-        REFERENCES item(ID)
+	CONSTRAINT id_instancia_item_fk FOREIGN KEY (id_instancia_item)
+        REFERENCES instancia_item(id)
         ON UPDATE RESTRICT
         ON DELETE RESTRICT	
 );
