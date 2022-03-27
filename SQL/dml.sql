@@ -42,3 +42,19 @@ INSERT INTO item (nome, tipo, descricao, preco, efeito, peso, alcance, ataque, d
 ('Espada Tor Lara', 'arma', NULL, 1211.0, NULL, 2.73, NULL, 70, 34, 26.0),
 ('Flecha com ponta de ferro', 'flecha', NULL, 10.0, NULL, 0.2, NULL, NULL, NULL, NULL),
 ('Flecha com ponta de prata', 'flecha', NULL, 12.0, NULL, 0.4, NULL, NULL, NULL, NULL);
+
+INSERT INTO npc (nome, raca, classe) VALUES 
+('Halbjorn', 'humano', 'civil'),
+('Hendrik', 'humano', 'civil'),
+('Francesca Findabair', 'elfo', 'puro-sangue'),
+('Molnar Giancardi', 'anão', 'renegado'),
+('Brouver Hoog', 'anão', 'renegado');
+
+INSERT INTO missao (titulo, descricao, tipo) VALUES 
+('Kaer Morhen', NULL, 'Prologo'),
+('Lilas e Groselha', NULL, 'Prologo'),
+('A Besta do Pomar Branco', NULL, 'Prologo'),
+('O Incidente em White Orchard', NULL, 'Prologo'),
+('Audiencia Imperial', NULL, 'Ato I'),
+('Barão Sangrento', NULL, 'Ato I'),
+('Perturbação', NULL, 'Ato II');
