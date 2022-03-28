@@ -58,3 +58,12 @@ INSERT INTO missao (titulo, descricao, tipo) VALUES
 ('Audiencia Imperial', NULL, 'Ato I'),
 ('Barão Sangrento', NULL, 'Ato I'),
 ('Perturbação', NULL, 'Ato II');
+
+INSERT INTO area (descricao) VALUES
+('Continente');
+
+INSERT INTO mapa (nome, tipo, pais, regiao, cidade) VALUES
+('Kaer Morhen', 'Fortaleza', 'Kaedwen', 'Hertch', 'Vale Kaer Morhen'),
+('Orquídea Branca', 'Vila', 'Temeria', NULL, 'Vila Orquídea Branca'),
+('Vizima', 'Cidade', 'Temeria', NULL, 'Lago Vizima'),
+('Crows Perch', 'Fortaleza', 'Temeria', 'Crows Perch', 'Vila Crows Perch');
