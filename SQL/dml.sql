@@ -60,7 +60,10 @@ INSERT INTO missao (titulo, descricao, tipo) VALUES
 ('Perturbação', NULL, 'Ato II');
 
 INSERT INTO area (descricao) VALUES
-('Continente');
+('Norte'),
+('Sul'),
+('Leste'),
+('Oeste');
 
 INSERT INTO mapa (nome, tipo, pais, regiao, cidade) VALUES
 ('Kaer Morhen', 'Fortaleza', 'Kaedwen', 'Hertch', 'Vale Kaer Morhen'),
