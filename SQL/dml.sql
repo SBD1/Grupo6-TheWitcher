@@ -46,10 +46,7 @@ INSERT INTO npc (nome, raca, classe) VALUES
 ('Francesca Findabair', 'elfo', 'puro-sangue'),
 ('Molnar Giancardi', 'anão', 'renegado'),
 ('Brouver Hoog', 'anão', 'renegado');
-('Lambert', 0, 100, 15, 15),
-('Triss Merigold', 0, 100, 25, 5),
-('Eskel', 0, 100, 15, 15),
-('Vesemir', 0, 100, 18, 12);
+
 
 INSERT INTO missao (titulo, descricao, tipo) VALUES 
 ('Kaer Morhen', NULL, 'Prologo'),
