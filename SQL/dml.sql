@@ -8,7 +8,7 @@ INSERT INTO Habilidade (nome, tipo) VALUES
 ('Instinto de Sobrevivência', 'Combate'); 
 
 INSERT INTO personagem (nome, gold, vida, ataque, defesa) VALUES 
-('Geralt of Rivia', 0, 100, 20, 10),
+('Geralt of Rivia', 0, 100, 20, 10);
 
 
 INSERT INTO item (nome, tipo, descricao, preco, efeito, peso, alcance, ataque, defesa, vida) VALUES
