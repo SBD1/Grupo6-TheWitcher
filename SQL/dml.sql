@@ -81,7 +81,7 @@ INSERT INTO monstro (nome, ataque, defesa, vida, classe, descricao) VALUES
 ('Wyvern', NULL ,NULL ,NULL  ,'Draconídeo', 'Uma espécie de ornitossauro com pescoço parecido com uma cobra e uma longa cauda com um tridente venenoso na ponta'),
 ('Basilísco',NULL ,NULL ,NULL  ,'Draconídeo', 'Uma espécie de draconídeo com bico de pássaro, asas com membranas, garras em forma de gancho e barbelas carmesim'),
 ('Gárgola', NULL ,NULL ,NULL  ,'Elemental', 'Estátua animada de pedra infundida com lava'),
-('Cachorro da caçada selvagem', , , ,'Elemental', 'Uma espécie de cachorro com escamas de gelo'),
+('Cachorro da caçada selvagem', NULL, NULL, NULL, 'Elemental', 'Uma espécie de cachorro com escamas de gelo'),
 ('Grifo', NULL ,NULL ,NULL  ,'Híbrido', 'Uma criatura híbrida, com corpo, patas e cauda de leão e cabeça, asas e garras de águia'),
 ('Harpia', NULL ,NULL ,NULL  ,'Híbrido', 'Uma criatura híbrida, com a cabeça de uma mulher e o corpo de um pássaro'),
 ('Arachasae', NULL ,NULL ,NULL  ,'Insectóide', 'Um grande inseto com um abdomen muito largo, descrito como muito venenoso'),

@@ -124,13 +124,6 @@ CREATE TABLE Negocia (
   CONSTRAINT fk_negocia_item FOREIGN KEY (id_item) REFERENCES Item(id) ON DELETE RESTRICT
 );
 
-CREATE TABLE Item_drop (
-	id_monstro int4 NULL,
-	id_item int4 NULL,
-	CONSTRAINT pk_item_drop PRIMARY KEY(id_monstro, id_item),
-    CONSTRAINT fk_itens_drop_monstro FOREIGN KEY (id_monstro) REFERENCES monstro(id) ON DELETE RESTRICT,
-    CONSTRAINT fk_itens_drop_item FOREIGN KEY (id_item) REFERENCES personagem(id) ON DELETE RESTRICT
-);
 
 CREATE TABLE  Classe_monstro (
 	id_monstro int4 NULL,
