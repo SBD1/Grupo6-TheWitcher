@@ -5,14 +5,11 @@ INSERT INTO Habilidade (nome, tipo) VALUES
 ('Sinal Axii', 'Sinais'),
 ('Preparação', 'Alquimia'), 
 ('Criação de Bomba', 'Alquimia'), 
-('Instinto de Sobrevivência', 'Combat'); 
+('Instinto de Sobrevivência', 'Combate'); 
 
-INSERT INTO Personagem (nome, gold, vida, ataque, defesa) VALUES 
+INSERT INTO personagem (nome, gold, vida, ataque, defesa) VALUES 
 ('Geralt of Rivia', 0, 100, 20, 10),
-('Lambert', 0, 100, 15, 15),
-('Triss Merigold', 0, 100, 25, 5),
-('Eskel', 0, 100, 15, 15),
-('Vesemir', 0, 100, 18, 12);
+
 
 INSERT INTO item (nome, tipo, descricao, preco, efeito, peso, alcance, ataque, defesa, vida) VALUES
 ('Cerveja', 'consumivel', NULL, 10.0, 'Cura a vida perdida em 7 pontos', 0.1, NULL, NULL, NULL, 7.0),
@@ -49,6 +46,10 @@ INSERT INTO npc (nome, raca, classe) VALUES
 ('Francesca Findabair', 'elfo', 'puro-sangue'),
 ('Molnar Giancardi', 'anão', 'renegado'),
 ('Brouver Hoog', 'anão', 'renegado');
+('Lambert', 0, 100, 15, 15),
+('Triss Merigold', 0, 100, 25, 5),
+('Eskel', 0, 100, 15, 15),
+('Vesemir', 0, 100, 18, 12);
 
 INSERT INTO missao (titulo, descricao, tipo) VALUES 
 ('Kaer Morhen', NULL, 'Prologo'),
@@ -70,3 +71,21 @@ INSERT INTO mapa (nome, tipo, pais, regiao, cidade) VALUES
 ('Orquídea Branca', 'Vila', 'Temeria', NULL, 'Vila Orquídea Branca'),
 ('Vizima', 'Cidade', 'Temeria', NULL, 'Lago Vizima'),
 ('Crows Perch', 'Fortaleza', 'Temeria', 'Crows Perch', 'Vila Crows Perch');
+
+
+INSERT INTO monstro (nome, ataque, defesa, vida, classe, descricao) VALUES
+('Urso',NULL ,NULL ,NULL ,'Besta', 'Um urso pardo gigante'),
+('Pantera',NULL ,NULL ,NULL ,'Besta', 'Uma felino com pelagem negra') ,
+('Lobisomen',NULL ,NULL ,NULL  ,'Amaldiçoado', 'Um teriantropo que se transforma em lobo ou meio-lobo'),
+('Berseker', NULL ,NULL ,NULL  ,'Amaldiçoado', 'Um teriantropo que se transforma em urso ou meio-urso'),
+('Wyvern', NULL ,NULL ,NULL  ,'Draconídeo', 'Uma espécie de ornitossauro com pescoço parecido com uma cobra e uma longa cauda com um tridente venenoso na ponta'),
+('Basilísco',NULL ,NULL ,NULL  ,'Draconídeo', 'Uma espécie de draconídeo com bico de pássaro, asas com membranas, garras em forma de gancho e barbelas carmesim'),
+('Gárgola', NULL ,NULL ,NULL  ,'Elemental', 'Estátua animada de pedra infundida com lava'),
+('Cachorro da caçada selvagem', , , ,'Elemental', 'Uma espécie de cachorro com escamas de gelo'),
+('Grifo', NULL ,NULL ,NULL  ,'Híbrido', 'Uma criatura híbrida, com corpo, patas e cauda de leão e cabeça, asas e garras de águia'),
+('Harpia', NULL ,NULL ,NULL  ,'Híbrido', 'Uma criatura híbrida, com a cabeça de uma mulher e o corpo de um pássaro'),
+('Arachasae', NULL ,NULL ,NULL  ,'Insectóide', 'Um grande inseto com um abdomen muito largo, descrito como muito venenoso'),
+('Afogador', NULL ,NULL ,NULL  ,'Necrófago', 'Acredita-se que essa criatura é um homem afogado que de alguma forma levantou do mundo dos mortos para caçar aqueles que ainda vivem'),
+('Nightwraith', NULL ,NULL ,NULL  ,'Espectro', 'Um demônio que obtém poder da luz da lua'),
+('Madame Praga', NULL ,NULL ,NULL  ,'Espectro', 'Um espiríto que personifica doença e pragas'),
+('Katakan', NULL ,NULL ,NULL ,'Vampiro', 'Uma espécie de vampiro que tem características de um morcego monstruoso');

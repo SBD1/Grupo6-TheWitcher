@@ -1,14 +1,17 @@
 create domain tipo_item as VARCHAR(20) not null 
 check (value in ('equipamento', 'arma', 'consumivel', 'flecha'));
 
+create domain tipo_habilidade as VARCHAR(20) NOT NULL
+check (value in ('Combate', 'Sinais', 'Alquimia'));
+
 CREATE TABLE monstro (
 	id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
 	nome varchar NULL,
 	ataque float8 NULL,
 	defesa float8 NULL,
 	vida float8 NULL,
-	tipo varchar NULL,
 	classe varchar NULL,
+	descricao varchar NULL,
 	CONSTRAINT monstro_pk PRIMARY KEY (id)
 );
 
@@ -83,7 +86,7 @@ CREATE TABLE monstro_dropa_item (
 CREATE TABLE Habilidade ( 
   id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
   nome VARCHAR(60) NOT NULL,
-  tipo VARCHAR(60) NOT NULL,
+  tipo tipo_habilidade NOT NULL,
   CONSTRAINT pk_habilidade PRIMARY KEY(ID)
 );
 
