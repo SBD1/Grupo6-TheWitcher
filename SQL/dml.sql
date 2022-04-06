@@ -8,8 +8,7 @@ INSERT INTO Habilidade (nome, tipo) VALUES
 ('Instinto de Sobrevivência', 'Combate'); 
 
 INSERT INTO personagem (nome, gold, vida, ataque, defesa) VALUES 
-('Geralt of Rivia', 0, 100, 20, 10);
-
+('Geralt of Rivia', 50, 100, 20, 10);
 
 INSERT INTO item (nome, tipo, descricao, preco, efeito, peso, alcance, ataque, defesa, vida) VALUES
 ('Cerveja', 'consumivel', NULL, 10.0, 'Cura a vida perdida em 7 pontos', 0.1, NULL, NULL, NULL, 7.0),
@@ -47,7 +46,6 @@ INSERT INTO npc (nome, raca, classe) VALUES
 ('Molnar Giancardi', 'anão', 'renegado'),
 ('Brouver Hoog', 'anão', 'renegado');
 
-
 INSERT INTO missao (titulo, descricao, tipo) VALUES 
 ('Kaer Morhen', NULL, 'Prologo'),
 ('Lilas e Groselha', NULL, 'Prologo'),
@@ -57,18 +55,20 @@ INSERT INTO missao (titulo, descricao, tipo) VALUES
 ('Barão Sangrento', NULL, 'Ato I'),
 ('Perturbação', NULL, 'Ato II');
 
-INSERT INTO area (descricao) VALUES
-('Norte'),
-('Sul'),
-('Leste'),
-('Oeste');
+INSERT INTO area (descricao, id_mapa) VALUES
+('Uma serraria abandonada a muito tempo', 3),
+('Uma pequena capela de pedra com grandes portas de madeira', 2),
+('Uma torre antiga abandonada a muitos anos', 4),
+('Uma grande ponte de pedra, por cima de um pequeno rio', 4),
+('Uma ruína élfica encontrada abaixo das montanhas', 3),
+('Um forte abandonado que se tornou habitado por Witchers', 1),
+('Uma torre de pedra parcialmente destruída pela guerra', 1);
 
-INSERT INTO mapa (nome, tipo, pais, regiao, cidade) VALUES
-('Kaer Morhen', 'Fortaleza', 'Kaedwen', 'Hertch', 'Vale Kaer Morhen'),
-('Orquídea Branca', 'Vila', 'Temeria', NULL, 'Vila Orquídea Branca'),
-('Vizima', 'Cidade', 'Temeria', NULL, 'Lago Vizima'),
-('Crows Perch', 'Fortaleza', 'Temeria', 'Crows Perch', 'Vila Crows Perch');
-
+INSERT INTO mapa (nome, tipo, pais, regiao) VALUES
+('Kaer Morhen', 'Fortaleza', 'Kaedwen', 'Kaer Morhen valley'),
+('Crows Perch', 'Fortaleza', 'Temeria', 'Velen'),
+('Cemitério de orquídia Branca', 'Cemitério', 'Temeria', 'Orquídea Branca'),
+('Ard Skellig', 'Cidade', 'Temeria', 'Skellige');
 
 INSERT INTO monstro (nome, ataque, defesa, vida, classe, descricao) VALUES
 ('Urso',NULL ,NULL ,NULL ,'Besta', 'Um urso pardo gigante'),
@@ -86,3 +86,13 @@ INSERT INTO monstro (nome, ataque, defesa, vida, classe, descricao) VALUES
 ('Nightwraith', NULL ,NULL ,NULL  ,'Espectro', 'Um demônio que obtém poder da luz da lua'),
 ('Madame Praga', NULL ,NULL ,NULL  ,'Espectro', 'Um espiríto que personifica doença e pragas'),
 ('Katakan', NULL ,NULL ,NULL ,'Vampiro', 'Uma espécie de vampiro que tem características de um morcego monstruoso');
+
+
+INSERT INTO contrato (gold, npc, missao) VALUES
+(50.0, 1, 1),
+(55.0, 1, 2),
+(42.0, 2, 3),
+(70.0, 3, 4),
+(63.0, 4, 5),
+(85.0, 5, 6),
+(55.0, 3, 7);
