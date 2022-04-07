@@ -6,6 +6,9 @@ conn = criaConexao()
 
 cur = conn.cursor()
 
+Jogar = "                 .: Jogar :.                  "
+Ajuda = "                 .: Ajuda :.                  "
+Sair =  "                 .: Sair :.                  "
 
 def title_screen_options():
 	#Allows the player to select the menu options, case-insensitive.
@@ -34,9 +37,9 @@ def title_screen():
 	print('# Bem-vindo ao The Witcher #')
 	print("#     Projeto SBD1 - 2021.2    #")
 	print('#' * 45)
-	print("                 .: Jogar :.                  ")
-	print("                 .: Ajuda :.                  ")
-	print("                 .: Sair :.                  ")
+	print(Jogar)
+	print(Ajuda)
+	print(Sair)
 	title_screen_options()
 
 def help_menu():
@@ -51,18 +54,92 @@ def help_menu():
 	print('#' * 45)
 	print("    Selecione uma opção para continuar.     ")
 	print('#' * 45)
-	print("                 .: Jogar :.                  ")
-	print("                 .: Ajuda :.                  ")
-	print("                 .: Sair :.                  ")
+	print(Jogar)
+	print(Ajuda)
+	print(Sair)
 	title_screen_options()
+
+def general_options_menu():
+	print('#' * 45)
+	print("  Menu Geral  ")
+	print('#' * 45)
+	print(" .: Personagem :. ")
+	print(" .: Ir para Kaer Morhen :. ")
+	print(" .: Ajuda :. ")
+	print(" .: Sair :. ")
+	general_options()
+
+def general_options():
+	option = input("> ")
+	if option.lower() == ("personagem"):
+		get_personagem()
+	elif option.lower() == ("ir para Kaer Morhen"):
+		listar_areas_kaer_morhen()
+	elif option.lower() == ("sair"):
+		sys.exit()
+	elif option.lower() == ("ajuda"):
+		help_menu()
+
+	while option.lower() not in ['personagem', 'ir para Kaer Morhen', 'ajuda', 'sair']:
+		print("Invalid command, please try again.")
+		option = input("> ")
+		if option.lower() == ("personagem"):
+			setup_game()
+		elif option.lower() == ("ir para Kaer Morhen"):
+			listar_areas_kaer_morhen()
+		elif option.lower() == ("sair"):
+			sys.exit()
+		elif option.lower() == ("ajuda"):
+			help_menu()
+
+def listar_areas_kaer_morhen():
+	print("A fortaleza de Kaer Morhen possui algumas áreas interessantes como:\n")
+	
+	sql = "select descricao from area a where a.id_mapa = 1"
+
+	cur.execute(sql)
+
+	rows = cur.fetchall()
+
+	for r in rows:
+		print(r)
+
+	general_options_menu()
+	general_options()
+        
+
+def opcoes_kaer_morhen():
+	option = input("> ")
+	if option.lower() == ("conhecer kaer morhen"):
+		listar_areas_kaer_morhen()
+	elif option.lower() == ("menu geral"):
+		general_options()
+	while option.lower() not in ['conhecer kaer morhen', 'menu geral']:
+		print("Invalid command, please try again.")
+		option = input("> ")
+		if option.lower() == ("conhecer kaer morhen"):
+			listar_areas_kaer_morhen()
+		elif option.lower() == ("menu geral"):
+			general_options()
+
+def get_personagem():
+	sql = "select * from personagem"
+
+	cur.execute(sql)
+	rows = cur.fetchall()
+	for r in rows:
+		print(r)
 
 
 def setup_game():
-    os.system('clear')
-    print("################################")
-    print("# Aqui começa a sua aventura... #")
-    print("################################\n")
-    print("Você se encontra em Kaer Morhen, uma velha fortaleza onde os Witchers eram treinados...\n")
+	os.system('clear')
+	print("################################")
+	print("# Aqui começa a sua aventura... #")
+	print("################################\n")
+	print("Você se encontra em Kaer Morhen, uma velha fortaleza onde os Witchers eram treinados...\n")
+	print("Escolha uma das opções abaixo:")
+	print(" .: Conhecer Kaer Morhen :. ")
+	opcoes_kaer_morhen()
 
     
 
