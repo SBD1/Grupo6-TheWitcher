@@ -34,7 +34,8 @@ def title_screen():
 	os.system('clear')
 	#Prints the pretty title.
 	print('#' * 45)
-	print('# Bem-vindo ao The Witcher #')
+	print('#   Bem-vindo ao The Witcher   #')
+	print('#     Um divertido Game MUD    #')
 	print("#     Projeto SBD1 - 2021.2    #")
 	print('#' * 45)
 	print(Jogar)
@@ -66,6 +67,7 @@ def general_options_menu():
 	print(" .: Personagem :. ")
 	print(" .: Ir para Kaer Morhen :. ")
 	print(" .: Ir para Crows Perch :. ")
+	print(" .: Ir para Ard Skellig :. ")
 	print(" .: Ajuda :. ")
 	print(" .: Sair :. ")
 	general_options()
@@ -78,12 +80,14 @@ def general_options():
 		listar_areas_kaer_morhen()
 	elif option.lower() == ("ir para crows perch"):
 		listar_areas_crows_perch()
+	elif option.lower() == ("ir para ard skellig"):
+		listar_areas_ard_skellig()
 	elif option.lower() == ("sair"):
 		sys.exit()
 	elif option.lower() == ("ajuda"):
 		help_menu()
 
-	while option.lower() not in ['personagem', 'ir para Kaer Morhen', 'ir para Crows Perch', 'ajuda', 'sair']:
+	while option.lower() not in ['personagem', 'ir para Kaer Morhen', 'ir para Crows Perch', 'ir para Ard Skellig', 'ajuda', 'sair']:
 		print("Comando Invalido, Tente Novamente.")
 		option = input("> ")
 		if option.lower() == ("personagem"):
@@ -153,6 +157,34 @@ def opcoes_crows_perch():
 		elif option.lower() == ("menu geral"):
 			general_options()
 
+# Area de Ard Skellig
+def listar_areas_ard_skellig():
+	print("A Cidade de Ard Skellig possui algumas áreas interessantes como:\n")
+	
+	sql = "select descricao from area a where a.id_mapa = 4"
+	cur.execute(sql)
+	rows = cur.fetchall()
+
+	for r in rows:
+		print(r)
+
+	general_options_menu()
+	general_options()
+
+def opcoes_ard_skellig():
+	option = input("> ")
+	if option.lower() == ("conhecer ard skellig"):
+		listar_areas_ard_skellig()
+	elif option.lower() == ("menu geral"):
+		general_options()
+	while option.lower() not in ['conhecer ard skellig', 'menu geral']:
+		print("Comando Invalido, Tente Novamente.")
+		option = input("> ")
+		if option.lower() == ("conhecer ard skellig"):
+			listar_areas_ard_skellig()
+		elif option.lower() == ("menu geral"):
+			general_options()
+
 
 
 def get_personagem():
@@ -173,6 +205,8 @@ def setup_game():
 	opcoes_kaer_morhen()
 	print(" .: Conhecer Crows Perch :. ")
 	opcoes_crows_perch()
+	print(" .: Conhecer Ard Skellig :. ")
+	opcoes_ard_skellig()
 
 title_screen()
 
