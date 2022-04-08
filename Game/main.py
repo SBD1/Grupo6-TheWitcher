@@ -68,7 +68,7 @@ def general_options_menu():
 	print(" .: Ir para Kaer Morhen :. ")
 	print(" .: Ir para Crows Perch :. ")
 	print(" .: Ir para Ard Skellig :. ")
-	print(" .: Ir para Orquídia Branca :. ")
+	print(" .: Ir para Pomar Branco :. ")
 	print(" .: Ajuda :. ")
 	print(" .: Sair :. ")
 	general_options()
@@ -83,14 +83,14 @@ def general_options():
 		listar_areas_crows_perch()
 	elif option.lower() == ("ir para ard skellig"):
 		listar_areas_ard_skellig()
-	elif option.lower() == ("ir para orquidia branca"):
-		listar_areas_orquidia_branca()
+	elif option.lower() == ("ir para pomar branco"):
+		listar_areas_pomar_branco()
 	elif option.lower() == ("sair"):
 		sys.exit()
 	elif option.lower() == ("ajuda"):
 		help_menu()
 
-	while option.lower() not in ['personagem', 'ir para kaer morhen', 'ir para crows perch', 'ir para ard skellig', 'ajuda', 'sair']:
+	while option.lower() not in ['personagem', 'ir para kaer morhen', 'ir para crows perch', 'ir para ard skellig', 'ir para pomar branco','ajuda', 'sair']:
 		print("Comando Invalido, Tente Novamente.")
 		option = input("> ")
 		if option.lower() == ("personagem"):
@@ -101,8 +101,8 @@ def general_options():
 			listar_areas_crows_perch()
 		elif option.lower() == ("ir para skellig"):
 			listar_areas_ard_skellig()
-		elif option.lower() == ("ir para orquidia branca"):
-			listar_areas_orquidia_branca()	
+		elif option.lower() == ("ir para pomar branco"):
+			listar_areas_pomar_branco()	
 		elif option.lower() == ("sair"):
 			sys.exit()
 		elif option.lower() == ("ajuda"):
@@ -192,8 +192,8 @@ def opcoes_ard_skellig():
 		elif option.lower() == ("menu geral"):
 			general_options()
 
-def listar_areas_orquidia_branca():
-	print("Você se encontra em orquidia branca e vê que tem alguns lugares a serem explorados:\n")
+def listar_areas_pomar_branco():
+	print("Você se encontra em um pomar branco e vê que tem alguns lugares a serem explorados:\n")
 	
 	sql = "select descricao from area a where a.id_mapa = 2"
 
@@ -207,19 +207,9 @@ def listar_areas_orquidia_branca():
 	general_options_menu()
 	general_options()
 
-def get_personagem():
-	sql = "select * from personagem"
-	cur.execute(sql)
-	rows = cur.fetchall()
-	for r in rows:
-		print(r)
-	
-	general_options_menu()
-	general_options()
-
-def opcoes_orquidia_branca():
+def opcoes_pomar_branco():
 	option = input("> ")
-	if option.lower() == ("conhecer orquidia branca"):
+	if option.lower() == ("conhecer pomar branco"):
 		listar_areas_kaer_morhen()
 	elif option.lower() == ("menu geral"):
 		general_options_menu()
@@ -232,6 +222,17 @@ def opcoes_orquidia_branca():
 		elif option.lower() == ("menu geral"):
 			general_options_menu()
 			general_options()
+
+def get_personagem():
+	sql = "select * from personagem"
+	cur.execute(sql)
+	rows = cur.fetchall()
+	for r in rows:
+		print(r)
+	
+	general_options_menu()
+	general_options()
+
 
 def setup_game():
 	os.system('clear')
