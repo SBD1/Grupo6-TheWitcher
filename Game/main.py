@@ -20,7 +20,7 @@ def title_screen_options():
 	elif option.lower() == ("ajuda"):
 		help_menu()		
 	while option.lower() not in ['jogar', 'sair', 'ajuda']:
-		print("Comando Invalido, Tente Novamente.")
+		print("Comando Inválido, Tente Novamente.")
 		option = input("> ")
 		if option.lower() == ("jogar"):
 			setup_game()
@@ -68,6 +68,7 @@ def general_options_menu():
 	print(" .: Ir para Kaer Morhen :. ")
 	print(" .: Ir para Crows Perch :. ")
 	print(" .: Ir para Ard Skellig :. ")
+	print(" .: Ir para Orquídia Branca :. ")
 	print(" .: Ajuda :. ")
 	print(" .: Sair :. ")
 	general_options()
@@ -82,20 +83,26 @@ def general_options():
 		listar_areas_crows_perch()
 	elif option.lower() == ("ir para ard skellig"):
 		listar_areas_ard_skellig()
+	elif option.lower() == ("ir para orquidia branca"):
+		listar_areas_orquidia_branca()
 	elif option.lower() == ("sair"):
 		sys.exit()
 	elif option.lower() == ("ajuda"):
 		help_menu()
 
-	while option.lower() not in ['personagem', 'ir para Kaer Morhen', 'ir para Crows Perch', 'ir para Ard Skellig', 'ajuda', 'sair']:
+	while option.lower() not in ['personagem', 'ir para kaer morhen', 'ir para crows perch', 'ir para ard skellig', 'ajuda', 'sair']:
 		print("Comando Invalido, Tente Novamente.")
 		option = input("> ")
 		if option.lower() == ("personagem"):
 			setup_game()
-		elif option.lower() == ("ir para Kaer Morhen"):
+		elif option.lower() == ("ir para kaer morhen"):
 			listar_areas_kaer_morhen()
-		elif option.lower() == ("ir para Crows Perch"):
-			listar_areas_crows_perch()	
+		elif option.lower() == ("ir para crows perch"):
+			listar_areas_crows_perch()
+		elif option.lower() == ("ir para skellig"):
+			listar_areas_ard_skellig()
+		elif option.lower() == ("ir para orquidia branca"):
+			listar_areas_orquidia_branca()	
 		elif option.lower() == ("sair"):
 			sys.exit()
 		elif option.lower() == ("ajuda"):
@@ -185,7 +192,20 @@ def opcoes_ard_skellig():
 		elif option.lower() == ("menu geral"):
 			general_options()
 
+def listar_areas_orquidia_branca():
+	print("Você se encontra em orquidia branca e vê que tem alguns lugares a serem explorados:\n")
+	
+	sql = "select descricao from area a where a.id_mapa = 2"
 
+	cur.execute(sql)
+
+	rows = cur.fetchall()
+
+	for r in rows:
+		print(r)
+
+	general_options_menu()
+	general_options()
 
 def get_personagem():
 	sql = "select * from personagem"
@@ -193,6 +213,25 @@ def get_personagem():
 	rows = cur.fetchall()
 	for r in rows:
 		print(r)
+	
+	general_options_menu()
+	general_options()
+
+def opcoes_orquidia_branca():
+	option = input("> ")
+	if option.lower() == ("conhecer orquidia branca"):
+		listar_areas_kaer_morhen()
+	elif option.lower() == ("menu geral"):
+		general_options_menu()
+		general_options()
+	while option.lower() not in ['conhecer kaer morhen', 'menu geral']:
+		print("Comando Invalido, Tente Novamente.")
+		option = input("> ")
+		if option.lower() == ("conhecer kaer morhen"):
+			listar_areas_kaer_morhen()
+		elif option.lower() == ("menu geral"):
+			general_options_menu()
+			general_options()
 
 def setup_game():
 	os.system('clear')
@@ -202,11 +241,21 @@ def setup_game():
 	print("Você se encontra em Kaer Morhen, uma velha fortaleza onde os Witchers eram treinados...\n")
 	print("Escolha uma das opções abaixo:")
 	print(" .: Conhecer Kaer Morhen :. ")
-	opcoes_kaer_morhen()
-	print(" .: Conhecer Crows Perch :. ")
-	opcoes_crows_perch()
-	print(" .: Conhecer Ard Skellig :. ")
-	opcoes_ard_skellig()
+	print(" .: Menu Geral :. ")
+	option = input("> ")
+	if option.lower() == ("conhecer kaer morhen"):
+		opcoes_kaer_morhen()
+	elif option.lower() == ("menu geral"):
+		general_options_menu()
+		general_options()
+	while option.lower() not in ['conhecer kaer morhen', 'menu geral']:
+		print("Comando Invalido, Tente Novamente.")
+		option = input("> ")
+		if option.lower() == ("conhecer kaer morhen"):
+			listar_areas_kaer_morhen()
+		elif option.lower() == ("menu geral"):
+			general_options_menu()
+			general_options()
 
 title_screen()
 
