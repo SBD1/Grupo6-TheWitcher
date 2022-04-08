@@ -55,6 +55,12 @@ INSERT INTO missao (titulo, descricao, tipo) VALUES
 ('Barão Sangrento', NULL, 'Ato I'),
 ('Perturbação', NULL, 'Ato II');
 
+INSERT INTO mapa (nome, tipo, pais, regiao) VALUES
+('Kaer Morhen', 'Fortaleza', 'Kaedwen', 'Kaer Morhen valley'),
+('Crows Perch', 'Fortaleza', 'Temeria', 'Velen'),
+('Cemitério de orquídia Branca', 'Cemitério', 'Temeria', 'Orquídea Branca'),
+('Ard Skellig', 'Cidade', 'Temeria', 'Skellige');
+
 INSERT INTO area (descricao, id_mapa) VALUES
 ('Uma serraria abandonada a muito tempo', 3),
 ('Uma pequena capela de pedra com grandes portas de madeira', 2),
@@ -64,11 +70,6 @@ INSERT INTO area (descricao, id_mapa) VALUES
 ('Um forte abandonado que se tornou habitado por Witchers', 1),
 ('Uma torre de pedra parcialmente destruída pela guerra', 1);
 
-INSERT INTO mapa (nome, tipo, pais, regiao) VALUES
-('Kaer Morhen', 'Fortaleza', 'Kaedwen', 'Kaer Morhen valley'),
-('Crows Perch', 'Fortaleza', 'Temeria', 'Velen'),
-('Cemitério de orquídia Branca', 'Cemitério', 'Temeria', 'Orquídea Branca'),
-('Ard Skellig', 'Cidade', 'Temeria', 'Skellige');
 
 INSERT INTO monstro (nome, ataque, defesa, vida, classe, descricao) VALUES
 ('Urso',NULL ,NULL ,NULL ,'Besta', 'Um urso pardo gigante'),
