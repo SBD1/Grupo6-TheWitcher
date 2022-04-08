@@ -15,6 +15,15 @@ CREATE TABLE monstro (
 	CONSTRAINT monstro_pk PRIMARY KEY (id)
 );
 
+CREATE TABLE mapa (
+	id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
+	nome varchar NOT NULL,
+	tipo varchar NOT NULL,
+	pais varchar NOT NULL,
+	regiao varchar NULL,
+	CONSTRAINT mapa_pk PRIMARY KEY (id)
+);
+
 CREATE TABLE item (
 	id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
 	nome varchar NULL,
@@ -155,15 +164,6 @@ CREATE TABLE area (
 	id_mapa int4 NULL,
 	CONSTRAINT area_pk PRIMARY KEY (id),
 	CONSTRAINT mapa_fk FOREIGN KEY (id_mapa) REFERENCES public.mapa(id) ON DELETE CASCADE ON UPDATE CASCADE
-);
-
-CREATE TABLE mapa (
-	id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
-	nome varchar NOT NULL,
-	tipo varchar NOT NULL,
-	pais varchar NOT NULL,
-	regiao varchar NULL,
-	CONSTRAINT mapa_pk PRIMARY KEY (id)
 );
 
 
