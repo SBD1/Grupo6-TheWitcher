@@ -1,3 +1,5 @@
+CREATE DATABASE TheWitcher;
+
 create domain tipo_item as VARCHAR(20) not null 
 check (value in ('equipamento', 'arma', 'consumivel', 'flecha'));
 

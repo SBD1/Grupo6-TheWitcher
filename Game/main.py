@@ -1,3 +1,4 @@
+from click import option
 from conn import criaConexao
 import sys
 import os
@@ -65,6 +66,7 @@ def general_options_menu():
 	print("  Menu Geral  ")
 	print('#' * 45)
 	print(" .: Personagem :. ")
+	print(" .: Listar Contratos Ativos :. ")
 	print(" .: Ir para Kaer Morhen :. ")
 	print(" .: Ir para Crows Perch :. ")
 	print(" .: Ir para Ard Skellig :. ")
@@ -77,6 +79,8 @@ def general_options():
 	option = input("> ")
 	if option.lower() == ("personagem"):
 		get_personagem()
+	elif option.lower() == ("listar contratos ativos"):
+		listar_contratos_ativos()
 	elif option.lower() == ("ir para kaer morhen"):
 		listar_areas_kaer_morhen()
 	elif option.lower() == ("ir para crows perch"):
@@ -90,11 +94,13 @@ def general_options():
 	elif option.lower() == ("ajuda"):
 		help_menu()
 
-	while option.lower() not in ['personagem', 'ir para kaer morhen', 'ir para crows perch', 'ir para ard skellig', 'ir para pomar branco','ajuda', 'sair']:
-		print("Comando Invalido, Tente Novamente.")
+	while option.lower() not in ['personagem', 'listar contratos ativos', 'ir para kaer morhen', 'ir para crows perch', 'ir para ard skellig', 'ir para pomar branco','ajuda', 'sair']:
+		print("Comando Inválido, Tente Novamente.")
 		option = input("> ")
 		if option.lower() == ("personagem"):
 			setup_game()
+		elif option.lower() == ("listar contratos ativos"):
+			listar_contratos_ativos()
 		elif option.lower() == ("ir para kaer morhen"):
 			listar_areas_kaer_morhen()
 		elif option.lower() == ("ir para crows perch"):
@@ -129,7 +135,7 @@ def opcoes_kaer_morhen():
 	elif option.lower() == ("menu geral"):
 		general_options()
 	while option.lower() not in ['conhecer kaer morhen', 'menu geral']:
-		print("Comando Invalido, Tente Novamente.")
+		print("Comando Inválido, Tente Novamente.")
 		option = input("> ")
 		if option.lower() == ("conhecer kaer morhen"):
 			listar_areas_kaer_morhen()
@@ -157,7 +163,7 @@ def opcoes_crows_perch():
 	elif option.lower() == ("menu geral"):
 		general_options()
 	while option.lower() not in ['conhecer crows perch', 'menu geral']:
-		print("Comando Invalido, Tente Novamente.")
+		print("Comando Inválido, Tente Novamente.")
 		option = input("> ")
 		if option.lower() == ("conhecer crows perch"):
 			listar_areas_crows_perch()
@@ -183,13 +189,15 @@ def opcoes_ard_skellig():
 	if option.lower() == ("conhecer ard skellig"):
 		listar_areas_ard_skellig()
 	elif option.lower() == ("menu geral"):
+		general_options_menu()
 		general_options()
 	while option.lower() not in ['conhecer ard skellig', 'menu geral']:
-		print("Comando Invalido, Tente Novamente.")
+		print("Comando Inválido, Tente Novamente.")
 		option = input("> ")
 		if option.lower() == ("conhecer ard skellig"):
 			listar_areas_ard_skellig()
 		elif option.lower() == ("menu geral"):
+			general_options_menu()
 			general_options()
 
 def listar_areas_pomar_branco():
@@ -204,8 +212,101 @@ def listar_areas_pomar_branco():
 	for r in rows:
 		print(r)
 
+	print(" .: Explorar o Cemiterio  :. ")
+	print(" .: Menu Greal :. ")
+
+	option = input("> ")
+	if option.lower() == ("explorar o cemiterio"):
+		explorar_cemiterio()
+	elif option.lower() == ("menu geral"):
+		general_options_menu()
+		general_options()
+	while option.lower() not in ['explorar o cemiterio', 'menu geral']:
+		print("Comando Inválido, Tente Novamente.")
+		option = input("> ")
+		if option.lower() == ("explorar o cemiterio"):
+			explorar_cemiterio()
+		elif option.lower() == ("menu geral"):
+			general_options_menu()
+			general_options()
+
+
+
+def explorar_cemiterio():
+	print("Você dá de cara com uma pessoa pequena e, ao chegar mais perto, percebe que é um anão com uma cara fechada e um ar sombrio")
+	print(" .: Falar com ele :.")
+	print(" .: Voltar a pomar branco :.")
+	option = input("> ")
+	if option.lower() == ("falar com ele"):
+		missoes_cemiterio()
+	elif option.lower() == ("voltar a pomar branco"):
+		listar_areas_pomar_branco()
+	elif option.lower() == ("menu geral"):
+		general_options_menu()
+		general_options()
+	while option.lower() not in ['explorar o cemiterio', 'menu geral']:
+		print("Comando Inválido, Tente Novamente.")
+		option = input("> ")
+		if option.lower() == ("falar com ele"):
+			missoes_cemiterio()
+		elif option.lower() == ("voltar a pomar branco"):
+			listar_areas_pomar_branco()
+		elif option.lower() == ("menu geral"):
+			general_options_menu()
+			general_options()
+
+
+def missoes_cemiterio():
+	print("Olá Witcher, neste cemitério existe uma besta que está bagunçando os túmulos, traga a cabeça dela e lhe recompensarei de acordo.")
+	print(" .: Pegar Contrato :.")
+	print(" .: Deixar Contrato :.")
+	option = input("> ")
+	if option.lower() == ("pegar contrato"):
+		contrato_besta_pomar_branco()
+	elif option.lower() == ("deixar contrato"):
+		print("Tudo bem, Witcher. Se mudar de ideia, estarei aqui!")
+		general_options_menu()
+		general_options()
+	while option.lower() not in ['pegar contrato', 'deixar contrato']:
+		print("Comando Inválido, Tente Novamente.")
+		option = input("> ")
+		if option.lower() == ("pegar contrato"):
+			contrato_besta_pomar_branco()
+		elif option.lower() == ("deixar contrato"):
+			general_options_menu()
+			general_options()
+
+def contrato_besta_pomar_branco():
+
+	contrato_ativo = "insert into contratos_ativos(contrato, personagem) VALUES (3, 1)"
+
+	delete_de_contrato = "select * from contrato"
+
+	cur.execute(contrato_ativo)
+	cur.execute(delete_de_contrato)
+
+	conn.commit()
+
+
+def listar_contratos_ativos():
+	print("Esses são os contratos que estão ativos: \n")
+
+	contratos_ativos = """
+						select ca.contrato, m.titulo, m.descricao 
+						from contratos_ativos ca 
+						inner join missao m on m.id = ca.contrato
+						"""
+	cur.execute(contratos_ativos)
+	rows = cur.fetchall()
+	for r in rows:
+		print(f"Número da missão: {r[0]}")
+		print(f"Título da missão: {r[1]}")
+		print(f"Descrição:  {r[2]} \n")
+	print("\n")
+	print('#' * 45)
 	general_options_menu()
 	general_options()
+
 
 def opcoes_pomar_branco():
 	option = input("> ")
@@ -215,7 +316,7 @@ def opcoes_pomar_branco():
 		general_options_menu()
 		general_options()
 	while option.lower() not in ['conhecer kaer morhen', 'menu geral']:
-		print("Comando Invalido, Tente Novamente.")
+		print("Comando Inválido, Tente Novamente.")
 		option = input("> ")
 		if option.lower() == ("conhecer kaer morhen"):
 			listar_areas_kaer_morhen()
@@ -228,8 +329,12 @@ def get_personagem():
 	cur.execute(sql)
 	rows = cur.fetchall()
 	for r in rows:
-		print(r)
-	
+		print(f"Nome: {r[1]}")
+		print(f"Gold: {r[2]}")
+		print(f"Vida: {r[3]}")
+		print(f"Ataque: {r[4]}")
+		print(f"Defesa: {r[5]}")
+	print('#' * 45)
 	general_options_menu()
 	general_options()
 
@@ -250,7 +355,7 @@ def setup_game():
 		general_options_menu()
 		general_options()
 	while option.lower() not in ['conhecer kaer morhen', 'menu geral']:
-		print("Comando Invalido, Tente Novamente.")
+		print("Comando Inválido, Tente Novamente.")
 		option = input("> ")
 		if option.lower() == ("conhecer kaer morhen"):
 			listar_areas_kaer_morhen()
