@@ -6,5 +6,5 @@ create or replace function insere_drop() returns trigger as $trigger_dropa_item$
 	end;
 $trigger_dropa_item$ language plpgsql
 
-create trigger dropa_item after delete on instancia_monstro 
+create trigger dropa_item before delete on instancia_monstro 
 for each row execute procedure insere_drop();
