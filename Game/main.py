@@ -277,31 +277,28 @@ def missoes_cemiterio():
 			general_options()
 
 def contrato_besta_pomar_branco():
-
-	contrato_ativo = "insert into contratos_ativos(contrato, personagem) VALUES (3, 1)"
-
-	delete_de_contrato = "select * from contrato"
-
+	contrato_ativo = f"update contrato set is_ativo = {True} where id = 3"
 	cur.execute(contrato_ativo)
-	cur.execute(delete_de_contrato)
-
 	conn.commit()
-
+	print("O contrato foi adicionado à lista de contratos ativos!")
+	general_options_menu()
+	general_options()
 
 def listar_contratos_ativos():
 	print("Esses são os contratos que estão ativos: \n")
 
-	contratos_ativos = """
-						select ca.contrato, m.titulo, m.descricao 
-						from contratos_ativos ca 
-						inner join missao m on m.id = ca.contrato
+	contratos_ativos = f"""
+						select ca.id, m.titulo, m.descricao 
+						from contrato ca 
+						inner join missao m on m.id = ca.id
+						where is_ativo = {True}
 						"""
 	cur.execute(contratos_ativos)
 	rows = cur.fetchall()
 	for r in rows:
 		print(f"Número da missão: {r[0]}")
 		print(f"Título da missão: {r[1]}")
-		print(f"Descrição:  {r[2]} \n")
+		print(f"Descrição: {r[2]} \n")
 	print("\n")
 	print('#' * 45)
 	general_options_menu()
@@ -341,9 +338,9 @@ def get_personagem():
 
 def setup_game():
 	os.system('clear')
-	print("################################")
+	print("#################################")
 	print("# Aqui começa a sua aventura... #")
-	print("################################\n")
+	print("#################################\n")
 	print("Você se encontra em Kaer Morhen, uma velha fortaleza onde os Witchers eram treinados...\n")
 	print("Escolha uma das opções abaixo:")
 	print(" .: Conhecer Kaer Morhen :. ")

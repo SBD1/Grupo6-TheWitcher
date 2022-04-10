@@ -186,3 +186,5 @@ CREATE TABLE encontrado_em
         ON UPDATE CASCADE
         ON DELETE CASCADE	
 );
+
+ALTER TABLE public.contrato ADD is_ativo bool NULL;
