@@ -1,3 +1,4 @@
+from optparse import OptionConflictError
 from click import option
 from conn import criaConexao
 import sys
@@ -213,7 +214,7 @@ def listar_areas_pomar_branco():
 		print(r)
 
 	print(" .: entrar no cemiterio  :. ")
-	print(" .: Menu Greal :. ")
+	print(" .: Menu Geral :. ")
 
 	option = input("> ")
 	if option.lower() == ("entrar no cemiterio"):
@@ -281,17 +282,62 @@ def contrato_besta_pomar_branco():
 	cur.execute(contrato_ativo)
 	conn.commit()
 	print("O contrato foi adicionado à lista de contratos ativos!")
-	general_options_menu()
-	general_options()
+	print(" .: Explorar Cemitério :. ")
+	option = input("> ")
+	if option.lower() == ("explorar cemiterio"):
+		missao_besta_pomar_branco()
+	elif option.lower() == ("voltar para poamr branco"):
+		listar_areas_pomar_branco()
+	while option.lower() not in ['explorar cemiterio', 'voltar para pormar branco']:
+		print("Comando Inválido, Tente Novamente.")
+		option = input("> ")
+		if option.lower() == ("pegar contrato"):
+			contrato_besta_pomar_branco()
+		elif option.lower() == ("voltar para pomar branco"):
+			listar_areas_pomar_branco()
+
 
 def missao_besta_pomar_branco():
 	print("Você está andando pelo cemitério quando, de repente, vê um Berseker cavando um túmulo embaixo de uma grande estátua de mármore")
-	print(" .: Matar Berseker :.")
+	print(" .: Matar Besta :.")
 	print(" .: Sair do Cemitério :. ")
 	print(" .: Menu Geral :. ")
 	option = input("> ")
 	if option.lower() == ("matar besta"):
-		print("Você mata a besta e arranca sua cabeça para levá-la até o anão")
+		matar_berseker()
+		print("Você mata a besta, arranca sua cabeça e leva até o anão")
+		print("Você pega sua recompensa e volta a pomar branco")
+		listar_areas_pomar_branco()
+	elif option.lower() == ("sair do cemiterio"):
+		print("Você sai do cemitério e retorna a pomar branco")
+		listar_areas_pomar_branco()
+	elif option.lower() == ("menu geral"):
+		general_options_menu()
+		general_options()
+	while option.lower() not in ['matar besta', 'sair do cemiterio', 'menu geral']:
+		print("Comando Inválido, Tente Novamente.")
+		option = input("> ")
+		if option.lower() == ("matar besta"):
+			matar_berseker()
+			print("Você mata a besta, arranca sua cabeça e leva até o anão")
+			print("Você pega sua recompensa e volta a pomar branco")
+			listar_areas_pomar_branco()
+		elif option.lower() == ("sair do cemiterio"):
+			print("Você sai do cemitério e retorna a pomar branco")
+			listar_areas_pomar_branco()
+		elif option.lower() == ("menu geral"):
+			general_options_menu()
+			general_options()
+
+
+def matar_berseker():
+	#inserir_cabeca_na_mochila = "insert into mochila (id_personagem, item) VALUES (1, 1)"
+
+	deletar_instancia_berseker = "delete from encontrado_em where id_instancia_monstro = 1"
+
+	#cur.execute(inserir_cabeca_na_mochila)
+	cur.execute(deletar_instancia_berseker)
+	conn.commit()
 
 
 def listar_contratos_ativos():

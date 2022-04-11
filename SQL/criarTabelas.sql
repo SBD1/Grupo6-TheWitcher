@@ -72,8 +72,10 @@ CREATE TABLE mochila (
 	id_personagem int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
 	peso float8 NULL,
 	capacidade int4 NULL,
+	item int4 NULL,
 	CONSTRAINT mochila_pk PRIMARY KEY (id_personagem),
-	CONSTRAINT mochila_fk FOREIGN KEY (id_personagem) REFERENCES personagem(id) ON DELETE CASCADE ON UPDATE CASCADE
+	CONSTRAINT instancia_item_fk FOREIGN KEY (item) REFERENCES instancia_item(id),
+	CONSTRAINT personagem_fk FOREIGN KEY (id_personagem) REFERENCES personagem(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE instancia_monstro (
