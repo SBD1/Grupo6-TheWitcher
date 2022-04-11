@@ -65,6 +65,7 @@ INSERT INTO mapa (nome, tipo, pais, regiao) VALUES
 INSERT INTO area (descricao, id_mapa) VALUES
 ('Uma serraria abandonada a muito tempo', 3),
 ('Um cemitério com uma pequena capela de pedra com grandes portas de madeira', 2),
+('Uma torre construída principalmente em tijolos vermelhos e situada bem no alto da colina', 2),
 ('Uma torre antiga abandonada a muitos anos', 4),
 ('Uma grande ponte de pedra, por cima de um pequeno rio', 4),
 ('Uma ruína élfica encontrada abaixo das montanhas', 3),
