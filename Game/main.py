@@ -249,6 +249,85 @@ def missoes_serraria():
 			general_options()
 
 
+def contrato_serraria():
+	contrato_ativo = f"update contrato set is_ativo = {True} where id = 2"
+	cur.execute(contrato_ativo)
+	conn.commit()
+	print("O contrato foi adicionado à lista de contratos ativos!")
+	print(" .: Explorar Serraria :. ")
+	option = input("> ")
+	if option.lower() == ("explorar serraria"):
+		missao_serraria()
+	elif option.lower() == ("voltar para ard skellig"):
+		listar_areas_ard_skellig()
+	while option.lower() not in ['explorar serraria', 'voltar para ard skellig']:
+		print("Comando Inválido, Tente Novamente.")
+		option = input("> ")
+		if option.lower() == ("pegar contrato"):
+			contrato_serraria()
+		elif option.lower() == ("voltar para ard skellig"):
+			listar_areas_ard_skellig()
+
+
+def missao_serraria():
+	print("Você entra na serraria abandonada, e ao fundo vê Katakan, um morcego monstruoso vasculhando alguns destroços")
+	print(" .: Matar Katakan :.")
+	print(" .: Sair do Serraria :. ")
+	print(" .: Menu Geral :. ")
+	option = input("> ")
+	if option.lower() == ("matar katakan"):
+		matar_berseker()
+		print("Você mata o vampiro, arranca suas asas e leva até o civil")
+		print("Você pega sua recompensa e volta a ard skellig")
+		listar_areas_ard_skellig()
+	elif option.lower() == ("sair da serraria"):
+		print("Você sai da serraria e retorna a ard skellig")
+		listar_areas_ard_skellig()
+	elif option.lower() == ("menu geral"):
+		general_options_menu()
+		general_options()
+	while option.lower() not in ['matar katakan', 'sair da serraria', 'menu geral']:
+		print("Comando Inválido, Tente Novamente.")
+		option = input("> ")
+		if option.lower() == ("matar katakan"):
+			matar_katakan()
+			print("Você mata o vampiro, arranca suas asas e leva até o civil")
+			print("Você pega sua recompensa e volta a ard skellig")
+			listar_areas_ard_skellig()
+		elif option.lower() == ("sair da serraria"):
+			print("Você sai da serraria e retorna a ard skellig")
+			listar_areas_ard_skellig()
+		elif option.lower() == ("menu geral"):
+			general_options_menu()
+			general_options()
+
+
+def matar_katakan():
+	#inserir as asas do vampiro
+	print("as asas de Katakan foram arrancadas brotalmente")
+
+
+def listar_contratos_ativos():
+	print("Esses são os contratos que estão ativos: \n")
+
+	contratos_ativos = f"""
+						select ca.id, m.titulo, m.descricao 
+						from contrato ca 
+						inner join missao m on m.id = ca.id
+						where is_ativo = {True}
+						"""
+	cur.execute(contratos_ativos)
+	rows = cur.fetchall()
+	for r in rows:
+		print(f"Número da missão: {r[0]}")
+		print(f"Título da missão: {r[1]}")
+		print(f"Descrição: {r[2]} \n")
+	print("\n")
+	print('#' * 45)
+	general_options_menu()
+	general_options()
+
+
 
 def opcoes_ard_skellig():
 	option = input("> ")
