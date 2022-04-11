@@ -1,7 +1,7 @@
 CREATE DATABASE TheWitcher;
 
 create domain tipo_item as VARCHAR(20) not null 
-check (value in ('equipamento', 'arma', 'consumivel', 'flecha'));
+check (value in ('equipamento', 'arma', 'consumivel', 'flecha', 'item_missao'));
 
 create domain tipo_habilidade as VARCHAR(20) NOT NULL
 check (value in ('Combate', 'Sinais', 'Alquimia'));
@@ -187,4 +187,4 @@ CREATE TABLE encontrado_em
         ON DELETE CASCADE	
 );
 
-ALTER TABLE public.contrato ADD is_ativo bool NULL;
+ALTER TABLE contrato ADD is_ativo bool NULL;

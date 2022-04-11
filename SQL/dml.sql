@@ -37,7 +37,8 @@ INSERT INTO item (nome, tipo, descricao, preco, efeito, peso, alcance, ataque, d
 ('Espada do caçador de bruxos', 'arma', NULL, 755.0, NULL, 2.31, NULL, 42, 27, 18.0),
 ('Espada Tor Lara', 'arma', NULL, 1211.0, NULL, 2.73, NULL, 70, 34, 26.0),
 ('Flecha com ponta de ferro', 'flecha', NULL, 10.0, NULL, 0.2, NULL, NULL, NULL, NULL),
-('Flecha com ponta de prata', 'flecha', NULL, 12.0, NULL, 0.4, NULL, NULL, NULL, NULL);
+('Flecha com ponta de prata', 'flecha', NULL, 12.0, NULL, 0.4, NULL, NULL, NULL, NULL),
+('Cabeça de Berseker', 'item_missao', NULL, 12.0, NULL, 0.4, NULL, NULL, NULL, NULL);
 
 INSERT INTO npc (nome, raca, classe) VALUES 
 ('Halbjorn', 'humano', 'civil'),

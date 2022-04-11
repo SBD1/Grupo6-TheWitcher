@@ -212,27 +212,27 @@ def listar_areas_pomar_branco():
 	for r in rows:
 		print(r)
 
-	print(" .: Explorar o Cemiterio  :. ")
+	print(" .: entrar no cemiterio  :. ")
 	print(" .: Menu Greal :. ")
 
 	option = input("> ")
-	if option.lower() == ("explorar o cemiterio"):
-		explorar_cemiterio()
+	if option.lower() == ("entrar no cemiterio"):
+		entrar_no_cemiterio()
 	elif option.lower() == ("menu geral"):
 		general_options_menu()
 		general_options()
-	while option.lower() not in ['explorar o cemiterio', 'menu geral']:
+	while option.lower() not in ['entrar no cemiterio', 'menu geral']:
 		print("Comando Inválido, Tente Novamente.")
 		option = input("> ")
-		if option.lower() == ("explorar o cemiterio"):
-			explorar_cemiterio()
+		if option.lower() == ("entrar no cemiterio"):
+			entrar_no_cemiterio()
 		elif option.lower() == ("menu geral"):
 			general_options_menu()
 			general_options()
 
 
 
-def explorar_cemiterio():
+def entrar_no_cemiterio():
 	print("Você dá de cara com uma pessoa pequena e, ao chegar mais perto, percebe que é um anão com uma cara fechada e um ar sombrio")
 	print(" .: Falar com ele :.")
 	print(" .: Voltar a pomar branco :.")
@@ -244,7 +244,7 @@ def explorar_cemiterio():
 	elif option.lower() == ("menu geral"):
 		general_options_menu()
 		general_options()
-	while option.lower() not in ['explorar o cemiterio', 'menu geral']:
+	while option.lower() not in ['entrar no cemiterio', 'menu geral']:
 		print("Comando Inválido, Tente Novamente.")
 		option = input("> ")
 		if option.lower() == ("falar com ele"):
@@ -283,6 +283,16 @@ def contrato_besta_pomar_branco():
 	print("O contrato foi adicionado à lista de contratos ativos!")
 	general_options_menu()
 	general_options()
+
+def missao_besta_pomar_branco():
+	print("Você está andando pelo cemitério quando, de repente, vê um Berseker cavando um túmulo embaixo de uma grande estátua de mármore")
+	print(" .: Matar Berseker :.")
+	print(" .: Sair do Cemitério :. ")
+	print(" .: Menu Geral :. ")
+	option = input("> ")
+	if option.lower() == ("matar besta"):
+		print("Você mata a besta e arranca sua cabeça para levá-la até o anão")
+
 
 def listar_contratos_ativos():
 	print("Esses são os contratos que estão ativos: \n")
