@@ -57,7 +57,7 @@ CREATE TABLE instancia_item (
 	id_item int4 NULL,
 	nivel int4 NULL,
 	CONSTRAINT instancia_item_pk PRIMARY KEY (id),
-	CONSTRAINT instancia_item_fk FOREIGN KEY (id) REFERENCES item(id) ON DELETE CASCADE ON UPDATE CASCADE
+	CONSTRAINT instancia_item_fk FOREIGN KEY (id_item) REFERENCES item(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
@@ -83,7 +83,7 @@ CREATE TABLE instancia_monstro (
 	instancia_item int4 NULL,
 	CONSTRAINT instancia_monstro_pk PRIMARY KEY (id),
 	CONSTRAINT instancia_item_fk FOREIGN KEY (instancia_item) REFERENCES instancia_item(id),
-	CONSTRAINT instancia_monstro_fk FOREIGN KEY (id) REFERENCES monstro(id)
+	CONSTRAINT instancia_monstro_fk FOREIGN KEY (id_monstro) REFERENCES monstro(id)
 );
 
 
