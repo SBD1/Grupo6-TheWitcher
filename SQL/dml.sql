@@ -98,3 +98,8 @@ INSERT INTO contrato (gold, npc, missao) VALUES
 (63.0, 4, 5),
 (85.0, 5, 6),
 (55.0, 3, 7);
+
+INSERT INTO instancia_item (id_item, nivel) VALUES(28, NULL);
+
+INSERT INTO instancia_monstro (id_monstro, nivel, instancia_item) VALUES(4, 2, 1);
+
