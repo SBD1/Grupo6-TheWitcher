@@ -175,15 +175,80 @@ def opcoes_crows_perch():
 def listar_areas_ard_skellig():
 	print("A Cidade de Ard Skellig possui algumas áreas interessantes como:\n")
 	
-	sql = "select descricao from area a where a.id_mapa = 4"
+	sql = "select descricao from area a where a.id_mapa = 3"
 	cur.execute(sql)
 	rows = cur.fetchall()
 
 	for r in rows:
 		print(r)
 
-	general_options_menu()
-	general_options()
+	# general_options_menu()
+	# general_options()
+
+	print(" .: entrar na serraria  :. ")
+	print(" .: Menu Geral :. ")
+
+	option = input("> ")
+	if option.lower() == ("entrar na serraria"):
+		entrar_na_serraria()
+	elif option.lower() == ("menu geral"):
+		general_options_menu()
+		general_options()
+	while option.lower() not in ['entrar na serraria', 'menu geral']:
+		print("Comando Inválido, Tente Novamente.")
+		option = input("> ")
+		if option.lower() == ("entrar na serraria"):
+			entrar_na_serraria()
+		elif option.lower() == ("menu geral"):
+			general_options_menu()
+			general_options()
+
+
+def entrar_na_serraria():
+	print("Na frente de uma serraria abandonada você se depara com um civil ferido")
+	print(" .: Falar com ele :.")
+	print(" .: Voltar a ard skellig :.")
+	option = input("> ")
+	if option.lower() == ("falar com ele"):
+		missoes_serraria()
+	elif option.lower() == ("voltar a ard skellig"):
+		listar_areas_ard_skellig()
+	elif option.lower() == ("menu geral"):
+		general_options_menu()
+		general_options()
+	while option.lower() not in ['entrar na serraria', 'menu geral']:
+		print("Comando Inválido, Tente Novamente.")
+		option = input("> ")
+		if option.lower() == ("falar com ele"):
+			missoes_serraria()
+		elif option.lower() == ("voltar a ard skellig"):
+			listar_areas_ard_skellig()
+		elif option.lower() == ("menu geral"):
+			general_options_menu()
+			general_options()
+
+
+def missoes_serraria():
+	print("Olá Witcher, entrei nessa serraria para me proteger da chuva e fui atacado por um vampiro, traga as asas dele e lhe recompensarei de acordo.")
+	print(" .: Pegar Contrato :.")
+	print(" .: Deixar Contrato :.")
+	option = input("> ")
+	if option.lower() == ("pegar contrato"):
+		contrato_serraria()
+	elif option.lower() == ("deixar contrato"):
+		print("Tudo bem, Witcher. Se mudar de ideia, estarei aqui!")
+		general_options_menu()
+		general_options()
+	while option.lower() not in ['pegar contrato', 'deixar contrato']:
+		print("Comando Inválido, Tente Novamente.")
+		option = input("> ")
+		if option.lower() == ("pegar contrato"):
+			contrato_serraria()
+		elif option.lower() == ("deixar contrato"):
+			general_options_menu()
+			general_options()
+
+
 
 def opcoes_ard_skellig():
 	option = input("> ")
@@ -192,15 +257,19 @@ def opcoes_ard_skellig():
 	elif option.lower() == ("menu geral"):
 		general_options_menu()
 		general_options()
-	while option.lower() not in ['conhecer ard skellig', 'menu geral']:
+	while option.lower() not in ['conhecer kaer morhen', 'menu geral']:
 		print("Comando Inválido, Tente Novamente.")
 		option = input("> ")
-		if option.lower() == ("conhecer ard skellig"):
-			listar_areas_ard_skellig()
+		if option.lower() == ("conhecer kaer morhen"):
+			listar_areas_kaer_morhen()
 		elif option.lower() == ("menu geral"):
 			general_options_menu()
 			general_options()
 
+
+
+
+# Area de Pomar Branco
 def listar_areas_pomar_branco():
 	print("Você se encontra em um pomar branco e vê que tem alguns lugares a serem explorados:\n")
 	
