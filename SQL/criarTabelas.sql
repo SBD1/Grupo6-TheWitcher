@@ -69,7 +69,7 @@ CREATE TABLE itens_equipados (
 );
 
 CREATE TABLE mochila (
-	id_personagem int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
+	id_personagem int4 NOT NULL,
 	peso float8 NULL,
 	capacidade int4 NULL,
 	item int4 NULL,
