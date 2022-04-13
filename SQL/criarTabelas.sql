@@ -34,7 +34,6 @@ CREATE TABLE item (
 	preco float8 NULL,
 	efeito varchar NULL,
 	peso float8 NULL,
-	dano int4 NULL,
 	alcance float8 NULL,
 	ataque int4 NULL,
 	defesa int4 NULL,
