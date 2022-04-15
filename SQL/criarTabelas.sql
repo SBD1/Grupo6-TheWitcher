@@ -80,7 +80,7 @@ CREATE TABLE mochila (
 );
 
 CREATE TABLE instancia_monstro (
-	id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
+	id int4 NOT NULL,
 	id_monstro int4 NULL,
 	nivel int4 NULL,
 	instancia_item int4 NULL,

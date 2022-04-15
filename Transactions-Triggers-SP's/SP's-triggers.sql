@@ -1,14 +1,14 @@
 -- Função para atualizar o gold do personagem após venda de item
-create or replace function atualiza_gold() returns trigger as $$
+create or replace function atualiza_gold() returns trigger as $atualiza_gold$
 	begin 
 		update personagem set gold = gold + i.preco
 		from item i
 		inner join instancia_item ii
 		on i.id = ii.id_item 
-		where ii.id =  17;
+		where ii.id =  old.item;
 		return new;
 	end;
-$$ 
+$atualiza_gold$ 
 language plpgsql;
 
 
@@ -18,13 +18,14 @@ for each row execute procedure atualiza_gold();
 
 
 -- Função para inserir os itens na tabela de monstro_dropa_item
-create or replace function insere_drop() returns trigger as $$
+create or replace function insere_drop() returns trigger as $insere_drop$
 	begin 
 		insert into monstro_dropa_item(id_instancia_monstro, id_instancia_item)
-		values (2, 28);
+		values ((select old.id from instancia_monstro where id = old.id), 
+				(select old.instancia_item from instancia_monstro where instancia_item = old.instancia_item)); 
 		return new;
 	end;
-$$ 
+$insere_drop$ 
 language plpgsql;
 
 
