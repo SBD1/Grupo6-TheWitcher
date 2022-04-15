@@ -1,4 +1,4 @@
--- Função para atualizar o gold do personagem após venda de item
+-- Stored procedure para atualizar o gold do personagem após venda de item
 create or replace function atualiza_gold() returns trigger as $atualiza_gold$
 	begin 
 		update personagem set gold = gold + i.preco
@@ -17,12 +17,11 @@ create trigger trigger_vender_item after delete on mochila
 for each row execute procedure atualiza_gold();
 
 
--- Função para inserir os itens na tabela de monstro_dropa_item
+-- Stored procedure para inserir item que o monstro dropa na mochila
 create or replace function insere_drop() returns trigger as $insere_drop$
 	begin 
-		insert into monstro_dropa_item(id_instancia_monstro, id_instancia_item)
-		values ((select old.id from instancia_monstro where id = old.id), 
-				(select old.instancia_item from instancia_monstro where instancia_item = old.instancia_item)); 
+		insert into mochila(id_personagem, item)
+		values (1, (select old.instancia_item from instancia_monstro)); 
 		return new;
 	end;
 $insere_drop$ 
@@ -31,4 +30,4 @@ language plpgsql;
 
 -- Trigger para chamar a função sempre que uma instância de monstro for exluída
 create trigger trigger_dropa_item after delete on instancia_monstro 
-for each row execute function insere_drop();
+for each row execute procedure insere_drop();

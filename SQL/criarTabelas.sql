@@ -98,7 +98,7 @@ CREATE TABLE monstro_dropa_item (
 );
 
 CREATE TABLE Habilidade ( 
-  id int4 NOT NULL GENERATED ALWAYS AS IDENTITY,
+  id int4 NOT NULL ,
   nome VARCHAR(60) NOT NULL,
   tipo tipo_habilidade NOT NULL,
   CONSTRAINT pk_habilidade PRIMARY KEY(ID)
