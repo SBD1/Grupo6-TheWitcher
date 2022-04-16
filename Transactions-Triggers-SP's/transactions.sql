@@ -55,3 +55,10 @@ where itens_equipados.id_item = i.id;
 update personagem set gold = gold - 50;
 	
 commit;
+
+-- remove item da mochila
+begin;
+
+select removerItemMochila(1,1);
+
+commit;

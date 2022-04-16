@@ -64,3 +64,16 @@ create trigger trigger_desativar_contrato after delete on contrato
 for each row execute procedure desativar_contrato();
 
 
+-- Stored procedure remover item da mochila, verifica antes se o item existe
+CREATE OR REPLACE FUNCTION removerItemMochila(_mochila integer, _instancia_item integer)
+RETURNS void AS $remove_item_mochila$
+declare
+BEGIN
+	IF exists(select 1 from mochila_guarda WHERE mochila_guarda.item = _instancia_item) = false THEN
+	    RAISE 'Item não existe na mochila';
+	END IF;
+
+	DELETE FROM mochila_guarda WHERE item = _instancia_item and mochila = _mochila;
+	DELETE FROM instancia_item WHERE id = _instancia_item;
+END;
+$remove_item_mochila$ LANGUAGE plpgsql;
