@@ -31,3 +31,26 @@ language plpgsql;
 -- Trigger para chamar a função sempre que uma instância de monstro for exluída
 create trigger trigger_dropa_item after delete on instancia_monstro 
 for each row execute procedure insere_drop();
+
+
+
+
+-- Stored procedure para inserir contrato
+create or replace function ativar_contrato() returns trigger as $ativar_contrato$
+	begin 
+		insert into contrato(gold, npc, missao)
+		values ((select old.gold from contrato), (select old.npc from npc), (select old.missao from missao)); 
+		return new;
+	end;
+$ativar_contrato$ 
+language plpgsql;
+
+-- Stored procedure para atualizar contrato
+create or replace function desativar_contrato() returns trigger as $desativar_contrato$
+	begin 
+		update contrato set missao = missao - 1
+		where gold = old.gold and npc = old.npc; 
+		return null;
+	end;
+$desativar_contrato$ 
+language plpgsql;
