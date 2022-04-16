@@ -45,6 +45,10 @@ create or replace function ativar_contrato() returns trigger as $ativar_contrato
 $ativar_contrato$ 
 language plpgsql;
 
+-- Trigger para inserir contrato
+create trigger trigger_ativar_contrato after update on contrato 
+for each row execute procedure ativar_contrato();
+
 -- Stored procedure para atualizar contrato
 create or replace function desativar_contrato() returns trigger as $desativar_contrato$
 	begin 
@@ -54,3 +58,9 @@ create or replace function desativar_contrato() returns trigger as $desativar_co
 	end;
 $desativar_contrato$ 
 language plpgsql;
+
+-- Trigger para atualizar contrato
+create trigger trigger_desativar_contrato after delete on contrato 
+for each row execute procedure desativar_contrato();
+
+
