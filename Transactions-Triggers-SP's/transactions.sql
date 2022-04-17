@@ -62,3 +62,11 @@ begin;
 select removerItemMochila(1,1);
 
 commit;
+
+
+-- matar monstro
+begin;
+
+select matarMonstro(3);
+
+commit;

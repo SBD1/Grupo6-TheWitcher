@@ -20,7 +20,7 @@ for each row execute procedure atualiza_gold();
 -- Stored procedure para inserir item que o monstro dropa na mochila
 create or replace function insere_drop() returns trigger as $insere_drop$
 	begin 
-		insert into mochila(id_personagem, item)
+		insert into mochila_guarda(mochila, item)
 		values (1, (select old.instancia_item from instancia_monstro)); 
 		return new;
 	end;
@@ -111,3 +111,17 @@ DROP TRIGGER check_capacidade_mochila ON mochila_guarda;
 CREATE TRIGGER check_capacidade_mochila
 AFTER INSERT ON mochila_guarda
 EXECUTE PROCEDURE checkCapacidadeMochila();
+
+-- Stored procedure remover monstro, verifica antes se o monstro está no local descrito
+CREATE OR REPLACE FUNCTION matarMonstro(_instancia_monstro integer)
+RETURNS void AS $$
+declare
+BEGIN
+    IF exists(select 1 from encontrado_em WHERE encontrado_em.id_instancia_monstro = _instancia_monstro) = false THEN
+        RAISE 'Não foi encontrado um monstro no local especificado';
+    END IF;
+
+    UPDATE encontrado_em SET id_instancia_monstro = NULL WHERE id_instancia_monstro = _instancia_monstro;
+    DELETE FROM instancia_monstro WHERE id = _instancia_monstro;
+END;
+$$ LANGUAGE plpgsql;
