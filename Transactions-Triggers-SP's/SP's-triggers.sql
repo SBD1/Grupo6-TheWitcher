@@ -77,3 +77,37 @@ BEGIN
 	DELETE FROM instancia_item WHERE id = _instancia_item;
 END;
 $remove_item_mochila$ LANGUAGE plpgsql;
+
+-- Trigger para verificar se o peso dos items dentro da mochila é maior que a capacidade limite da mochila
+CREATE OR REPLACE FUNCTION checkCapacidadeMochila() RETURNS trigger AS $check_capacidade_mochila$
+DECLARE
+	capacidade_mochila INTEGER;
+	peso_total float8;
+BEGIN
+	SELECT capacidade INTO capacidade_mochila FROM mochila;
+	
+	SELECT 
+		SUM(item.peso)
+	INTO peso_total
+	FROM item 
+	JOIN instancia_item
+		ON (instancia_item.id_item = item.id)
+	JOIN mochila_guarda
+		ON (instancia_item.id = mochila_guarda.item);
+
+	-- RAISE NOTICE 'Peso: %', peso_total;
+	-- RAISE NOTICE 'Capacidade: %', capacidade_mochila;
+
+	IF peso_total > capacidade_mochila THEN
+		RAISE EXCEPTION 'Item não cabe na mochila';
+	END IF;
+
+	RETURN NEW;
+END;
+$check_capacidade_mochila$ LANGUAGE plpgsql;
+
+DROP TRIGGER check_capacidade_mochila ON mochila_guarda;
+
+CREATE TRIGGER check_capacidade_mochila
+AFTER INSERT ON mochila_guarda
+EXECUTE PROCEDURE checkCapacidadeMochila();
