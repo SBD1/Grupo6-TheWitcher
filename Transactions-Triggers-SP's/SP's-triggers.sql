@@ -33,8 +33,6 @@ create trigger trigger_dropa_item after delete on instancia_monstro
 for each row execute procedure insere_drop();
 
 
-
-
 -- Stored procedure para inserir contrato
 create or replace function ativar_contrato() returns trigger as $ativar_contrato$
 	begin 
