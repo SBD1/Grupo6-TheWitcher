@@ -13,7 +13,7 @@ language plpgsql;
 
 
 -- Trigger para atualizar o gold depois de tirar item da mochila
-create trigger trigger_vender_item after delete on mochila 
+create trigger trigger_vender_item after delete on mochila_guarda 
 for each row execute procedure atualiza_gold();
 
 
