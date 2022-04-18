@@ -182,7 +182,7 @@ CREATE TABLE encontrado_em
     id_instancia_monstro integer NULL,
     id_instancia_item integer NULL,
     CONSTRAINT id_mapa_fk FOREIGN KEY (id_area)
-        REFERENCES Area (ID) MATCH SIMPLE,
+        REFERENCES area (id) MATCH SIMPLE,
 	CONSTRAINT id_ncp_fk FOREIGN KEY (id_ncp)
         REFERENCES npc(id),
 	CONSTRAINT id_instancia_monstro_fk FOREIGN KEY (id_instancia_monstro)

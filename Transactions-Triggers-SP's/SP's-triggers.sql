@@ -123,3 +123,13 @@ BEGIN
     DELETE FROM instancia_monstro WHERE id = _instancia_monstro;
 END;
 $$ LANGUAGE plpgsql;
+
+-- Trigger para adicionar localidade de item sempre que uma instância é criada
+CREATE OR REPLACE FUNCTION encontrar_item_em() RETURNS trigger AS $encontrar_item_em$
+BEGIN
+	INSERT INTO encontrado_em(id_area, id_ncp, id_instancia_monstro, id_instancia_item)
+	VALUES ((select old.area from area), NULL, NULL, (select old.instancia_item from instancia_item))
+	RETURN new;
+END;
+$encontrar_item_em$
+language plpgsql;
