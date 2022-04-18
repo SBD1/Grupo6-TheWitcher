@@ -217,3 +217,14 @@ create or replace function evoluir_habilidade(_pontos_habilidade integer) return
 	end;
 $evoluir_habilidade$ 
 language plpgsql;
+
+-- Stored procedure para verificar se já existe um tipo de item nos itens equipados
+CREATE OR REPLACE FUNCTION verifica_tipo_item_equipado(tipo_do_item varchar)
+RETURNS boolean AS $verifica_tipo_item_equipado$
+BEGIN 
+	return exists(select 1 from itens_equipados ie WHERE ie.tipo = tipo_do_item);
+END;
+$verifica_tipo_item_equipado$
+language plpgsql; 
+
+-- select verifica_tipo_item_equipado('arma');
