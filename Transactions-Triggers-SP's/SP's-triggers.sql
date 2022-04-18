@@ -192,6 +192,17 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+
+--store procedure para consertar armadura e arma
+create or replace function consertar_item() returns trigger as $consertar_item$
+	begin 
+		IF exists (select from item('equipamento')) THEN
+		INSERT INTO item(ataque, defesa, vida)
+		VALUES (select MAX(ataque, defesa, vida) from item)
+	end;
+$consertar_item$ 
+language plpgsql;
+
 -- Stored procedure para evoluir habilidade do personagem
 create or replace function evoluir_habilidade(_id_habilidade integer) returns trigger as $evoluir_habilidade$
 	begin
@@ -206,3 +217,14 @@ create or replace function evoluir_habilidade(_id_habilidade integer) returns tr
 	end;
 $evoluir_habilidade$ 
 language plpgsql;
+
+-- Stored procedure para verificar se já existe um tipo de item nos itens equipados
+CREATE OR REPLACE FUNCTION verifica_tipo_item_equipado(tipo_do_item varchar)
+RETURNS boolean AS $verifica_tipo_item_equipado$
+BEGIN 
+	return exists(select 1 from itens_equipados ie WHERE ie.tipo = tipo_do_item);
+END;
+$verifica_tipo_item_equipado$
+language plpgsql; 
+
+-- select verifica_tipo_item_equipado('arma');
