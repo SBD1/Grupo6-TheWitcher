@@ -146,7 +146,9 @@ CREATE TABLE missao (
 	id SERIAL PRIMARY KEY,
 	titulo VARCHAR(255) NOT NULL,
 	descricao TEXT NULL,
-	tipo VARCHAR(255) NOT NULL
+	tipo VARCHAR(255) NOT NULL,
+	item int4 NULL,
+	CONSTRAINT item_fk FOREIGN KEY (item) REFERENCES item(id)
 );
 
 CREATE TABLE contrato ( 

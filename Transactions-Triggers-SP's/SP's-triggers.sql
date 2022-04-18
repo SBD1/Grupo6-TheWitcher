@@ -153,3 +153,41 @@ BEGIN
 END;
 $encontrar_monstro_em$
 language plpgsql;
+
+-- Stored procedure terminar uma missão e receber a recompensa
+CREATE OR REPLACE FUNCTION entregarItemMissao(_mochila_id integer, _contrato_id integer, _instancia_item_id integer)
+RETURNS void AS $$
+declare
+    _instancia_item instancia_item; 
+BEGIN
+    IF exists(
+        SELECT 1
+        FROM contrato 
+        WHERE is_ativo = true AND contrato.id = _contrato_id
+    ) = false THEN
+        RAISE 'A missão não está com o contrato ativo';
+    END IF;
+
+    IF exists(
+        SELECT 1 FROM missao      
+        INNER JOIN contrato 
+        ON contrato.id = _contrato_id
+        INNER JOIN instancia_item
+        ON instancia_item.id = _instancia_item_id
+        WHERE missao.item = instancia_item.id_item
+    ) = false THEN
+        RAISE 'O item recebido não é mesmo da missão';
+    END IF;
+
+    select removerItemMochila(_mochila_id, _instancia_item_id);
+
+    -- entrega o gold para o usuario
+    UPDATE personagem 
+    SET gold = personagem.gold + contrato.gold
+    FROM contrato
+    WHERE contrato.id = _contrato_id;
+
+    -- inativa o contrato
+    select desativar_contrato(_contrato_id);
+END;
+$$ LANGUAGE plpgsql;

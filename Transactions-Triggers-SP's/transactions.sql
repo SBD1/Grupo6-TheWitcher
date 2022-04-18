@@ -80,3 +80,10 @@ savepoint adiciona_area;
 select encontrar_item();
 
 commit;
+
+-- entrega item da mochila para a missão ser concluida e o usuário receber o gold
+begin;
+
+select entregarItemMissao(1, 1, 1);
+
+commit;

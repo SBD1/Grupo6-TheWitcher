@@ -47,14 +47,14 @@ INSERT INTO npc (nome, raca, classe) VALUES
 ('Molnar Giancardi', 'anão', 'renegado'),
 ('Brouver Hoog', 'anão', 'renegado');
 
-INSERT INTO missao (titulo, descricao, tipo) VALUES 
-('Kaer Morhen', NULL, 'Prologo'),
-('Lilas e Groselha', NULL, 'Prologo'),
-('A Besta do Pomar Branco', NULL, 'Prologo'),
-('O Incidente em White Orchard', NULL, 'Prologo'),
-('Audiencia Imperial', NULL, 'Ato I'),
-('Barão Sangrento', NULL, 'Ato I'),
-('Perturbação', NULL, 'Ato II');
+INSERT INTO missao (titulo, descricao, tipo, item) VALUES 
+('Kaer Morhen', NULL, 'Prologo', 1),
+('Lilas e Groselha', NULL, 'Prologo', 2),
+('A Besta do Pomar Branco', NULL, 'Prologo', 3),
+('O Incidente em White Orchard', NULL, 'Prologo', 4),
+('Audiencia Imperial', NULL, 'Ato I', 5),
+('Barão Sangrento', NULL, 'Ato I', 6),
+('Perturbação', NULL, 'Ato II', 7);
 
 INSERT INTO mapa (nome, tipo, pais, regiao) VALUES
 ('Kaer Morhen', 'Fortaleza', 'Kaedwen', 'Kaer Morhen valley'),
@@ -91,14 +91,14 @@ INSERT INTO monstro (nome, ataque, defesa, vida, classe, descricao) VALUES
 ('Katakan', NULL ,NULL ,NULL ,'Vampiro', 'Uma espécie de vampiro que tem características de um morcego monstruoso');
 
 
-INSERT INTO contrato (gold, npc, missao) VALUES
-(50.0, 1, 1),
-(55.0, 1, 2),
-(42.0, 2, 3),
-(70.0, 3, 4),
-(63.0, 4, 5),
-(85.0, 5, 6),
-(55.0, 3, 7);
+INSERT INTO contrato (gold, npc, missao, is_ativo) VALUES
+(50.0, 1, 1, false),
+(55.0, 1, 2, false),
+(42.0, 2, 3, false),
+(70.0, 3, 4, false),
+(63.0, 4, 5, false),
+(85.0, 5, 6, false),
+(55.0, 3, 7, false);
 
 INSERT INTO mochila (id_personagem, capacidade) VALUES
 (1, 40);
