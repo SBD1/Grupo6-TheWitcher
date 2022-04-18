@@ -103,7 +103,9 @@ INSERT INTO contrato (gold, npc, missao, is_ativo) VALUES
 INSERT INTO mochila (id_personagem, capacidade) VALUES
 (1, 40);
 
-INSERT INTO instancia_item (id_item, nivel) VALUES(28, NULL);
+INSERT INTO instancia_item (id_item, nivel) VALUES
+(28, NULL),
+(9, NULL);
 
 INSERT INTO instancia_monstro (id_monstro, nivel, instancia_item) VALUES(4, 2, 1);
 

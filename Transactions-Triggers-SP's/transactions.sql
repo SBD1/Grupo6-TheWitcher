@@ -95,3 +95,28 @@ begin;
 select evoluir_habilidade(1);
 
 commit;
+
+
+-- Transaction de negociar itens
+
+begin;
+
+insert into npc_negocia_item(id_npc, id_item) VALUES (1, 9);
+
+savepoint negociar_itens;
+
+update personagem set gold = gold - i.preco
+from item i
+where i.id = 9;
+
+savepoint descontar_gold;
+
+update mochila set capacidade = capacidade-1; 
+
+savepoint nova_capacidade;
+
+insert into mochila_guarda(mochila, item)
+values (1, 9); 
+return new;
+
+commit;
