@@ -191,3 +191,15 @@ BEGIN
     select desativar_contrato(_contrato_id);
 END;
 $$ LANGUAGE plpgsql;
+
+
+--store procedure para consertar armadura e arma
+create or replace function consertar_item() returns trigger as $consertar_item$
+	begin 
+		IF exists (select from item('equipamento')) THEN
+		INSERT INTO item(ataque, defesa, vida)
+		VALUES (select MAX(ataque, defesa, vida) from item)
+	end;
+$consertar_item$ 
+language plpgsql;
+
