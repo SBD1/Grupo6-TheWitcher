@@ -124,14 +124,14 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- Trigger para adicionar localidade de item sempre que uma instância é criada
-CREATE OR REPLACE FUNCTION encontrar_item_em() RETURNS trigger AS $encontrar_item_em$
+-- Trigger para adicionar localidade de item, ncp e monstro
+CREATE OR REPLACE FUNCTION encontrar_em() RETURNS trigger AS $encontrar_em$
 BEGIN
 	INSERT INTO encontrado_em(id_area, id_ncp, id_instancia_monstro, id_instancia_item)
-	VALUES ((select old.area from area), NULL, NULL, (select old.instancia_item from instancia_item))
+	VALUES ((select old.area from area), (select old.npc from npc), (select old.instancia_monstro from instancia_monstro), (select old.instancia_item from instancia_item))
 	RETURN new;
 END;
-$encontrar_item_em$
+$encontrar_em$
 language plpgsql;
 
 -- Trigger para adicionar localidade de npc quando um for criado

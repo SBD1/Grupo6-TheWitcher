@@ -69,3 +69,14 @@ begin;
 select matarMonstro(3);
 
 commit;
+
+
+-- update encontrado em uma área com npc, monstro e item
+begin;
+
+insert into encontrado_em(id_area) values (1);
+savepoint adiciona_area;
+
+select encontrar_item();
+
+commit;
