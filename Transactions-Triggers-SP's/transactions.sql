@@ -87,3 +87,11 @@ begin;
 select entregarItemMissao(1, 1, 1);
 
 commit;
+
+-- evolui habilidade do personagem
+
+begin;
+
+select evoluir_habilidade(1);
+
+commit;

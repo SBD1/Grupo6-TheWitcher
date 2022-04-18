@@ -107,3 +107,11 @@ INSERT INTO instancia_item (id_item, nivel) VALUES(28, NULL);
 
 INSERT INTO instancia_monstro (id_monstro, nivel, instancia_item) VALUES(4, 2, 1);
 
+INSERT INTO pontos_habilidade(pontos, id_personagem, id_habilidade) VALUES
+(0, 1, 1),
+(0, 1, 2),
+(0, 1, 3),
+(0, 1, 4),
+(0, 1, 5),
+(0, 1, 6),
+(0, 1, 7);

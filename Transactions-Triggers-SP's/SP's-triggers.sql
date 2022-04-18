@@ -191,3 +191,18 @@ BEGIN
     select desativar_contrato(_contrato_id);
 END;
 $$ LANGUAGE plpgsql;
+
+-- Stored procedure para evoluir habilidade do personagem
+create or replace function evoluir_habilidade(_pontos_habilidade integer) returns trigger as $evoluir_habilidade$
+	begin
+		IF exists(SELECT 1 FROM habilidade WHERE habilidade.id = _pontos_habilidade_id) = false THEN
+        RAISE 'A habilidade não foi encontrada';
+    	END IF;
+
+		update pontos_habilidade set pontos = pontos + 10
+		from habilidade i
+		where i.id_habilidade = old.id_habilidade;
+		return new;
+	end;
+$evoluir_habilidade$ 
+language plpgsql;
