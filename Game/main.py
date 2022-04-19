@@ -304,7 +304,7 @@ def missao_serraria():
 
 def matar_katakan():
 	#inserir as asas do vampiro
-	print("as asas de Katakan foram arrancadas brotalmente")
+	print("as asas de Katakan foram arrancadas brutalmente")
 
 
 def listar_contratos_ativos():
@@ -352,7 +352,7 @@ def opcoes_ard_skellig():
 def listar_areas_pomar_branco():
 	print("Você se encontra em um pomar branco e vê que tem alguns lugares a serem explorados:\n")
 	
-	sql = "select descricao from area a where a.id_mapa = 2"
+	sql = "select descricao from area a where a.id_mapa = 3"
 
 	cur.execute(sql)
 
@@ -361,24 +361,59 @@ def listar_areas_pomar_branco():
 	for r in rows:
 		print(r)
 
-	print(" .: entrar no cemiterio  :. ")
+	print(" .: Entrar no cemiterio  :. ")
+	print(" .: Explorar Hovel  :. ")
+	print(" .: Explorar Ruinas  :. ")
 	print(" .: Menu Geral :. ")
 
 	option = input("> ")
 	if option.lower() == ("entrar no cemiterio"):
 		entrar_no_cemiterio()
+	elif option.lower() == ("explorar hovel"):
+		explorar_hovel()
 	elif option.lower() == ("menu geral"):
 		general_options_menu()
 		general_options()
-	while option.lower() not in ['entrar no cemiterio', 'menu geral']:
+	while option.lower() not in ['entrar no cemiterio', 'explorar hovel','menu geral']:
 		print("Comando Inválido, Tente Novamente.")
 		option = input("> ")
 		if option.lower() == ("entrar no cemiterio"):
 			entrar_no_cemiterio()
+		elif option.lower() == ("explorar hovel"):
+			explorar_hovel()
 		elif option.lower() == ("menu geral"):
 			general_options_menu()
 			general_options()
 
+
+def explorar_hovel():
+	print("Entrando nas cinzas da vila antes conhecida como Hovel, você encontra: ")
+
+	sql = "select * from encontrado_em a where a.id_area = 8"
+
+	cur.execute(sql)
+
+	rows = cur.fetchall()
+
+	for r in rows:
+		print(r)
+
+
+def opcoes_pomar_branco():
+	option = input("> ")
+	if option.lower() == ("conhecer pomar branco"):
+		listar_areas_pomar_branco()
+	elif option.lower() == ("menu geral"):
+		general_options_menu()
+		general_options()
+	while option.lower() not in ['conhecer kaer morhen', 'menu geral']:
+		print("Comando Inválido, Tente Novamente.")
+		option = input("> ")
+		if option.lower() == ("conhecer kaer morhen"):
+			listar_areas_pomar_branco()
+		elif option.lower() == ("menu geral"):
+			general_options_menu()
+			general_options()
 
 
 def entrar_no_cemiterio():
@@ -508,22 +543,6 @@ def listar_contratos_ativos():
 	general_options_menu()
 	general_options()
 
-
-def opcoes_pomar_branco():
-	option = input("> ")
-	if option.lower() == ("conhecer pomar branco"):
-		listar_areas_kaer_morhen()
-	elif option.lower() == ("menu geral"):
-		general_options_menu()
-		general_options()
-	while option.lower() not in ['conhecer kaer morhen', 'menu geral']:
-		print("Comando Inválido, Tente Novamente.")
-		option = input("> ")
-		if option.lower() == ("conhecer kaer morhen"):
-			listar_areas_kaer_morhen()
-		elif option.lower() == ("menu geral"):
-			general_options_menu()
-			general_options()
 
 def get_personagem():
 	sql = "select * from personagem"

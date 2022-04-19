@@ -59,18 +59,19 @@ INSERT INTO missao (titulo, descricao, tipo, item) VALUES
 INSERT INTO mapa (nome, tipo, pais, regiao) VALUES
 ('Kaer Morhen', 'Fortaleza', 'Kaedwen', 'Kaer Morhen valley'),
 ('Crows Perch', 'Fortaleza', 'Temeria', 'Velen'),
-('Cemitério de orquídia Branca', 'Cemitério', 'Temeria', 'Orquídea Branca'),
+('Orquídia Branca', 'Cemitério', 'Temeria', 'Orquídea Branca'),
 ('Ard Skellig', 'Cidade', 'Temeria', 'Skellige');
 
 INSERT INTO area (descricao, id_mapa) VALUES
-('Uma serraria abandonada a muito tempo', 3),
-('Um cemitério com uma pequena capela de pedra com grandes portas de madeira', 2),
+('Uma serraria abandonada a muito tempo', 4),
+('Um cemitério com uma pequena capela de pedra com grandes portas de madeira', 3),
 ('Uma torre construída principalmente em tijolos vermelhos e situada bem no alto da colina', 2),
 ('Uma torre antiga abandonada a muitos anos', 4),
 ('Uma grande ponte de pedra, por cima de um pequeno rio', 4),
 ('Uma ruína élfica encontrada abaixo das montanhas', 3),
 ('Um forte abandonado que se tornou habitado por Witchers', 1),
-('Uma torre de pedra parcialmente destruída pela guerra', 1);
+('Uma torre de pedra parcialmente destruída pela guerra', 1),
+('Uma vila antes conhecida como Hovel que agora está em cinzas', 3);
 
 
 INSERT INTO monstro (nome, ataque, defesa, vida, classe, descricao) VALUES
