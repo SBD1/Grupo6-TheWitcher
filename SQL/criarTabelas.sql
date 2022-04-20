@@ -1,4 +1,4 @@
-CREATE DATABASE TheWitcher;
+--CREATE DATABASE TheWitcher;
 
 create domain tipo_item as VARCHAR(20) not null 
 check (value in ('equipamento', 'arma', 'consumivel', 'flecha', 'item_missao'));
@@ -7,7 +7,7 @@ create domain tipo_habilidade as VARCHAR(20) NOT NULL
 check (value in ('Combate', 'Sinais', 'Alquimia'));
 
 CREATE TABLE monstro (
-	id int4 SERIAL NOT NULL,
+	id SERIAL NOT NULL,
 	nome varchar NULL,
 	ataque float8 NULL,
 	defesa float8 NULL,
@@ -18,7 +18,7 @@ CREATE TABLE monstro (
 );
 
 CREATE TABLE mapa (
-	id int4 SERIAL NOT NULL,
+	id SERIAL NOT NULL,
 	nome varchar NOT NULL,
 	tipo varchar NOT NULL,
 	pais varchar NOT NULL,
@@ -27,7 +27,7 @@ CREATE TABLE mapa (
 );
 
 CREATE TABLE item (
-	id int4 SERIAL NOT NULL,
+	id SERIAL NOT NULL,
 	nome varchar NULL,
 	tipo tipo_item NULL,
 	descricao varchar NULL,
@@ -42,7 +42,7 @@ CREATE TABLE item (
 );
 
 CREATE TABLE personagem (
-	id int4 SERIAL NOT NULL,
+	id SERIAL NOT NULL,
 	nome varchar NULL,
 	gold float4 NULL,
 	vida int4 NULL,
@@ -52,7 +52,7 @@ CREATE TABLE personagem (
 );
 
 CREATE TABLE instancia_item (
-	id int4 SERIAL NOT NULL,
+	id SERIAL NOT NULL,
 	id_item int4 NULL,
 	nivel int4 NULL,
 	CONSTRAINT instancia_item_pk PRIMARY KEY (id),
@@ -71,7 +71,7 @@ CREATE TABLE itens_equipados (
 );
 
 CREATE TABLE mochila (
-	id int4 SERIAL NOT NULL,
+	id SERIAL NOT NULL,
 	id_personagem int4 NOT NULL,
 	capacidade int4 NULL,
 	CONSTRAINT mochila_pk PRIMARY KEY (id),
@@ -169,7 +169,7 @@ CREATE TABLE contrato (
 -- );
 
 CREATE TABLE area (
-	id int4 SERIAL NOT NULL,
+	id SERIAL NOT NULL,
 	descricao varchar NOT NULL,
 	id_mapa int4 NULL,
 	CONSTRAINT area_pk PRIMARY KEY (id),
