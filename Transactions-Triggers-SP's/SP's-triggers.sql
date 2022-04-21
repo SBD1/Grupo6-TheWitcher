@@ -32,30 +32,22 @@ language plpgsql;
 create trigger trigger_dropa_item after delete on instancia_monstro 
 for each row execute procedure insere_drop();
 
-
 -- Stored procedure para inserir contrato
-create or replace function ativar_contrato() returns trigger as $ativar_contrato$
+create or replace function ativar_contrato(_contrato_id integer) returns void as $ativar_contrato$
 	begin 
-		insert into contrato(gold, npc, missao)
-		values ((select old.gold from contrato), (select old.npc from npc), (select old.missao from missao)); 
-		return new;
+		update contrato set is_ativo = true
+		where contrato.id = _contrato_id; 
 	end;
 $ativar_contrato$ 
 language plpgsql;
 
--- Trigger para inserir contrato
-create trigger trigger_ativar_contrato after update on contrato 
-for each row execute procedure ativar_contrato();
-
 -- Stored procedure para atualizar contrato
-create or replace function desativar_contrato() returns trigger as $desativar_contrato$
+create or replace function desativar_contrato(_contrato_id integer) returns void as $desativar_contrato$
 	begin 
-		update contrato set missao = missao - 1
-		where gold = old.gold and npc = old.npc; 
-		return null;
+		update contrato set is_ativo = false
+		where contrato.id = _contrato_id; 
 	end;
-$desativar_contrato$ 
-language plpgsql;
+$desativar_contrato$ language plpgsql;
 
 -- Trigger para atualizar contrato
 create trigger trigger_desativar_contrato after delete on contrato 
