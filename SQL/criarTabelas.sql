@@ -180,12 +180,12 @@ CREATE TABLE area (
 CREATE TABLE encontrado_em
 (
     id_area integer NULL,
-    id_ncp integer NULL,
+    id_npc integer NULL,
     id_instancia_monstro integer NULL,
     id_instancia_item integer NULL,
     CONSTRAINT id_mapa_fk FOREIGN KEY (id_area)
         REFERENCES area (id) MATCH SIMPLE,
-	CONSTRAINT id_ncp_fk FOREIGN KEY (id_ncp)
+	CONSTRAINT id_npc_fk FOREIGN KEY (id_npc)
         REFERENCES npc(id),
 	CONSTRAINT id_instancia_monstro_fk FOREIGN KEY (id_instancia_monstro)
         REFERENCES instancia_monstro(id),
