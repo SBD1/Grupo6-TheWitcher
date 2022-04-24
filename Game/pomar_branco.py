@@ -95,7 +95,58 @@ def explorar_hovel():
 		
 
 def pegar_itens_hovel():
-	pass
+    # retirar os itens do local
+    sql = """select item.id from encontrado_em 
+		left join instancia_item on instancia_item.id = encontrado_em.id_instancia_item
+		left join item on item.id = instancia_item.id_item 	
+		where encontrado_em.id_area = 8 and encontrado_em.id_instancia_item is not null"""
+    
+    cur.execute(sql)
+    items = cur.fetchall()
+
+    tmp = []
+    for n in items:
+        tmp.append(n[0])
+
+    inserir_itens_na_mochila = f"""
+		insert into mochila_guarda (mochila, item) 
+		VALUES (1, unnest(array{tmp}));	
+	"""
+
+    cur.execute(inserir_itens_na_mochila)
+    conn.commit()
+
+    print("Os itens foram adicionados na mochila.")
+    
+    deletar_instancia_item = """
+		delete from encontrado_em where encontrado_em.id_instancia_item is not null and encontrado_em.id_area = 8
+	"""
+
+    cur.execute(deletar_instancia_item)
+    conn.commit()
+
+
+    print(" .: Falar com Johnny :. ")
+    print(" .: Sair de Hovel :. ")
+    print(" .: Menu Geral :. ")
+    option = input("> ")
+    if option.lower() == ("falar com johnny"):
+        falar_com_johnny()
+    elif option.lower() == ("sair de hovel"):
+        listar_areas_pomar_branco()
+    elif option.lower() == ("menu geral"):
+        main.general_options_menu()
+        main.general_options()
+    while option.lower() not in ['falar com johnny', 'sair de hovel', 'menu geral']:
+        print("Comando Inválido, Tente Novamente.")
+        option = input("> ")
+        if option.lower() == ("falar com johnny"):
+            falar_com_johnny()
+        elif option.lower() == ("sair de hovel"):
+            listar_areas_pomar_branco()
+        elif option.lower() == ("menu geral"):
+            main.general_options_menu()
+            main.general_options() 
 
 def falar_com_johnny():
 	pass
