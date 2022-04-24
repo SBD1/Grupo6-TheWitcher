@@ -118,29 +118,33 @@ def pegar_itens_hovel():
 
     print("Os itens foram adicionados na mochila.")
     
-    deletar_instancia_item = """
-		delete from encontrado_em where encontrado_em.id_instancia_item is not null and encontrado_em.id_area = 8
-	"""
+    # deletar_instancia_item = """
+	# 	delete from encontrado_em where encontrado_em.id_instancia_item is not null and encontrado_em.id_area = 8
+	# """
 
-    cur.execute(deletar_instancia_item)
-    conn.commit()
+    # cur.execute(deletar_instancia_item)
+    # conn.commit()
 
-
+    print(" .: Ver Mochila :. ")
     print(" .: Falar com Johnny :. ")
     print(" .: Sair de Hovel :. ")
     print(" .: Menu Geral :. ")
     option = input("> ")
-    if option.lower() == ("falar com johnny"):
+    if option.lower() == ("ver mochila"):
+        main.ver_mochila()
+    elif option.lower() == ("falar com johnny"):
         falar_com_johnny()
     elif option.lower() == ("sair de hovel"):
         listar_areas_pomar_branco()
     elif option.lower() == ("menu geral"):
         main.general_options_menu()
         main.general_options()
-    while option.lower() not in ['falar com johnny', 'sair de hovel', 'menu geral']:
+    while option.lower() not in ['ver mochila','falar com johnny', 'sair de hovel', 'menu geral']:
         print("Comando Inválido, Tente Novamente.")
         option = input("> ")
-        if option.lower() == ("falar com johnny"):
+        if option.lower() == ("ver mochila"):
+            main.ver_mochila()
+        elif option.lower() == ("falar com johnny"):
             falar_com_johnny()
         elif option.lower() == ("sair de hovel"):
             listar_areas_pomar_branco()

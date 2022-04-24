@@ -69,6 +69,7 @@ def general_options_menu():
 	print("  Menu Geral  ")
 	print('#' * 45)
 	print(" .: Personagem :. ")
+	print(" .: Ver Mochila :. ")
 	print(" .: Listar Contratos Ativos :. ")
 	print(" .: Ir para Kaer Morhen :. ")
 	print(" .: Ir para Crows Perch :. ")
@@ -82,6 +83,8 @@ def general_options():
 	option = input("> ")
 	if option.lower() == ("personagem"):
 		get_personagem()
+	elif option.lower() == ("ver mochila"):
+		ver_mochila()
 	elif option.lower() == ("listar contratos ativos"):
 		listar_contratos_ativos()
 	elif option.lower() == ("ir para kaer morhen"):
@@ -97,11 +100,13 @@ def general_options():
 	elif option.lower() == ("ajuda"):
 		help_menu()
 
-	while option.lower() not in ['personagem', 'listar contratos ativos', 'ir para kaer morhen', 'ir para crows perch', 'ir para ard skellig', 'ir para pomar branco','ajuda', 'sair']:
+	while option.lower() not in ['personagem', 'ver mochila', 'listar contratos ativos', 'ir para kaer morhen', 'ir para crows perch', 'ir para ard skellig', 'ir para pomar branco','ajuda', 'sair']:
 		print("Comando Inválido, Tente Novamente.")
 		option = input("> ")
 		if option.lower() == ("personagem"):
 			setup_game()
+		elif option.lower() == ("ver mochila"):
+			ver_mochila()
 		elif option.lower() == ("listar contratos ativos"):
 			listar_contratos_ativos()
 		elif option.lower() == ("ir para kaer morhen"):
@@ -116,6 +121,7 @@ def general_options():
 			sys.exit()
 		elif option.lower() == ("ajuda"):
 			help_menu()
+
 
 #Area de Kaer Morhen
 def listar_areas_kaer_morhen():
@@ -528,6 +534,19 @@ def get_personagem():
 	general_options_menu()
 	general_options()
 
+def ver_mochila():
+	ver_mochila = f"""select count(m.item) as Quantidade, i.nome  
+						from mochila_guarda m
+						left join instancia_item ii on m.item = ii.id
+						left join item i on ii.id_item = i.id 
+						group by i.nome"""
+	cur.execute(ver_mochila)
+	rows = cur.fetchall()
+	for r in rows:
+		print(f"Quantidade: {r[0]}")
+		print(f"Item: {r[1]}")
+	general_options_menu()
+	general_options()
 
 def setup_game():
 	os.system('clear')
