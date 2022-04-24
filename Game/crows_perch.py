@@ -1,5 +1,3 @@
-print("p2")
-
 from conn import criaConexao
 import main
 
@@ -199,15 +197,27 @@ def pegar_contrato():
 	print("O contrato foi adicionado à sua lista de contratos ativos!")
 
 def finalizar_contrato(id_contrato):
-	gold = f"select gold from contrato where is_ativo = {True} and id = 8"
-	contrato_ativo = f"delete * from contrato where is_ativo = {True} and id = 8"
+	sql = f"select gold from contrato where is_ativo = {True} and id = 8"
+	cur.execute(sql)
+	gold = cur.fetchall()
+
+	delete_contrato = f"delete from contrato where is_ativo = {True} and id = 8"
+	cur.execute(delete_contrato)
+	conn.commit()
 
 	add_gold(gold)
 	print("Missão concluida com sucesso, parabens witcher!")
 	print(f"Você recebeu {gold} golds")
 
 def add_gold(gold):
-	
+	inserir_gold_personagem = """
+	update personagem 
+	set gold = {gold}
+	where personagem.id = 1	
+	"""
+
+	cur.execute(inserir_gold_personagem)
+	conn.commit()
 
 def ir_para_torre_lobisomem():
 	sql = "select from encontrado_em where id_instancia_monstro = 2"
@@ -306,6 +316,7 @@ def atacar_nithral():
 	deletar_instancia_nithral = "delete from encontrado_em where id_instancia_monstro = 3"
 
 	cur.execute(inserir_cabeca_na_mochila)
+	conn.commit()
 
 	cur.execute(deletar_instancia_nithral)
 	conn.commit()
