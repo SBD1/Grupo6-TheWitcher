@@ -264,6 +264,35 @@ def pegar_item_torre_antiga():
 			general_options_menu()
 			general_options()
 
+
+
+def caminha_grande_ponte():
+	
+	sql = "select * from item where item.nome = 'Cerveja';"
+
+	cur.execute(sql)
+	rows = cur.fetchall()
+
+	for r in rows:
+		print("O Witcher caminha na beira do pequeno rio e o admira, enquanto toma uma", r[1], "\n")
+	print(" .: Voltar a ard skellig :.")
+	option = input("> ")
+	if option.lower() == ("voltar a ard skellig"):
+		listar_areas_ard_skellig()
+	elif option.lower() == ("menu geral"):
+		general_options_menu()
+		general_options()
+	while option.lower() not in ['menu geral']:
+		print("Comando Inválido, Tente Novamente.")
+		option = input("> ")
+		if option.lower() == ("voltar a ard skellig"):
+			listar_areas_ard_skellig()
+		elif option.lower() == ("menu geral"):
+			general_options_menu()
+			general_options()
+
+
+
 def entrar_na_serraria():
 
 	sql = "select * from npc where npc.nome = 'Hendrik';"
