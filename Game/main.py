@@ -144,11 +144,15 @@ def opcoes_kaer_morhen():
 		elif option.lower() == ("menu geral"):
 			general_options()
 
+
+
+
+
 # Area de Ard Skellig
 def listar_areas_ard_skellig():
 	print("A Cidade de Ard Skellig possui algumas áreas interessantes como:\n")
 	
-	sql = "select descricao from area a where a.id_mapa = 3"
+	sql = "select descricao from area a where a.id_mapa = 4"
 	cur.execute(sql)
 	rows = cur.fetchall()
 
@@ -158,7 +162,9 @@ def listar_areas_ard_skellig():
 	# general_options_menu()
 	# general_options()
 
-	print(" .: entrar na serraria  :. ")
+	print(" .: Entrar na serraria  :. ")
+	print(" .: Explorar torre antiga:. ")
+	print(" .: Caminhar por de baixo da grande ponte:. ")
 	print(" .: Menu Geral :. ")
 
 	option = input("> ")
@@ -249,7 +255,7 @@ def missao_serraria():
 	print(" .: Menu Geral :. ")
 	option = input("> ")
 	if option.lower() == ("matar katakan"):
-		matar_berseker()
+		matar_katakan()
 		print("Você mata o vampiro, arranca suas asas e leva até o civil")
 		print("Você pega sua recompensa e volta a ard skellig")
 		listar_areas_ard_skellig()
@@ -276,9 +282,94 @@ def missao_serraria():
 
 
 def matar_katakan():
-	#inserir as asas do vampiro
-	print("as asas de Katakan foram arrancadas brutalmente")
 
+	inserir_asas_na_mochila = """
+	insert into mochila_guarda (mochila, item) 
+	VALUES (1, (select ii.id from instancia_item ii 
+				left join item i on i.id = ii.id_item where i.nome = 'Asas de Katakan' limit 1));	
+	"""
+
+	deletar_instancia_katakan = "delete from encontrado_em where id_instancia_monstro = 15"
+
+	cur.execute(inserir_asas_na_mochila)
+
+	print("As asas de Katakan foram arrancadas brutalmente\n")
+
+	cur.execute(deletar_instancia_katakan)
+	conn.commit()
+
+	print(" .: Levar as asas de Katakan até o civil :. ")
+	option = input("> ")
+	if option.lower() == ("levar as asas de katakan até o civil"):
+		levar_asas()
+	while option.lower() not in ['levar as asas de katakan até o civil']:
+		option = input("> ")
+		if option.lower() == ("levar as asas de katakan até o civil"):
+			levar_asas()
+
+def levar_asas():
+	print("Você vai até o civil e entrega as asas de katakan.\n")
+	print('#' * 60)
+	print("Obrigado, Witcher. Como prometido, tome aqui a sua recompensa!\n")
+
+	coletar_recompensa = """
+		update personagem set gold = personagem.gold + c.gold from contrato c where c.id =  2
+	"""
+
+	entregar_asas = """
+		delete from mochila_guarda mg
+		using instancia_item as ii,
+		      item as i 
+		where mg.item = ii.id 
+		and ii.id_item = i.id
+		and	i.nome = 'Asas de Katakan'
+	"""
+
+	desativar_contrato_katakan = """
+		update contrato set is_ativo = False where id = 2
+	"""
+
+	cur.execute(coletar_recompensa)
+	print("Você recebeu 55 de ouro do civil.\n")
+	print('#' * 60)
+	cur.execute(entregar_asas)
+	cur.execute(desativar_contrato_katakan)
+
+
+
+	conn.commit()
+
+	print(" .: Voltar para Ard Skellig :. ")
+	print(" .: Menu Geral :.")
+	option = input("> ")
+	if option.lower() == ("voltar para ard skellig"):
+		listar_areas_ard_skellig()
+	elif option.lower() == ("menu geral"):
+		general_options_menu()
+		general_options()
+	while option.lower() not in ['voltar para ard skellig', 'menu geral']:
+		option = input("> ")
+		if option.lower() == ("voltar para ard skellig"):
+			listar_areas_ard_skellig()
+		elif option.lower() == ("menu geral"):
+			general_options_menu()
+			general_options()
+
+def opcoes_ard_skellig():
+	option = input("> ")
+	if option.lower() == ("conhecer ard skellig"):
+		listar_areas_ard_skellig()
+	elif option.lower() == ("menu geral"):
+		general_options_menu()
+		general_options()
+	while option.lower() not in ['conhecer kaer morhen', 'menu geral']:
+		print("Comando Inválido, Tente Novamente.")
+		option = input("> ")
+		if option.lower() == ("conhecer kaer morhen"):
+			listar_areas_kaer_morhen()
+		elif option.lower() == ("menu geral"):
+			general_options_menu()
+			general_options()
 
 def listar_contratos_ativos():
 	print("Esses são os contratos que estão ativos: \n")
@@ -301,22 +392,6 @@ def listar_contratos_ativos():
 	general_options()
 
 
-
-def opcoes_ard_skellig():
-	option = input("> ")
-	if option.lower() == ("conhecer ard skellig"):
-		listar_areas_ard_skellig()
-	elif option.lower() == ("menu geral"):
-		general_options_menu()
-		general_options()
-	while option.lower() not in ['conhecer kaer morhen', 'menu geral']:
-		print("Comando Inválido, Tente Novamente.")
-		option = input("> ")
-		if option.lower() == ("conhecer kaer morhen"):
-			listar_areas_kaer_morhen()
-		elif option.lower() == ("menu geral"):
-			general_options_menu()
-			general_options()
 
 
 
