@@ -86,7 +86,7 @@ CREATE TABLE mochila_guarda (
 );
 
 CREATE TABLE instancia_monstro (
-	id int4 NOT NULL,
+	id SERIAL NOT NULL,
 	id_monstro int4 NULL,
 	nivel int4 NULL,
 	instancia_item int4 NULL,
@@ -104,10 +104,10 @@ CREATE TABLE monstro_dropa_item (
 );
 
 CREATE TABLE Habilidade ( 
-  id int4 NOT NULL ,
+  id SERIAL NOT NULL,
   nome VARCHAR(60) NOT NULL,
   tipo tipo_habilidade NOT NULL,
-  CONSTRAINT pk_habilidade PRIMARY KEY(ID)
+  CONSTRAINT pk_habilidade PRIMARY KEY(id)
 );
 
 CREATE TABLE pontos_habilidade ( 

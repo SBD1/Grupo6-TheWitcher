@@ -38,14 +38,16 @@ INSERT INTO item (nome, tipo, descricao, preco, efeito, peso, alcance, ataque, d
 ('Espada Tor Lara', 'arma', NULL, 1211.0, NULL, 2.73, NULL, 70, 34, 26.0),
 ('Flecha com ponta de ferro', 'flecha', NULL, 10.0, NULL, 0.2, NULL, NULL, NULL, NULL),
 ('Flecha com ponta de prata', 'flecha', NULL, 12.0, NULL, 0.4, NULL, NULL, NULL, NULL),
-('Cabeça de Berseker', 'item_missao', NULL, 12.0, NULL, 0.4, NULL, NULL, NULL, NULL);
+('Cabeça de Berseker', 'item_missao', NULL, 12.0, NULL, 0.4, NULL, NULL, NULL, NULL),
+('Cabeça de Nithral', 'item_missao', NULL, 14.0, NULL, 1, NULL, NULL, NULL, NULL);
 
 INSERT INTO npc (nome, raca, classe) VALUES 
 ('Halbjorn', 'humano', 'civil'),
 ('Hendrik', 'humano', 'civil'),
 ('Francesca Findabair', 'elfo', 'puro-sangue'),
 ('Molnar Giancardi', 'anão', 'renegado'),
-('Brouver Hoog', 'anão', 'renegado');
+('Brouver Hoog', 'anão', 'renegado'),
+('Keira', 'anão', 'renegado');
 
 INSERT INTO missao (titulo, descricao, tipo, item) VALUES 
 ('Kaer Morhen', NULL, 'Prologo', 1),
@@ -54,13 +56,15 @@ INSERT INTO missao (titulo, descricao, tipo, item) VALUES
 ('O Incidente em White Orchard', NULL, 'Prologo', 4),
 ('Audiencia Imperial', NULL, 'Ato I', 5),
 ('Barão Sangrento', NULL, 'Ato I', 6),
-('Perturbação', NULL, 'Ato II', 7);
+('Perturbação', NULL, 'Ato II', 7),
+('Invasão da torre', NULL, 'Prologo', 29);
 
 INSERT INTO mapa (nome, tipo, pais, regiao) VALUES
 ('Kaer Morhen', 'Fortaleza', 'Kaedwen', 'Kaer Morhen valley'),
 ('Crows Perch', 'Fortaleza', 'Temeria', 'Velen'),
 ('Orquídia Branca', 'Cemitério', 'Temeria', 'Orquídea Branca'),
-('Ard Skellig', 'Cidade', 'Temeria', 'Skellige');
+('Ard Skellig', 'Cidade', 'Temeria', 'Skellige'),
+('Colina', 'Campo', 'Temeria', 'Velen');
 
 INSERT INTO area (descricao, id_mapa) VALUES
 ('Uma serraria abandonada a muito tempo', 4),
@@ -71,8 +75,8 @@ INSERT INTO area (descricao, id_mapa) VALUES
 ('Uma ruína élfica encontrada abaixo das montanhas', 3),
 ('Um forte abandonado que se tornou habitado por Witchers', 1),
 ('Uma torre de pedra parcialmente destruída pela guerra', 1),
-('Uma vila antes conhecida como Hovel que agora está em cinzas', 3);
-
+('Uma vila antes conhecida como Hovel que agora está em cinzas', 3),
+('Uma colina em frente a uma torre com tijolos vermelhos', 5);
 
 INSERT INTO monstro (nome, ataque, defesa, vida, classe, descricao) VALUES
 ('Urso',NULL ,NULL ,NULL ,'Besta', 'Um urso pardo gigante'),
@@ -89,7 +93,8 @@ INSERT INTO monstro (nome, ataque, defesa, vida, classe, descricao) VALUES
 ('Afogador', NULL ,NULL ,NULL  ,'Necrófago', 'Acredita-se que essa criatura é um homem afogado que de alguma forma levantou do mundo dos mortos para caçar aqueles que ainda vivem'),
 ('Nightwraith', NULL ,NULL ,NULL  ,'Espectro', 'Um demônio que obtém poder da luz da lua'),
 ('Madame Praga', NULL ,NULL ,NULL  ,'Espectro', 'Um espiríto que personifica doença e pragas'),
-('Katakan', NULL ,NULL ,NULL ,'Vampiro', 'Uma espécie de vampiro que tem características de um morcego monstruoso');
+('Katakan', NULL ,NULL ,NULL ,'Vampiro', 'Uma espécie de vampiro que tem características de um morcego monstruoso'),
+('Nithral', NULL ,NULL ,NULL ,'Guerreiro', 'Guerreiro Aen Elle e um membro da Wild Hunt');
 
 
 INSERT INTO contrato (gold, npc, missao, is_ativo) VALUES
@@ -99,7 +104,8 @@ INSERT INTO contrato (gold, npc, missao, is_ativo) VALUES
 (70.0, 3, 4, false),
 (63.0, 4, 5, false),
 (85.0, 5, 6, false),
-(55.0, 3, 7, false);
+(55.0, 3, 7, false),
+(85.0, 6, 8, false);
 
 INSERT INTO mochila (id_personagem, capacidade) VALUES
 (1, 40);
@@ -126,10 +132,14 @@ VALUES(16, NULL),
 (28, NULL),
 (1, NULL),
 (1, NULL),
-(1, NULL);
+(1, NULL),
+(29, NULL);
 
 
-INSERT INTO instancia_monstro (id_monstro, nivel, instancia_item) VALUES(4, 2, 1);
+INSERT INTO instancia_monstro (id_monstro, nivel, instancia_item) VALUES
+(4, 2, 1),
+(3, 2, 19),
+(16, 3, 23);
 
 INSERT INTO pontos_habilidade(pontos, id_personagem, id_habilidade) VALUES
 (0, 1, 1),
@@ -139,3 +149,9 @@ INSERT INTO pontos_habilidade(pontos, id_personagem, id_habilidade) VALUES
 (0, 1, 5),
 (0, 1, 6),
 (0, 1, 7);
+
+INSERT INTO encontrado_em(id_area, id_npc, id_instancia_monstro, id_instancia_item) VALUES
+(5, NULL, NULL, 2),
+(5, NULL, 1, NULL),
+(5, NULL, 2, NULL),
+(5, NULL, 3, NULL);

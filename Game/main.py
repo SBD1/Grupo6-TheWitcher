@@ -1,6 +1,7 @@
 from optparse import OptionConflictError
 from click import option
 from conn import criaConexao
+import crows_perch
 import sys
 import os
 
@@ -85,7 +86,7 @@ def general_options():
 	elif option.lower() == ("ir para kaer morhen"):
 		listar_areas_kaer_morhen()
 	elif option.lower() == ("ir para crows perch"):
-		listar_areas_crows_perch()
+		crows_perch.listar_areas_crows_perch()
 	elif option.lower() == ("ir para ard skellig"):
 		listar_areas_ard_skellig()
 	elif option.lower() == ("ir para pomar branco"):
@@ -105,7 +106,7 @@ def general_options():
 		elif option.lower() == ("ir para kaer morhen"):
 			listar_areas_kaer_morhen()
 		elif option.lower() == ("ir para crows perch"):
-			listar_areas_crows_perch()
+			crows_perch.listar_areas_crows_perch()
 		elif option.lower() == ("ir para skellig"):
 			listar_areas_ard_skellig()
 		elif option.lower() == ("ir para pomar branco"):
@@ -140,34 +141,6 @@ def opcoes_kaer_morhen():
 		option = input("> ")
 		if option.lower() == ("conhecer kaer morhen"):
 			listar_areas_kaer_morhen()
-		elif option.lower() == ("menu geral"):
-			general_options()
-
-#Area de Crows Perch
-def listar_areas_crows_perch():
-	print("A fortaleza de Crows Perch possui algumas áreas interessantes como:\n")
-	
-	sql = "select descricao from area a where a.id_mapa = 2"
-	cur.execute(sql)
-	rows = cur.fetchall()
-
-	for r in rows:
-		print(r)
-
-	general_options_menu()
-	general_options()
-
-def opcoes_crows_perch():
-	option = input("> ")
-	if option.lower() == ("conhecer crows perch"):
-		listar_areas_crows_perch()
-	elif option.lower() == ("menu geral"):
-		general_options()
-	while option.lower() not in ['conhecer crows perch', 'menu geral']:
-		print("Comando Inválido, Tente Novamente.")
-		option = input("> ")
-		if option.lower() == ("conhecer crows perch"):
-			listar_areas_crows_perch()
 		elif option.lower() == ("menu geral"):
 			general_options()
 
@@ -689,7 +662,8 @@ def setup_game():
 			general_options_menu()
 			general_options()
 
-title_screen()
+if __name__ == '__main__':
+	title_screen()
 
-cur.close()
-conn.close()
+	cur.close()
+	conn.close()
