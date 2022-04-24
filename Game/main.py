@@ -159,32 +159,120 @@ def listar_areas_ard_skellig():
 	for r in rows:
 		print(r)
 
-	# general_options_menu()
-	# general_options()
-
 	print(" .: Entrar na serraria  :. ")
-	print(" .: Explorar torre antiga:. ")
-	print(" .: Caminhar por de baixo da grande ponte:. ")
+	print(" .: Explorar torre antiga :. ")
+	print(" .: Caminhar por de baixo da grande ponte :. ")
 	print(" .: Menu Geral :. ")
 
 	option = input("> ")
 	if option.lower() == ("entrar na serraria"):
 		entrar_na_serraria()
+	elif option.lower() == ("explorar torre antiga"):
+		explorar_torre_antiga()
+	elif option.lower() == ("caminhar por de baixo da grande ponte"):
+		caminha_grande_ponte()
 	elif option.lower() == ("menu geral"):
 		general_options_menu()
 		general_options()
-	while option.lower() not in ['entrar na serraria', 'menu geral']:
+	while option.lower() not in ['entrar na serraria', 'explorar torre antiga', 'caminhar por de baixo da grande ponte', 'menu geral']:
 		print("Comando Inválido, Tente Novamente.")
 		option = input("> ")
 		if option.lower() == ("entrar na serraria"):
 			entrar_na_serraria()
+		elif option.lower() == ("explorar torre antiga"):
+			explorar_torre_antiga()
+		elif option.lower() == ("caminhar por de baixo da grande ponte"):
+			caminha_grande_ponte()
 		elif option.lower() == ("menu geral"):
 			general_options_menu()
 			general_options()
 
 
+
+def explorar_torre_antiga():
+
+	sql = "select * from item where item.nome = 'Armadura Thyssen';"
+
+	cur.execute(sql)
+	rows = cur.fetchall()
+
+	for r in rows:
+		print("Entrando torre antiga abandonada a muitos anos, o witcher você se depara com", r[1], "\n")
+	print(" .: Pegar Item :.")
+	print(" .: Sair da Torre Antiga :. ")
+	print(" .: Menu Geral :. ")
+	option = input("> ")
+	if option.lower() == ("pegar item"):
+		pegar_item_torre_antiga()
+	elif option.lower() == ("sair da torre antiga"):
+		listar_areas_ard_skellig()
+	elif option.lower() == ("menu geral"):
+		general_options_menu()
+		general_options()
+	while option.lower() not in ['pegar item', 'sair da torre antiga', 'menu geral']:
+		print("Comando Inválido, Tente Novamente.")
+		option = input("> ")
+		if option.lower() == ("pegar item"):
+			pegar_item_torre_antiga()
+		elif option.lower() == ("sair da torre antiga"):
+			listar_areas_ard_skellig()
+		elif option.lower() == ("menu geral"):
+			general_options_menu()
+			general_options() 
+
+def pegar_item_torre_antiga():
+
+	sql = """
+		select item.id from encontrado_em 
+		left join instancia_item on instancia_item.id = encontrado_em.id_instancia_item
+		left join item on item.id = instancia_item.id_item 	
+		where encontrado_em.id_area = 4 and encontrado_em.id_instancia_item is not null
+				"""
+
+	cur.execute(sql)
+	items = cur.fetchall()
+
+	deletar_instancia_item = "delete from encontrado_em where encontrado_em.id_instancia_item is not null and encontrado_em.id_area = 4"
+
+	cur.execute(deletar_instancia_item)
+	conn.commit()
+	
+	inserir_item_na_mochila = f"""
+		insert into mochila_guarda (mochila, item) 
+		VALUES (1, (select ii.id from instancia_item ii 
+				left join item i on i.id = ii.id_item where i.nome = 'Armadura Thyssen' limit 1));	
+	"""
+
+	cur.execute(inserir_item_na_mochila)
+	conn.commit()
+
+	print("O item foi adicionado na mochila.")
+
+	print(" .: Voltar para Ard Skellig :. ")
+	print(" .: Menu Geral :.")
+	option = input("> ")
+	if option.lower() == ("voltar para ard skellig"):
+		listar_areas_ard_skellig()
+	elif option.lower() == ("menu geral"):
+		general_options_menu()
+		general_options()
+	while option.lower() not in ['voltar para ard skellig', 'menu geral']:
+		option = input("> ")
+		if option.lower() == ("voltar para ard skellig"):
+			listar_areas_ard_skellig()
+		elif option.lower() == ("menu geral"):
+			general_options_menu()
+			general_options()
+
 def entrar_na_serraria():
-	print("Na frente de uma serraria abandonada você se depara com um civil ferido")
+
+	sql = "select * from npc where npc.nome = 'Hendrik';"
+
+	cur.execute(sql)
+	rows = cur.fetchall()
+
+	for r in rows:
+		print("Na frente de uma serraria abandonada você se depara com", r[1], "um civil ferido \n")
 	print(" .: Falar com ele :.")
 	print(" .: Voltar a ard skellig :.")
 	option = input("> ")
@@ -307,6 +395,7 @@ def matar_katakan():
 		if option.lower() == ("levar as asas de katakan até o civil"):
 			levar_asas()
 
+
 def levar_asas():
 	print("Você vai até o civil e entrega as asas de katakan.\n")
 	print('#' * 60)
@@ -335,8 +424,6 @@ def levar_asas():
 	cur.execute(entregar_asas)
 	cur.execute(desativar_contrato_katakan)
 
-
-
 	conn.commit()
 
 	print(" .: Voltar para Ard Skellig :. ")
@@ -355,21 +442,7 @@ def levar_asas():
 			general_options_menu()
 			general_options()
 
-def opcoes_ard_skellig():
-	option = input("> ")
-	if option.lower() == ("conhecer ard skellig"):
-		listar_areas_ard_skellig()
-	elif option.lower() == ("menu geral"):
-		general_options_menu()
-		general_options()
-	while option.lower() not in ['conhecer kaer morhen', 'menu geral']:
-		print("Comando Inválido, Tente Novamente.")
-		option = input("> ")
-		if option.lower() == ("conhecer kaer morhen"):
-			listar_areas_kaer_morhen()
-		elif option.lower() == ("menu geral"):
-			general_options_menu()
-			general_options()
+
 
 def listar_contratos_ativos():
 	print("Esses são os contratos que estão ativos: \n")
