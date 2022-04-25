@@ -64,7 +64,8 @@ def populate_tables():
         ('Molnar Giancardi', 'anão', 'renegado'),
         ('Brouver Hoog', 'anão', 'renegado'),
         ('Keira', 'anão', 'renegado'),
-        ('Johnny', 'Godling', 'relíquia');
+        ('Johnny', 'Godling', 'relíquia'),
+        ('Ciri', 'humano', 'civil');
         """,
         """
         INSERT INTO missao (titulo, descricao, tipo, item) VALUES 
@@ -161,7 +162,8 @@ def populate_tables():
         (1, NULL),
         (1, NULL),
         (1, NULL),
-        (29, NULL);
+        (29, NULL),
+        (20, NULL);
         """,
 
         """
@@ -187,8 +189,9 @@ def populate_tables():
         (5, NULL, 1, NULL),
         (5, NULL, 2, NULL),
         (5, NULL, 3, NULL),
-        (9, 7, NULL, 2);
-        (9, NULL, NULL, 16);
+        (9, 7, NULL, 2),
+        (9, NULL, NULL, 16),
+        (1, 8, NULL, 23);
         """
         )
     try:
