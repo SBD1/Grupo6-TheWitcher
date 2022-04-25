@@ -66,12 +66,13 @@ def populate_tables():
         ('Keira', 'anão', 'renegado'),
         ('Johnny', 'Godling', 'relíquia'),
         ('Ciri', 'humano', 'civil'),
-        ('Vesimir', 'humano', 'civil');
+        ('Vesemir', 'humano', 'civil'),
+        ('Bram', 'humano', 'ferreiro');
         """,
 
         """
         INSERT INTO missao (titulo, descricao, tipo, item) VALUES 
-        ('Kaer Morhen', NULL, 'Prologo', 1),
+        ('Kaer Morhen', NULL, 'Prologo', 2),
         ('Lilas e Groselha', NULL, 'Prologo', 2),
         ('A Besta do Pomar Branco', NULL, 'Prologo', 3),
         ('O Incidente em White Orchard', NULL, 'Prologo', 4),
@@ -79,14 +80,14 @@ def populate_tables():
         ('Barão Sangrento', NULL, 'Ato I', 6),
         ('Perturbação', NULL, 'Ato II', 7),
         ('Invasão da torre', NULL, 'Prologo', 29),
-        ('Armadilha para um Forktail', NULL, 'Prologo', NULL);
+        ('Armadilha para um Forktail', NULL, 'Prologo', 2);
         """,
 
         """
         INSERT INTO mapa (nome, tipo, pais, regiao) VALUES
         ('Kaer Morhen', 'Fortaleza', 'Kaedwen', 'Kaer Morhen valley'),
         ('Crows Perch', 'Fortaleza', 'Temeria', 'Velen'),
-        ('Orquídia Branca', 'Cemitério', 'Temeria', 'Orquídea Branca'),
+        ('Orquídia Branca', 'Vila', 'Temeria', 'Orquídea Branca'),
         ('Ard Skellig', 'Cidade', 'Temeria', 'Skellige'),
         ('Colina', 'Campo', 'Temeria', 'Velen');
         """,
@@ -102,7 +103,8 @@ def populate_tables():
         ('Um forte abandonado que se tornou habitado por Witchers', 1),
         ('Uma torre de pedra parcialmente destruída pela guerra', 1),
         ('Uma vila antes conhecida como Hovel que agora está em cinzas', 3),
-        ('Uma colina em frente a uma torre com tijolos vermelhos', 5);
+        ('Uma colina em frente a uma torre com tijolos vermelhos', 5),
+        ('Uma grande construção de madeira, com uma bigorna e um barril ao lado da porta', 3);
         """,
 
         """
@@ -169,7 +171,8 @@ def populate_tables():
         (1, NULL),
         (1, NULL),
         (29, NULL),
-        (20, NULL);
+        (20, NULL)
+        (24, NULL);
         """,
 
         """
@@ -199,8 +202,24 @@ def populate_tables():
         (9, 7, NULL, 2),
         (9, NULL, NULL, 16),
         (1, 8, NULL, 23),
-        (1, NUll, 4, NULL);
+        (1, NUll, 4, NULL),
+        (11, 10, NULL, NULL);
+        """,
+
         """
+        INSERT INTO itens_equipados (id_personagem, id_instancia_item, ataque_item, defesa_item, vida_item) VALUES
+        (1, 1, 5, 19, 22),
+        (1, 24, 21, 7, 23);
+        """,
+
+        """
+        INSERT INTO npc_negocia_item (id_npc, id_item) VALUES
+        (10, 9),
+        (10, 16),
+        (10, 21),
+        (10, 23);
+        """
+
         )
     try:
         # create table one by one

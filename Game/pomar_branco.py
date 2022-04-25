@@ -6,45 +6,208 @@ cur = conn.cursor()
 
 # Area de Pomar Branco
 def listar_areas_pomar_branco():
-    print("Você se encontra em um pomar branco e vê que tem alguns lugares a serem explorados:\n")
+	print("Você se encontra em um pomar branco e vê que tem alguns lugares a serem explorados:\n")
 
-    sql = "select descricao from area a where a.id_mapa = 3"
+	sql = "select descricao from area a where a.id_mapa = 3"
 
-    cur.execute(sql)
+	cur.execute(sql)
 
-    rows = cur.fetchall()
+	rows = cur.fetchall()
 
-    for r in rows:
-        print(r)
+	for r in rows:
+		print(r)
 
-    print(" .: Entrar no cemitério  :. ")
-    print(" .: Explorar Hovel  :. ")
-    print(" .: Explorar Ruínas  :. ")
-    print(" .: Menu Geral :. ")
+	print(" .: Ir até a forja de Pomar Branco :. ")
+	print(" .: Entrar no cemitério  :. ")
+	print(" .: Explorar Hovel  :. ")
+	print(" .: Explorar Ruínas  :. ")
+	print(" .: Menu Geral :. ")
 
-    option = input("> ")
-    if option.lower() == ("entrar no cemitério"):
-        entrar_no_cemitério()
-    elif option.lower() == ("explorar hovel"):
-        explorar_hovel()
-    elif option.lower() == ("explorar ruínas"):
-        ir_ate_ruinas()
-    elif option.lower() == ("menu geral"):
-        main.general_options_menu()
-        main.general_options()
-    while option.lower() not in ['entrar no cemitério', 'explorar hovel', 'explorar ruínas', 'menu geral']:
-        print("Comando Inválido, Tente Novamente.")
-        option = input("> ")
-        if option.lower() == ("entrar no cemitério"):
-            entrar_no_cemitério()
-        elif option.lower() == ("explorar hovel"):
-            explorar_hovel()
-        elif option.lower() == ("explorar ruínas"):
-            ir_ate_ruinas()
-        elif option.lower() == ("menu geral"):
-            main.general_options_menu()
-            main.general_options()
+	option = input("> ")
+	if option.lower() == ("ir até a forja de pomar branco"):
+		entrar_na_forja()
+	elif option.lower() == ("entrar no cemitério"):
+		entrar_no_cemitério()
+	elif option.lower() == ("explorar hovel"):
+		explorar_hovel()
+	elif option.lower() == ("explorar ruínas"):
+		ir_ate_ruinas()
+	elif option.lower() == ("menu geral"):
+		main.general_options_menu()
+		main.general_options()
+	while option.lower() not in ['ir até a forja de pomar branco','entrar no cemitério', 'explorar hovel', 'explorar ruínas', 'menu geral']:
+		print("Comando Inválido, Tente Novamente.")
+		option = input("> ")
+		if option.lower() == ("ir até a forja de pomar branco"):
+			entrar_na_forja()
+		elif option.lower() == ("entrar no cemitério"):
+			entrar_no_cemitério()
+		elif option.lower() == ("explorar hovel"):
+			explorar_hovel()
+		elif option.lower() == ("explorar ruínas"):
+			ir_ate_ruinas()
+		elif option.lower() == ("menu geral"):
+			main.general_options_menu()
+			main.general_options()
 
+def entrar_na_forja():
+	print("Na entrada da forja, você avista um homem batendo um tipo de aço da bigorna com o martelo.")
+	print(" .: Falar com ele :. ")
+	print(" .: Voltar para Pomar Branco :. ")
+	print(" .: Menu geral :. ")
+	while True:
+		option = input("> ")
+
+		if option.lower() not in ['falar com ele', 'voltar para pomar branco', 'menu geral']:
+			print("Comando Inválido, Tente Novamente.")
+			continue
+
+		if option.lower() == ("falar com ele"):
+			falar_com_bram()
+			break
+		if option.lower() == ("voltar para pomar branco"):
+			listar_areas_pomar_branco()
+			break
+		elif option.lower() == ("menu geral"):
+			main.general_options_menu()
+			main.general_options()
+			break
+
+def falar_com_bram():
+	print(" - Bem-Vindo, Witcher. O que deseja hoje?!")
+	print(" .: Ver produtos :. ")
+	print(" .: Comprar produtos :. ")
+	print(" .: Aprimorar equipamentos :. ")
+	print(" .: Sair :. ")
+	while True:
+		option = input("> ")
+
+		if option.lower() not in ['ver produtos', 'comprar produtos', 'aprimorar equipamentos','sair']:
+			print("Comando Inválido, Tente Novamente.")
+			continue
+
+		if option.lower() == ("ver produtos"):
+			ver_produtos()
+			break
+		if option.lower() == ("comprar produtos"):
+			comprar_produtos()
+			break
+		if option.lower() == ("aprimorar equipamentos"):
+			aprimorar_equipamentos()
+			break
+		elif option.lower() == ("sair"):
+			print("Volte sempre!")
+			main.general_options_menu()
+			main.general_options()
+			break
+
+def ver_produtos():
+	sql = """
+			select i.nome, i.preco from npc_negocia_item nni
+			left join item i on i.id = nni.id_item
+			where id_npc = 10;
+	"""
+
+	cur.execute(sql)
+
+	rows = cur.fetchall()
+
+	for r in rows:
+		print(f"Item: {r[0]}")		
+		print(f"Preço: {r[1]}\n")
+
+	falar_com_bram()
+
+def comprar_produtos():
+	pass
+
+def aprimorar_equipamentos():
+	print(" .: Aprimoramento básico :: 20 de gold :. ")
+	print(" .: Aprimoramento intermediário :: 35 de gold:. ")
+	print(" .: Aprimoramento superior :: 50 de gold :. ")
+	while True:
+		option = input("> ")
+
+		if option.lower() not in ['aprimoramento básico', 'aprimoramento intermediário', 'aprimoramento superior','sair']:
+			print("Comando Inválido, Tente Novamente.")
+			continue
+
+		if option.lower() == ("aprimoramento básico"):
+			aprimorar_basico()
+			break
+		if option.lower() == ("aprimoramento intermediário"):
+			aprimorar_intermed()
+			break
+		if option.lower() == ("aprimoramento superior"):
+			aprimorar_superior()
+			break
+		elif option.lower() == ("sair"):
+			falar_com_bram()
+			break
+
+def aprimorar_basico():
+	aprimorar = """
+	update itens_equipados set ataque_item = ataque_item+5, defesa_item  = defesa_item+7, vida_item = vida_item+10 
+	from item i 
+	where itens_equipados.id_instancia_item = i.id; 
+	"""
+
+	descontar_gold = """
+	update personagem set gold = gold - 20;	
+	"""
+
+	cur.execute(aprimorar)
+	cur.execute(descontar_gold)
+
+	conn.commit()
+	
+	print("Seus aquipamentos foram aprimorados!")
+	print('#' * 60)
+
+	falar_com_bram()
+
+def aprimorar_intermed():
+	aprimorar = """
+	update itens_equipados set ataque_item = ataque_item+8, defesa_item  = defesa_item+13, vida_item = vida_item+15 
+	from item i 
+	where itens_equipados.id_instancia_item = i.id; 
+	"""
+
+	descontar_gold = """
+	update personagem set gold = gold - 35;	
+	"""
+
+	cur.execute(aprimorar)
+	cur.execute(descontar_gold)
+
+	conn.commit()
+
+	print("Seus aquipamentos foram aprimorados!")
+	print('#' * 60)
+
+	falar_com_bram()
+
+
+def aprimorar_superior():
+	aprimorar = """
+	update itens_equipados set ataque_item = ataque_item+12, defesa_item  = defesa_item+16, vida_item = vida_item+20 
+	from item i 
+	where itens_equipados.id_instancia_item = i.id; 
+	"""
+
+	descontar_gold = """
+	update personagem set gold = gold - 50;	
+	"""
+
+	cur.execute(aprimorar)
+	cur.execute(descontar_gold)
+
+	conn.commit()
+
+	print("Seus aquipamentos foram aprimorados!")
+	print('#' * 60)
+
+	falar_com_bram()
 
 def explorar_hovel():
 	print("Entrando nas cinzas da vila antes conhecida como Hovel, você encontra: ")
