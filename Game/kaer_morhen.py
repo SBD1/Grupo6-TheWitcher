@@ -239,4 +239,78 @@ def terminar_combate():
         elif option.lower() == ("menu geral"):
             main.general_options_menu()
             main.general_options()
-            break                
+            break
+
+def explorar_forte():
+    print("Um forte abandonado que se tornou habitado por Witchers")
+    print("Você ver alguns withchers bebendo e conversando alto")
+    print("Alguns jogam cartas")
+    print("Duas wicthers estão treinando conjuração de sinais")
+    print("Mas não há sinais de Vesimir")
+
+    print('#' * 60)
+    print(" .: Comer pão :. ")
+    print(" .: Sair do Forte :. ")
+    print(" .: Menu Geral :. ")
+    while True:
+        option = input("> ")
+
+        if option.lower() not in ['comer pão', 'sair do forte', 'menu geral']:
+            print("Comando Inválido, Tente Novamente.")
+            continue
+        if option.lower() == ("comer pão"):
+            consumir_item()
+            break
+        if option.lower() == ("sair do forte"):
+            sair_do_forte()
+            break      
+        elif option.lower() == ("menu geral"):
+            main.general_options_menu()
+            main.general_options()
+            break
+
+def consumir_item():	
+    sql = "select * from item where item.nome = 'Pão';"
+
+    cur.execute(sql)
+    rows = cur.fetchall()
+
+    print("O Witcher admira a animação dos outros witcher enquanto se alimenta e recupara suas energias depois do treinamento\n")
+	
+    print(" .: Sair do Forte :. ")
+    print(" .: Menu Geral :. ")
+    while True:
+        option = input("> ")
+
+        if option.lower() not in ['sair do forte', 'menu geral']:
+            print("Comando Inválido, Tente Novamente.")
+            continue
+        if option.lower() == ("sair do forte"):
+            sair_do_local()
+            break      
+        elif option.lower() == ("menu geral"):
+            main.general_options_menu()
+            main.general_options()
+            break
+
+def sair_do_local():
+    print('#' * 60)
+    print(" .: Explorar Forte :. ")
+    print(" .: Explorar Torre :. ")
+    print(" .: Menu Geral :. ")
+    while True:
+        option = input("> ")
+
+        if option.lower() not in ['explorar forte', 'explorar torre', 'menu geral']:
+            print("Comando Inválido, Tente Novamente.")
+            continue
+        if option.lower() == ("explorar forte"):
+            explorar_forte()
+            break
+        if option.lower() == ("explorar torre"):
+            explorar_torre()
+            break      
+        elif option.lower() == ("menu geral"):
+            main.general_options_menu()
+            main.general_options()
+            break
