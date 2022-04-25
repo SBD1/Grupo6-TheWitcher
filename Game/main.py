@@ -5,6 +5,7 @@ import crows_perch
 import pomar_branco as pb
 import sys
 import os
+from create_tables import create_tables
 
 conn = criaConexao()
 
@@ -35,7 +36,7 @@ def title_screen_options():
 
 def title_screen():
 	#Clears the terminal of prior code for a properly formatted title screen.
-	os.system('clear')
+	#os.system('clear')
 	#Prints the pretty title.
 	print('#' * 45)
 	print('#   Bem-vindo ao The Witcher   #')
@@ -549,7 +550,7 @@ def ver_mochila():
 	general_options()
 
 def setup_game():
-	os.system('clear')
+	#os.system('clear')
 	print("#################################")
 	print("# Aqui começa a sua aventura... #")
 	print("#################################\n")
@@ -573,6 +574,7 @@ def setup_game():
 			general_options()
 
 if __name__ == '__main__':
+	create_tables()
 	title_screen()
 
 	cur.close()
