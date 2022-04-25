@@ -111,7 +111,7 @@ def treinar_combate():
             evoluir_pontos_habilidade(2)
             break
         if option.lower() == ("ativar instinto de sobrevivência"):
-            terminar_combate(2)
+            terminar_combate()
             break
         elif option.lower() == ("menu geral"):
             main.general_options_menu()
@@ -169,4 +169,74 @@ def pegar_espada():
             treinar_combate()
         elif option.lower() == ("menu geral"):
             main.general_options_menu()
-            main.general_options() 
+            main.general_options()
+
+def evoluir_pontos_habilidade(habilidade):
+    # evoluir habilidade
+    sql = """update pontos_habilidade set pontos = pontos + 5
+		    from habilidade i
+		    where i.id_habilidade = habilidade;"""
+    
+    cur.execute(sql)
+    items = cur.fetchall()
+    
+    print("Você realizou um golpe com sucesso e ganhou 5 pontos nessa habilidade")
+    print("Ciri te golpeou com sucesso")
+    
+    print('#' * 60)
+    print(" .: Fazer um ataque rápido :. ")
+    print(" .: Fazer um ataque forte :. ")
+    print(" .: Ativar instinto de sobrevivência :. ")
+    print(" .: Terminar combate :. ")
+    print(" .: Menu Geral :. ")
+    while True:
+        option = input("> ")
+
+        if option.lower() not in ['fazer um ataque rápido', 'fazer um ataque forte', 'ativar instinto de sobrevivência', 'terminar combate', 'menu geral']:
+            print("Comando Inválido, Tente Novamente.")
+            continue
+        if option.lower() == ("fazer um ataque rápido"):
+            evoluir_pontos_habilidade(1)
+            break
+        if option.lower() == ("fazer um ataque forte"):
+            evoluir_pontos_habilidade(2)
+            break
+        if option.lower() == ("ativar instinto de sobrevivência"):
+            evoluir_pontos_habilidade(2)
+            break
+        if option.lower() == ("ativar instinto de sobrevivência"):
+            terminar_combate()
+            break
+        elif option.lower() == ("menu geral"):
+            main.general_options_menu()
+            main.general_options()
+            break
+
+def terminar_combate():
+    print("""Você e Ciri encerram o treino de combate \n
+    - Isso foi divertido, até que você não é tão mal...
+    - A espada que me deu me ajudou bastante.
+    - É melhor pegar contratos para conseguir dinheiro para ter uma espada melhor, essa não vai ser suficiente. 
+    Acho que Vasemir tem alguns contratos. Vá encontrá-lo.
+    """)
+
+    print('#' * 60)
+    print(" .: Explorar Forte :. ")
+    print(" .: Explorar Torre :. ")
+    print(" .: Menu Geral :. ")
+    while True:
+        option = input("> ")
+
+        if option.lower() not in ['explorar forte', 'explorar torre', 'menu geral']:
+            print("Comando Inválido, Tente Novamente.")
+            continue
+        if option.lower() == ("explorar forte"):
+            explorar_forte()
+            break
+        if option.lower() == ("explorar torre"):
+            explorar_torre()
+            break      
+        elif option.lower() == ("menu geral"):
+            main.general_options_menu()
+            main.general_options()
+            break                
