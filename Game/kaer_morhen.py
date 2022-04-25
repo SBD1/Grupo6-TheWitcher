@@ -217,7 +217,7 @@ def terminar_combate():
     - Isso foi divertido, até que você não é tão mal...
     - A espada que me deu me ajudou bastante.
     - É melhor pegar contratos para conseguir dinheiro para ter uma espada melhor, essa não vai ser suficiente. 
-    Acho que Vasemir tem alguns contratos. Vá encontrá-lo.
+    Acho que Vasemir está em algumo lugar por aqui. Vá falar com ele, antes de deixar esse lugar para trás.
     """)
 
     print('#' * 60)
@@ -262,7 +262,7 @@ def explorar_forte():
             consumir_item()
             break
         if option.lower() == ("sair do forte"):
-            sair_do_forte()
+            sair_do_local()
             break      
         elif option.lower() == ("menu geral"):
             main.general_options_menu()
@@ -314,3 +314,133 @@ def sair_do_local():
             main.general_options_menu()
             main.general_options()
             break
+
+def explorar_torre():
+    print("A torre de pedra foi parcialmente durante a guerra")
+    print("Hoje suas ruínas são usadas como local de descanso")
+    print("É exatamente por isso que você encontra Vesimir cochilando em um canto escuro")
+
+    print('#' * 60)
+    print(" .: Falar com Vesimir :. ")
+    print(" .: Sair da Torre :. ")
+    print(" .: Menu Geral :. ")
+    while True:
+        option = input("> ")
+
+        if option.lower() not in ['falar com vesimir', 'sair da torre', 'menu geral']:
+            print("Comando Inválido, Tente Novamente.")
+            continue
+        if option.lower() == ("falar com vesimir"):
+            falar_com_vesimir()
+            break
+        if option.lower() == ("sair da torre"):
+            sair_do_local()
+            break      
+        elif option.lower() == ("menu geral"):
+            main.general_options_menu()
+            main.general_options()
+            break
+
+def falar_com_vesimir():
+	print("Olá Witcher, tem um forktail maldito fazendo estrago na entrada de Kaer Morhen. Por favor, o mate para mim. Não precisa me trazer nada, só acabe com esse dragão")
+	print(" .: Pegar Contrato :.")
+	print(" .: Deixar Contrato :.")
+	option = input("> ")
+	if option.lower() == ("pegar contrato"):
+		contrato_besta_pomar_branco()
+	elif option.lower() == ("deixar contrato"):
+		print("Tudo bem, Witcher. Se mudar de ideia, estarei aqui!")
+		main.general_options_menu()
+		main.general_options()
+	while option.lower() not in ['pegar contrato', 'deixar contrato']:
+		print("Comando Inválido, Tente Novamente.")
+		option = input("> ")
+		if option.lower() == ("pegar contrato"):
+			contrato_besta_pomar_branco()
+		elif option.lower() == ("deixar contrato"):
+			main.general_options_menu()
+			main.general_options()
+
+def contrato_besta_pomar_branco():
+	contrato_ativo = f"update contrato set is_ativo = {True} where id = 9"
+	cur.execute(contrato_ativo)
+	conn.commit()
+	print("O contrato foi adicionado à lista de contratos ativos!")
+	print(" .: Explorar entrada :. ")
+	option = input("> ")
+	if option.lower() == ("explorar entrada"):
+		missao_armadilha_forktail()
+	elif option.lower() == ("voltar para kaer morhen"):
+		sair_do_local()
+	while option.lower() not in ['explorar entrada', 'voltar para kaer morhen ']:
+		print("Comando Inválido, Tente Novamente.")
+		option = input("> ")
+		if option.lower() == ("explorar entrada"):
+			missao_armadilha_forktail()
+		elif option.lower() == ("voltar para kaer morhen"):
+			sair_do_local()
+
+def missao_armadilha_forktail():
+	print("Você vai para a entrada de Kaer Morhen quando, de repente, encontra o Forktail que está causando problemas")
+	print(" .: Matar Forktail :.")
+	print(" .: Retornar a Kaer Morhen :. ")
+	print(" .: Menu Geral :. ")
+	option = input("> ")
+	if option.lower() == ("matar forktail"):
+		print("Você mata o forktail ao atravessar sua espada na garganta dele\n")
+		matar_forktail()
+	elif option.lower() == ("retornar a kaer morhen"):
+		print("Você retorna a Kaer Korhen")
+		sair_do_local()
+	elif option.lower() == ("menu geral"):
+		main.general_options_menu()
+		main.general_options()
+	while option.lower() not in ['matar forktail', 'retornar a kaer morhen', 'menu geral']:
+		print("Comando Inválido, Tente Novamente.")
+		option = input("> ")
+		if option.lower() == ("matar forktail"):
+			matar_forktail()
+			sair_do_local()
+		elif option.lower() == ("retornar a kaer morhen"):
+			print("Você retorna a Kaer Korhen")
+			sair_do_local()
+		elif option.lower() == ("menu geral"):
+			main.general_options_menu()
+			main.general_options()
+
+def matar_forktail():
+
+    deletar_instancia_forktail = "delete from encontrado_em where id_instancia_monstro = 4"
+
+    cur.execute(deletar_instancia_forktail)
+    conn.commit()
+
+    coletar_recompensa = """
+		update personagem set gold = personagem.gold + c.gold from contrato c where c.id =  9
+	"""
+
+    cur.execute(coletar_recompensa)
+    print("Você recebeu 50 de ouro de Vesimir.\n")
+    print('#' * 60)
+
+    desativar_contrato = """
+		update contrato set is_ativo = False where id = 9
+	"""
+
+    cur.execute(desativar_contrato)
+
+    print(" .: Ir para Kaer Morhen :. ")
+    print(" .: Menu Geral :. ")
+    while True:
+        option = input("> ")
+
+        if option.lower() not in ['ir para kaer morhen', 'menu geral']:
+            print("Comando Inválido, Tente Novamente.")
+            continue
+        if option.lower() == ("ir para kaer morhen"):
+            sair_do_local()
+            break      
+        elif option.lower() == ("menu geral"):
+            main.general_options_menu()
+            main.general_options()
+            break 

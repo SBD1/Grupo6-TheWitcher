@@ -65,8 +65,10 @@ def populate_tables():
         ('Brouver Hoog', 'anão', 'renegado'),
         ('Keira', 'anão', 'renegado'),
         ('Johnny', 'Godling', 'relíquia'),
-        ('Ciri', 'humano', 'civil');
+        ('Ciri', 'humano', 'civil'),
+        ('Vesimir', 'humano', 'civil');
         """,
+
         """
         INSERT INTO missao (titulo, descricao, tipo, item) VALUES 
         ('Kaer Morhen', NULL, 'Prologo', 1),
@@ -76,7 +78,8 @@ def populate_tables():
         ('Audiencia Imperial', NULL, 'Ato I', 5),
         ('Barão Sangrento', NULL, 'Ato I', 6),
         ('Perturbação', NULL, 'Ato II', 7),
-        ('Invasão da torre', NULL, 'Prologo', 29);
+        ('Invasão da torre', NULL, 'Prologo', 29),
+        ('Armadilha para um Forktail, NULL, Prologo, NULL);
         """,
 
         """
@@ -119,8 +122,10 @@ def populate_tables():
         ('Nightwraith', NULL ,NULL ,NULL  ,'Espectro', 'Um demônio que obtém poder da luz da lua'),
         ('Madame Praga', NULL ,NULL ,NULL  ,'Espectro', 'Um espiríto que personifica doença e pragas'),
         ('Katakan', NULL ,NULL ,NULL ,'Vampiro', 'Uma espécie de vampiro que tem características de um morcego monstruoso'),
-        ('Nithral', NULL ,NULL ,NULL ,'Guerreiro', 'Guerreiro Aen Elle e um membro da Wild Hunt');
+        ('Nithral', NULL ,NULL ,NULL ,'Guerreiro', 'Guerreiro Aen Elle e um membro da Wild Hunt'),
+        ('Forktail', NULL ,NULL ,NULL ,'Draconídeo', 'Uma espécie de draconíde com rabo de garfo');
         """,
+
         """
         INSERT INTO contrato (gold, npc, missao, is_ativo) VALUES
         (50.0, 1, 1, false),
@@ -130,7 +135,8 @@ def populate_tables():
         (63.0, 4, 5, false),
         (85.0, 5, 6, false),
         (55.0, 3, 7, false),
-        (85.0, 6, 8, false);
+        (85.0, 6, 8, false),
+        (50.0, 9, 9, false);
         """,
 
         """
@@ -170,7 +176,8 @@ def populate_tables():
         INSERT INTO instancia_monstro (id_monstro, nivel, instancia_item) VALUES
         (4, 2, 1),
         (3, 2, 19),
-        (16, 3, 23);
+        (16, 3, 23),
+        (17, 1, NULL);
         """,
 
         """
@@ -191,7 +198,8 @@ def populate_tables():
         (5, NULL, 3, NULL),
         (9, 7, NULL, 2),
         (9, NULL, NULL, 16),
-        (1, 8, NULL, 23);
+        (1, 8, NULL, 23),
+        (1, NUll, 4, NULL);
         """
         )
     try:
