@@ -6,40 +6,44 @@ cur = conn.cursor()
 
 # Area de Pomar Branco
 def listar_areas_pomar_branco():
-	print("Você se encontra em um pomar branco e vê que tem alguns lugares a serem explorados:\n")
-	
-	sql = "select descricao from area a where a.id_mapa = 3"
+    print("Você se encontra em um pomar branco e vê que tem alguns lugares a serem explorados:\n")
 
-	cur.execute(sql)
+    sql = "select descricao from area a where a.id_mapa = 3"
 
-	rows = cur.fetchall()
+    cur.execute(sql)
 
-	for r in rows:
-		print(r)
+    rows = cur.fetchall()
 
-	print(" .: Entrar no cemitério  :. ")
-	print(" .: Explorar Hovel  :. ")
-	print(" .: Explorar Ruinas  :. ")
-	print(" .: Menu Geral :. ")
+    for r in rows:
+        print(r)
 
-	option = input("> ")
-	if option.lower() == ("entrar no cemitério"):
-		entrar_no_cemitério()
-	elif option.lower() == ("explorar hovel"):
-		explorar_hovel()
-	elif option.lower() == ("menu geral"):
-		main.general_options_menu()
-		main.general_options()
-	while option.lower() not in ['entrar no cemitério', 'explorar hovel','menu geral']:
-		print("Comando Inválido, Tente Novamente.")
-		option = input("> ")
-		if option.lower() == ("entrar no cemitério"):
-			entrar_no_cemitério()
-		elif option.lower() == ("explorar hovel"):
-			explorar_hovel()
-		elif option.lower() == ("menu geral"):
-			main.general_options_menu()
-			main.general_options()
+    print(" .: Entrar no cemitério  :. ")
+    print(" .: Explorar Hovel  :. ")
+    print(" .: Explorar Ruínas  :. ")
+    print(" .: Menu Geral :. ")
+
+    option = input("> ")
+    if option.lower() == ("entrar no cemitério"):
+        entrar_no_cemitério()
+    elif option.lower() == ("explorar hovel"):
+        explorar_hovel()
+    elif option.lower() == ("explorar ruínas"):
+        ir_ate_ruinas()
+    elif option.lower() == ("menu geral"):
+        main.general_options_menu()
+        main.general_options()
+    while option.lower() not in ['entrar no cemitério', 'explorar hovel', 'explorar ruínas', 'menu geral']:
+        print("Comando Inválido, Tente Novamente.")
+        option = input("> ")
+        if option.lower() == ("entrar no cemitério"):
+            entrar_no_cemitério()
+        elif option.lower() == ("explorar hovel"):
+            explorar_hovel()
+        elif option.lower() == ("explorar ruínas"):
+            ir_ate_ruinas()
+        elif option.lower() == ("menu geral"):
+            main.general_options_menu()
+            main.general_options()
 
 
 def explorar_hovel():
@@ -153,7 +157,65 @@ def pegar_itens_hovel():
             main.general_options() 
 
 def falar_com_johnny():
-	pass
+    print("""Você chega perto de Johnny e vê que é uma criatura baixa, que parece uma criança, porém, têm uma pele azul e algumas cicatrizes no rosto.\n
+    - Olá garoto, estou procurando uma moça de cabelo cinza. Viu alguém assim? 
+    - Se vi. Lembro-me como se fosse ontem. Logo que despertei, fui evacuar - essa é a minha parte favorita do dia. Defecar ao nascer do sol é simplesmente maravilhoso...
+    Quando, de repente, ouvi um barulho tão forte que não poderia ter vindo de mim. E a garota apareceu! Do nada.
+    Uma jovem de cabelo acinzentado, como disseste. E ferida e ofegante, ainda por cima!
+    Ela correu em direção às cabanas das crianças, nas ruínas. Rápida, como se as moiras estivessem atrás dela. EU gritei algumas coisas desagradáveis... Ela estragou a minha manhã.\n
+    - Então ela foi até as ruínas...
+    """)
+    print('#' * 60)
+    print(" .: Ir até as ruínas :. ")
+    print(" .: Voltar para pomar branco:. ")
+    print(" .: Menu Geral :. ")
+    while True:
+        option = input("> ")
+
+        if option.lower() not in ['ir até as ruínas', 'voltar para pomar branco', 'menu geral']:
+            print("Comando Inválido, Tente Novamente.")
+            continue
+
+        if option.lower() == ("ir até as ruínas"):
+            ir_ate_ruinas()
+            break
+        if option.lower() == ("voltar para pomar branco"):
+            listar_areas_pomar_branco()
+            break
+        elif option.lower() == ("menu geral"):
+            main.general_options_menu()
+            main.general_options()
+            break
+
+
+def ir_ate_ruinas():
+    print("Você se encontra em um local que parecia ser uma pequena vila, que agora está em ruínas, mas nota que ainda existem algumas cabanas ocupadas...")
+    print("Você vê algumas crianças brincando na entrada de uma floresta que têm por perto. Mas nota que uma senhora se aproxima.")
+    print(" - O que quer aqui, forasteiro? Não quero ninguém perturbando as minhas crianças.")
+    print(" - Não tenho a intenção de pertubar ninguém, senhora... Estou a procura de uma moça de cabelos cinza. Johnny me disse que ela estava vindo nesta direção.")
+    print(" - Ela estava aqui sim, apareceu muito machucada, então eu deixei ela ficar um pouco e com a ajuda das minhas crianças, tratei seus ferimentos.")
+    print("Mas a alguns dias, quando acordei para vê-la, ela já tinha ido embora, sem falar para onde ia. Acho que já estava melhor!")
+    print(" - Entendo. Agradeço a informação!")
+
+    print('#' * 60)
+    print(" .: Voltar para pomar branco:. ")
+    print(" .: Menu Geral :. ")
+    while True:
+        option = input("> ")
+
+        if option.lower() not in ['voltar para pomar branco', 'menu geral']:
+            print("Comando Inválido, Tente Novamente.")
+            continue
+        if option.lower() == ("voltar para pomar branco"):
+            listar_areas_pomar_branco()
+            break
+        elif option.lower() == ("menu geral"):
+            main.general_options_menu()
+            main.general_options()
+            break
+
+
+
 
 def opcoes_pomar_branco():
 	option = input("> ")
@@ -197,7 +259,7 @@ def entrar_no_cemitério():
 
 
 def missoes_cemitério():
-	print("Olá Witcher, neste cemitério existe uma besta que está bagunçando os túmulos, traga a cabeça dela e lhe recompensarei de acordo.")
+	print("Olá Witcher, me chamo Brouver Hoog e sou coveiro aqui. Neste cemitério existe uma besta que está bagunçando os túmulos, traga a cabeça dela e lhe recompensarei de acordo.")
 	print(" .: Pegar Contrato :.")
 	print(" .: Deixar Contrato :.")
 	option = input("> ")
@@ -256,7 +318,7 @@ def missao_besta_pomar_branco():
 		option = input("> ")
 		if option.lower() == ("matar besta"):
 			matar_berseker()
-			print("Você mata a besta, arranca sua cabeça e leva até o anão")
+			print("Você mata a besta, arranca sua cabeça e leva até Brouver")
 			print("Você pega sua recompensa e volta a pomar branco")
 			listar_areas_pomar_branco()
 		elif option.lower() == ("sair do cemitério"):
@@ -282,17 +344,17 @@ def matar_berseker():
 	cur.execute(deletar_instancia_berseker)
 	conn.commit()
 
-	print(" .: Levar a cabeça do berseker até o anão :. ")
+	print(" .: Levar a cabeça do berseker até Brouver :. ")
 	option = input("> ")
-	if option.lower() == ("levar a cabeça do berseker até o anão"):
+	if option.lower() == ("levar a cabeça do berseker até Brouver"):
 		levar_cabeca()
-	while option.lower() not in ['levar a cabeça do berseker até o anão']:
+	while option.lower() not in ['levar a cabeça do berseker até Brouver']:
 		option = input("> ")
-		if option.lower() == ("levar a cabeça do berseker até o anão"):
+		if option.lower() == ("levar a cabeça do berseker até Brouver"):
 			levar_cabeca()
 			
 def levar_cabeca():
-	print("Você vai até o anão e entrega a cabeça do beseker à ele.\n")
+	print("Você vai até Brouver e entrega a cabeça do beseker à ele.\n")
 	print('#' * 60)
 	print("Obrigado, Witcher. Como prometido, tome aqui a sua recompensa!\n")
 
@@ -314,7 +376,7 @@ def levar_cabeca():
 	"""
 
 	cur.execute(coletar_recompensa)
-	print("Você recebeu 50 de ouro do anão.\n")
+	print("Você recebeu 50 de ouro de Brouver.\n")
 	print('#' * 60)
 	cur.execute(entregar_cabeca)
 	cur.execute(desativar_contrato)
