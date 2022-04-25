@@ -220,3 +220,19 @@ $verifica_tipo_item_equipado$
 language plpgsql; 
 
 -- select verifica_tipo_item_equipado('arma');
+
+
+-- Stored Procedure para verificar se o gold é maior que o preço de uma compra
+CREATE OR REPLACE FUNCTION verifica_se_gold_maior_que_preco(gold integer, preco integer)
+RETURNS boolean AS $verifica_se_gold_maior_que_preco$
+BEGIN 
+	if (gold > preco) then 
+		return true;
+	else 
+		return false;
+	end if;
+END;
+$verifica_se_gold_maior_que_preco$
+language plpgsql; 
+
+--select verifica_se_gold_maior_que_preco(60,50)

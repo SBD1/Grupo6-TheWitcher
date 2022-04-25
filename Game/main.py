@@ -11,6 +11,7 @@ import os
 from create_tables import create_tables
 from populate_tables import populate_tables
 from cria_triggers import cria_triggers
+from truncate_tables import truncate_tables
 
 
 conn = criaConexao()
@@ -215,6 +216,7 @@ if __name__ == '__main__':
 	criar_schema = "CREATE SCHEMA IF NOT EXISTS public"
 	cur.execute(criar_schema)
 	create_tables()
+	truncate_tables()
 	populate_tables()
 	cria_triggers()
 	title_screen()

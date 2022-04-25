@@ -119,8 +119,79 @@ def ver_produtos():
 	falar_com_bram()
 
 def comprar_produtos():
-	print("Ainda não foi implementado!")
+	print(" .: comprar armadura legendária ursina :. ")
+	print(" .: Ver produtos :. ")
+	print(" .: Comprar produtos :. ")
+	print(" .: Aprimorar equipamentos :. ")
+	print(" .: Sair :. ")
+	while True:
+		option = input("> ")
+
+		if option.lower() not in ['comprar armadura legendária ursina', 'comprar ', 'comprar','sair']:
+			print("Comando Inválido, Tente Novamente.")
+			continue
+
+		if option.lower() == ("comprar armadura legendária ursina"):
+			comprar_armadura_ursina()
+			break
+		if option.lower() == ("comprar produtos"):
+			comprar_produtos()
+			break
+		if option.lower() == ("aprimorar equipamentos"):
+			aprimorar_equipamentos()
+			break
+		elif option.lower() == ("sair"):
+			print("Volte sempre!")
+			main.general_options_menu()
+			main.general_options()
+			break
 	falar_com_bram()
+
+def comprar_armadura_ursina():
+	preco = "select preco from item where nome = 'Armadura Legendária Ursina' limit 1; "
+	gold = "select gold from personagem where id = 1;"
+
+	cur.execute(gold)
+	pega_gold = cur.fetchall()
+
+	for g in pega_gold:
+		print(f"{g[0]}")	
+
+	cur.execute(preco)
+	pega_preco = cur.fetchall()
+
+	for p in pega_preco:
+		print(f"{p[0]}")
+
+	cur.callproc('verifica_se_gold_maior_que_preco', (g[0], p[0]))
+
+	is_maior = cur.fetchone()
+
+	print(is_maior)
+	
+	if(is_maior == True):
+		criar_instancia_item = """ insert into instancia_item(id_item, nivel)
+									values(9, 20)"""
+		adicionar_item_mochila = """ 
+									insert into mochila_guarda(mochila, item)
+									values(1, (select id from instancia_item ORDER BY id DESC LIMIT 1));									
+									"""
+		descontar_gold = f"""
+						update personagem set gold = gold - {p[0]}
+						
+		"""
+		cur.execute(criar_instancia_item)
+		cur.execute(adicionar_item_mochila)
+		cur.execute(descontar_gold)
+
+		conn.commit
+		print("Compra feita")
+
+	else:
+		print("Você não tem gold suficiente para comprar este item!")
+		falar_com_bram()
+
+
 
 def aprimorar_equipamentos():
 	print(" .: Aprimoramento básico :: 20 de gold :. ")

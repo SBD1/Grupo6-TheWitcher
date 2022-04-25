@@ -71,19 +71,6 @@ def populate_tables():
         """,
 
         """
-        INSERT INTO missao (titulo, descricao, tipo, item) VALUES 
-        ('Kaer Morhen', NULL, 'Prologo', 2),
-        ('Lilas e Groselha', NULL, 'Prologo', 2),
-        ('A Besta do Pomar Branco', NULL, 'Prologo', 3),
-        ('O Incidente em White Orchard', NULL, 'Prologo', 4),
-        ('Audiencia Imperial', NULL, 'Ato I', 5),
-        ('Barão Sangrento', NULL, 'Ato I', 6),
-        ('Perturbação', NULL, 'Ato II', 7),
-        ('Invasão da torre', NULL, 'Prologo', 29),
-        ('Armadilha para um Forktail', NULL, 'Prologo', 2);
-        """,
-
-        """
         INSERT INTO mapa (nome, tipo, pais, regiao) VALUES
         ('Kaer Morhen', 'Fortaleza', 'Kaedwen', 'Kaer Morhen valley'),
         ('Crows Perch', 'Fortaleza', 'Temeria', 'Velen'),
@@ -129,19 +116,6 @@ def populate_tables():
         """,
 
         """
-        INSERT INTO contrato (gold, npc, missao, is_ativo) VALUES
-        (50.0, 1, 1, false),
-        (55.0, 1, 2, false),
-        (42.0, 2, 3, false),
-        (70.0, 3, 4, false),
-        (63.0, 4, 5, false),
-        (85.0, 5, 6, false),
-        (55.0, 3, 7, false),
-        (85.0, 6, 8, false),
-        (50.0, 9, 9, false);
-        """,
-
-        """
         INSERT INTO mochila (id_personagem, capacidade) VALUES
         (1, 40);
         """,
@@ -171,8 +145,34 @@ def populate_tables():
         (1, NULL),
         (1, NULL),
         (29, NULL),
-        (20, NULL)
+        (20, NULL),
         (24, NULL);
+        """,
+
+        """
+        INSERT INTO missao (titulo, descricao, tipo, item) VALUES 
+        ('Kaer Morhen', NULL, 'Prologo', 2),
+        ('Lilas e Groselha', NULL, 'Prologo', 2),
+        ('A Besta do Pomar Branco', NULL, 'Prologo', 3),
+        ('O Incidente em White Orchard', NULL, 'Prologo', 4),
+        ('Audiencia Imperial', NULL, 'Ato I', 5),
+        ('Barão Sangrento', NULL, 'Ato I', 6),
+        ('Perturbação', NULL, 'Ato II', 7),
+        ('Invasão da torre', NULL, 'Prologo', 29),
+        ('Armadilha para um Forktail', NULL, 'Prologo', 2);
+        """,
+
+        """
+        INSERT INTO contrato (gold, npc, missao, is_ativo) VALUES
+        (50.0, 1, 1, false),
+        (55.0, 1, 2, false),
+        (42.0, 2, 3, false),
+        (70.0, 3, 4, false),
+        (63.0, 4, 5, false),
+        (85.0, 5, 6, false),
+        (55.0, 3, 7, false),
+        (85.0, 6, 8, false),
+        (50.0, 9, 9, false);
         """,
 
         """
