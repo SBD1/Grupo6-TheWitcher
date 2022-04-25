@@ -7,6 +7,7 @@ import ard_skellig as ask
 import sys
 import os
 from create_tables import create_tables
+from populate_tables import populate_tables
 
 conn = criaConexao()
 
@@ -37,7 +38,7 @@ def title_screen_options():
 
 def title_screen():
 	#Clears the terminal of prior code for a properly formatted title screen.
-	#os.system('clear')
+	os.system('clear')
 	#Prints the pretty title.
 	print('#' * 45)
 	print('#   Bem-vindo ao The Witcher   #')
@@ -194,11 +195,14 @@ def ver_mochila():
 						left join instancia_item ii on m.item = ii.id
 						left join item i on ii.id_item = i.id 
 						group by i.nome"""
-	cur.execute(ver_mochila)
+	mochila = cur.execute(ver_mochila)
 	rows = cur.fetchall()
-	for r in rows:
-		print(f"Quantidade: {r[0]}")
-		print(f"Item: {r[1]}")
+	if (mochila == None):
+		print("Sua mochila está vazia")
+	else:
+		for r in rows:
+			print(f"Quantidade: {r[0]}")
+			print(f"Item: {r[1]}")
 	general_options_menu()
 	general_options()
 
@@ -228,6 +232,7 @@ def setup_game():
 
 if __name__ == '__main__':
 	create_tables()
+	populate_tables()
 	title_screen()
 
 	cur.close()
