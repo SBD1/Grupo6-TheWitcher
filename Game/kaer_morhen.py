@@ -119,14 +119,26 @@ def treinar_combate():
             break
 
 def pegar_espada():
-    inserir_itens_na_mochila = """
-	insert into mochila_guarda (mochila, item) 
-	VALUES (1, (select ii.id from instancia_item ii 
-				left join item i on i.id = ii.id_item where i.nome = 'Espada Iris' limit 1));	
-	"""
+    sql = """select item.id from encontrado_em 
+		left join instancia_item on instancia_item.id = encontrado_em.id_instancia_item
+		left join item on item.id = instancia_item.id_item 	
+		where encontrado_em.id_area = 1 and encontrado_em.id_instancia_item is not null"""
     
+    cur.execute(sql)
+    items = cur.fetchall()
+
+    tmp = []
+    for n in items:
+        tmp.append(n[0])
+
+    inserir_itens_na_mochila = f"""
+		insert into mochila_guarda (mochila, item) 
+		VALUES (1, unnest(array{tmp}));	
+	"""
+
     cur.execute(inserir_itens_na_mochila)
     conn.commit()
+
 
     print("A espada foi adicionada na mochila.")
     
