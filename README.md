@@ -56,24 +56,23 @@ $ pip3 install psycopg2
 
 
 #### * Se não tiver um usuário no postgres:
+
+`https://www.postgresql.org/docs/8.0/sql-createuser.html`
+
+*Para facilitar aqui, utilize "postgres" tanto para o usuário quanto para a senha
+
+#### Para dar acesso do novo usuário ao banco do jogo
+
 ```
 $ su - postgres
 ```
 
 ```
-postgres=# create user user_name with encrypted password 'mypassword';
-```
-*Para facilitar aqui, utilize "postgres" tanto para o usuário quanto para a senha;
-
-#### Para dar acesso do novo usuário ao banco do jogo
-```
-postgres=# grant all privileges on database sample_db to user_name;
+postgres=# grant all privileges on database thewitcher to user_name;
 ```  
-*Também para facilitar, coloque o nome do database de "postgres".
 
 
-
-### Ainda na pasta Game, rodar o jogo via terminal:
+### Ainda na pasta Game, para rodar o jogo via terminal:
 
 ```
 $ python main.py
