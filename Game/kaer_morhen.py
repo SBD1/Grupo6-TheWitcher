@@ -110,7 +110,7 @@ def treinar_combate():
         if option.lower() == ("ativar instinto de sobrevivência"):
             golpear()
             break
-        if option.lower() == ("ativar instinto de sobrevivência"):
+        if option.lower() == ("terminar combate"):
             terminar_combate()
             break
         elif option.lower() == ("menu geral"):
@@ -137,13 +137,10 @@ def pegar_espada():
     cur.execute(deletar_instancia_item)
     conn.commit()
 
-    print(" .: Ver Mochila :. ")
     print(" .: Treinar Combate :. ")
     print(" .: Menu Geral :. ")
     option = input("> ")
-    if option.lower() == ("ver mochila"):
-        main.ver_mochila()
-    elif option.lower() == ("treinar combate"):
+    if option.lower() == ("treinar combate"):
         treinar_combate()
     elif option.lower() == ("menu geral"):
         main.general_options_menu()
@@ -151,9 +148,7 @@ def pegar_espada():
     while option.lower() not in ['ver mochila', 'treinar combate', 'menu geral']:
         print("Comando Inválido, Tente Novamente.")
         option = input("> ")
-        if option.lower() == ("ver mochila"):
-            main.ver_mochila()
-        elif option.lower() == ("treinar combate"):
+        if option.lower() == ("treinar combate"):
             treinar_combate()
         elif option.lower() == ("menu geral"):
             main.general_options_menu()
@@ -185,7 +180,7 @@ def golpear():
         if option.lower() == ("ativar instinto de sobrevivência"):
             golpear()
             break
-        if option.lower() == ("ativar instinto de sobrevivência"):
+        if option.lower() == ("terminar combate"):
             terminar_combate()
             break
         elif option.lower() == ("menu geral"):
