@@ -47,6 +47,8 @@ $ pip install psycopg2
 $ pip3 install psycopg2
 ```
 
+### Crie um novo database no seu postgresql com o nome "thewitcher"
+
 ### Abrir o arquivo conn.py e colocar o usuário de senha do seu postgresql em conexão com o localhost em user="usuário" e password="senha".*
 
 
