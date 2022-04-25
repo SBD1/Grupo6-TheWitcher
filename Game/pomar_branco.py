@@ -55,7 +55,7 @@ def explorar_hovel():
 			left join monstro m on m.id = im.id_monstro
 			left join instancia_item ii on ii.id = ee.id_instancia_item
 			left join item i on i.id = ii.id_item 	
-			where ee.id_area = 8
+			where ee.id_area = 9
 			group by npc.nome, m.nome, i.nome 
 	"""
 
@@ -293,7 +293,7 @@ def contrato_besta_pomar_branco():
 		print("Comando Inválido, Tente Novamente.")
 		option = input("> ")
 		if option.lower() == ("explorar cemitério"):
-			contrato_besta_pomar_branco()
+			missao_besta_pomar_branco()
 		elif option.lower() == ("voltar para pomar branco"):
 			listar_areas_pomar_branco()
 
@@ -330,28 +330,29 @@ def missao_besta_pomar_branco():
 
 
 def matar_berseker():
-	inserir_cabeca_na_mochila = """
+    inserir_cabeca_na_mochila = """
 	insert into mochila_guarda (mochila, item) 
 	VALUES (1, (select ii.id from instancia_item ii 
 				left join item i on i.id = ii.id_item where i.nome = 'Cabeça de Berseker' limit 1));	
 	"""
 
-	deletar_instancia_berseker = "delete from encontrado_em where id_instancia_monstro = 1"
+    deletar_instancia_berseker = "delete from encontrado_em where id_instancia_monstro = 1"
 
-	cur.execute(inserir_cabeca_na_mochila)
-	print("Cabeça de Berseker obtida!\n")
+    cur.execute(inserir_cabeca_na_mochila)
+    print("Cabeça de Berseker obtida!\n")
 
-	cur.execute(deletar_instancia_berseker)
-	conn.commit()
+    cur.execute(deletar_instancia_berseker)
+    conn.commit()
 
-	print(" .: Levar a cabeça do berseker até Brouver :. ")
-	option = input("> ")
-	if option.lower() == ("levar a cabeça do berseker até Brouver"):
-		levar_cabeca()
-	while option.lower() not in ['levar a cabeça do berseker até Brouver']:
-		option = input("> ")
-		if option.lower() == ("levar a cabeça do berseker até Brouver"):
-			levar_cabeca()
+    print(" .: Levar a cabeça do berseker até Brouver :. ")
+    option = input("> ")
+    if option.lower() == ("levar a cabeça do berseker até brouver"):
+        levar_cabeca()
+    while option.lower() not in ['levar a cabeça do berseker até brouver']:
+        print("Comando Inválido, Tente Novamente.")
+        option = input("> ")
+        if option.lower() == ("levar a cabeça do berseker até brouver"):
+            levar_cabeca()
 			
 def levar_cabeca():
 	print("Você vai até Brouver e entrega a cabeça do beseker à ele.\n")

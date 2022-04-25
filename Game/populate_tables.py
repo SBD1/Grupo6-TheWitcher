@@ -187,7 +187,8 @@ def populate_tables():
         (5, NULL, 1, NULL),
         (5, NULL, 2, NULL),
         (5, NULL, 3, NULL),
-        (9, 7, NULL, NULL);
+        (9, 7, NULL, 2);
+        (9, NULL, NULL, 16);
         """
         )
     try:

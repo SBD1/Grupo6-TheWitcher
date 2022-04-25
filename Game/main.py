@@ -8,6 +8,7 @@ import sys
 import os
 from create_tables import create_tables
 from populate_tables import populate_tables
+from cria_triggers import cria_triggers
 
 conn = criaConexao()
 
@@ -231,8 +232,12 @@ def setup_game():
 			general_options()
 
 if __name__ == '__main__':
+	conn.autocommit=True
+	criar_schema = "CREATE SCHEMA IF NOT EXISTS public"
+	cur.execute(criar_schema)
 	create_tables()
 	populate_tables()
+	cria_triggers()
 	title_screen()
 
 	cur.close()
