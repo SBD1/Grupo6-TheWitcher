@@ -79,7 +79,7 @@ def populate_tables():
         ('Barão Sangrento', NULL, 'Ato I', 6),
         ('Perturbação', NULL, 'Ato II', 7),
         ('Invasão da torre', NULL, 'Prologo', 29),
-        ('Armadilha para um Forktail, NULL, Prologo, NULL);
+        ('Armadilha para um Forktail', NULL, 'Prologo', NULL);
         """,
 
         """

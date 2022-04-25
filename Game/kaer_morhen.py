@@ -17,19 +17,19 @@ def listar_areas_kaer_morhen():
     for r in rows:
         print(r)
 
-    print(" .: Conhecer kaer morhen  :. ")
+    print(" .: Entrar em kaer morhen  :. ")
     print(" .: Menu Geral :. ")
 
     option = input("> ")
-    if option.lower() == ("conhecer kaer morhen"):
+    if option.lower() == ("entrar em kaer morhen"):
         conhecer_kaer_morhen()
     elif option.lower() == ("menu geral"):
         main.general_options_menu()
         main.general_options()
-    while option.lower() not in ['conhecer kaer morhen', 'menu geral']:
+    while option.lower() not in ['entrar em kaer morhen', 'menu geral']:
         print("Comando Inválido, Tente Novamente.")
         option = input("> ")
-        if option.lower() == ("conhecer kaer morhen"):
+        if option.lower() == ("entrar em kaer morhen"):
             conhecer_kaer_morhen()
         elif option.lower() == ("menu geral"):
             main.general_options_menu()
@@ -102,13 +102,13 @@ def treinar_combate():
             print("Comando Inválido, Tente Novamente.")
             continue
         if option.lower() == ("fazer um ataque rápido"):
-            evoluir_pontos_habilidade(1)
+            golpear()
             break
         if option.lower() == ("fazer um ataque forte"):
-            evoluir_pontos_habilidade(2)
+            golpear()
             break
         if option.lower() == ("ativar instinto de sobrevivência"):
-            evoluir_pontos_habilidade(2)
+            golpear()
             break
         if option.lower() == ("ativar instinto de sobrevivência"):
             terminar_combate()
@@ -119,31 +119,19 @@ def treinar_combate():
             break
 
 def pegar_espada():
-    # retirar os itens do local
-    sql = """select item.id from encontrado_em 
-		left join instancia_item on instancia_item.id = encontrado_em.id_instancia_item
-		left join item on item.id = instancia_item.id_item 	
-		where encontrado_em.id_area = 1 and encontrado_em.id_instancia_item is not null"""
-    
-    cur.execute(sql)
-    items = cur.fetchall()
-
-    tmp = []
-    for n in items:
-        tmp.append(n[0])
-
-    inserir_itens_na_mochila = f"""
-		insert into mochila_guarda (mochila, item) 
-		VALUES (1, unnest(array{tmp}));	
+    inserir_itens_na_mochila = """
+	insert into mochila_guarda (mochila, item) 
+	VALUES (1, (select ii.id from instancia_item ii 
+				left join item i on i.id = ii.id_item where i.nome = 'Espada Iris' limit 1));	
 	"""
-
+    
     cur.execute(inserir_itens_na_mochila)
     conn.commit()
 
     print("A espada foi adicionada na mochila.")
     
     deletar_instancia_item = """
-	 	delete from encontrado_em where encontrado_em.id_instancia_item is not null and encontrado_em.id_area = 8
+	 	delete from encontrado_em where encontrado_em.id_instancia_item is not null and encontrado_em.id_npc = 8
 	"""
 
     cur.execute(deletar_instancia_item)
@@ -171,16 +159,9 @@ def pegar_espada():
             main.general_options_menu()
             main.general_options()
 
-def evoluir_pontos_habilidade(habilidade):
-    # evoluir habilidade
-    sql = """update pontos_habilidade set pontos = pontos + 5
-		    from habilidade i
-		    where i.id_habilidade = habilidade;"""
+def golpear():
     
-    cur.execute(sql)
-    items = cur.fetchall()
-    
-    print("Você realizou um golpe com sucesso e ganhou 5 pontos nessa habilidade")
+    print("Você realizou um golpe com sucesso")
     print("Ciri te golpeou com sucesso")
     
     print('#' * 60)
@@ -196,13 +177,13 @@ def evoluir_pontos_habilidade(habilidade):
             print("Comando Inválido, Tente Novamente.")
             continue
         if option.lower() == ("fazer um ataque rápido"):
-            evoluir_pontos_habilidade(1)
+            golpear()
             break
         if option.lower() == ("fazer um ataque forte"):
-            evoluir_pontos_habilidade(2)
+            golpear()
             break
         if option.lower() == ("ativar instinto de sobrevivência"):
-            evoluir_pontos_habilidade(2)
+            golpear()
             break
         if option.lower() == ("ativar instinto de sobrevivência"):
             terminar_combate()
