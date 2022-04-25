@@ -119,7 +119,8 @@ def ver_produtos():
 	falar_com_bram()
 
 def comprar_produtos():
-	pass
+	print("Ainda não foi implementado!")
+	falar_com_bram()
 
 def aprimorar_equipamentos():
 	print(" .: Aprimoramento básico :: 20 de gold :. ")
@@ -144,6 +145,7 @@ def aprimorar_equipamentos():
 		elif option.lower() == ("sair"):
 			falar_com_bram()
 			break
+	falar_com_bram()
 
 def aprimorar_basico():
 	aprimorar = """
