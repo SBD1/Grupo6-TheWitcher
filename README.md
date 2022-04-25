@@ -20,6 +20,9 @@ Este repositório é destinado ao apredizado sobre o conteúdo ministrado na dis
 
 ## Como Rodar o Jogo
 
+<div align="center"><img src= "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia1.tenor.com%2Fimages%2Fe4d1876e4e989151dd88705e71172071%2Ftenor.gif%3Fitemid%3D18933836&f=1&nofb=1" height="" width="auto"/></div>
+
+
 ### Clonar o Repositório
 ```
 git clone https://github.com/SBD1/Grupo6-TheWitcher
@@ -49,7 +52,7 @@ $ pip3 install psycopg2
 
 ### Crie um novo database no seu postgresql com o nome "thewitcher"
 
-### Abrir o arquivo conn.py e colocar o usuário de senha do seu postgresql em conexão com o localhost em user="usuário" e password="senha".*
+#### Abrir o arquivo conn.py e colocar o usuário de senha do seu postgresql em conexão com o localhost em `user="usuário"` e `password="senha"`.*
 
 
 #### * Se não tiver um usuário no postgres:
@@ -70,7 +73,7 @@ postgres=# grant all privileges on database sample_db to user_name;
 
 
 
-### Ainda na pasta Game, rodar o jogo no terminal:
+### Ainda na pasta Game, rodar o jogo via terminal:
 
 ```
 $ python main.py
