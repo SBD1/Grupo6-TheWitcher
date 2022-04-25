@@ -4,6 +4,7 @@ from conn import criaConexao
 import crows_perch
 import pomar_branco as pb
 import ard_skellig as ask
+import kaer_morhen as kaer
 import sys
 import os
 from create_tables import create_tables
@@ -93,7 +94,7 @@ def general_options():
 	elif option.lower() == ("listar contratos ativos"):
 		listar_contratos_ativos()
 	elif option.lower() == ("ir para kaer morhen"):
-		listar_areas_kaer_morhen()
+		kaer.listar_areas_kaer_morhen()
 	elif option.lower() == ("ir para crows perch"):
 		crows_perch.listar_areas_crows_perch()
 	elif option.lower() == ("ir para ard skellig"):
@@ -115,7 +116,7 @@ def general_options():
 		elif option.lower() == ("listar contratos ativos"):
 			listar_contratos_ativos()
 		elif option.lower() == ("ir para kaer morhen"):
-			listar_areas_kaer_morhen()
+			kaer.listar_areas_kaer_morhen()
 		elif option.lower() == ("ir para crows perch"):
 			crows_perch.listar_areas_crows_perch()
 		elif option.lower() == ("ir para skellig"):
@@ -126,35 +127,6 @@ def general_options():
 			sys.exit()
 		elif option.lower() == ("ajuda"):
 			help_menu()
-
-
-#Area de Kaer Morhen
-def listar_areas_kaer_morhen():
-	print("A fortaleza de Kaer Morhen possui algumas áreas interessantes como:\n")
-	
-	sql = "select descricao from area a where a.id_mapa = 1"
-	cur.execute(sql)
-	rows = cur.fetchall()
-
-	for r in rows:
-		print(r)
-
-	general_options_menu()
-	general_options()
-
-def opcoes_kaer_morhen():
-	option = input("> ")
-	if option.lower() == ("conhecer kaer morhen"):
-		listar_areas_kaer_morhen()
-	elif option.lower() == ("menu geral"):
-		general_options()
-	while option.lower() not in ['conhecer kaer morhen', 'menu geral']:
-		print("Comando Inválido, Tente Novamente.")
-		option = input("> ")
-		if option.lower() == ("conhecer kaer morhen"):
-			listar_areas_kaer_morhen()
-		elif option.lower() == ("menu geral"):
-			general_options()
 
 def listar_contratos_ativos():
 	print("Esses são os contratos que estão ativos: \n")
@@ -219,7 +191,7 @@ def setup_game():
 	print(" .: Menu Geral :. ")
 	option = input("> ")
 	if option.lower() == ("conhecer kaer morhen"):
-		opcoes_kaer_morhen()
+		kaer.listar_areas_kaer_morhen()
 	elif option.lower() == ("menu geral"):
 		general_options_menu()
 		general_options()
@@ -227,7 +199,7 @@ def setup_game():
 		print("Comando Inválido, Tente Novamente.")
 		option = input("> ")
 		if option.lower() == ("conhecer kaer morhen"):
-			listar_areas_kaer_morhen()
+			kaer.listar_areas_kaer_morhen()
 		elif option.lower() == ("menu geral"):
 			general_options_menu()
 			general_options()
