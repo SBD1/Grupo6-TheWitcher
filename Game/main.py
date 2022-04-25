@@ -5,6 +5,7 @@ import crows_perch
 import pomar_branco as pb
 import ard_skellig as ask
 import kaer_morhen as kaer
+import taverna as tav
 import sys
 import os
 from create_tables import create_tables
@@ -81,6 +82,7 @@ def general_options_menu():
 	print(" .: Ir para Crows Perch :. ")
 	print(" .: Ir para Ard Skellig :. ")
 	print(" .: Ir para Pomar Branco :. ")
+	print(" .: Taverna Pluma flamejante :. ")
 	print(" .: Ajuda :. ")
 	print(" .: Sair :. ")
 	general_options()
@@ -101,6 +103,8 @@ def general_options():
 		ask.listar_areas_ard_skellig()
 	elif option.lower() == ("ir para pomar branco"):
 		pb.listar_areas_pomar_branco()
+	elif option.lower() == ("Taverna Pluma flamejante"):
+		tav.listar_areas_taverna()
 	elif option.lower() == ("sair"):
 		sys.exit()
 	elif option.lower() == ("ajuda"):
@@ -123,6 +127,8 @@ def general_options():
 			ask.listar_areas_ard_skellig()
 		elif option.lower() == ("ir para pomar branco"):
 			pb.listar_areas_pomar_branco()	
+		elif option.lower() == ("Taverna Pluma flamejante"):
+			tav.listar_areas_taverna()
 		elif option.lower() == ("sair"):
 			sys.exit()
 		elif option.lower() == ("ajuda"):
