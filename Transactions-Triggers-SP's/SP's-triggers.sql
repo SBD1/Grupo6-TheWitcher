@@ -223,7 +223,7 @@ language plpgsql;
 
 
 -- Stored Procedure para verificar se o gold é maior que o preço de uma compra
-CREATE OR REPLACE FUNCTION verifica_se_gold_maior_que_preco(gold integer, preco integer)
+CREATE OR REPLACE FUNCTION verifica_se_gold_maior_que_preco(gold numeric, preco numeric)
 RETURNS boolean AS $verifica_se_gold_maior_que_preco$
 BEGIN 
 	if (gold > preco) then 

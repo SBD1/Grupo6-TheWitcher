@@ -169,9 +169,9 @@ def comprar_armadura_ursina():
 
 	print(is_maior)
 	
-	if(is_maior == True):
+	if(is_maior == (True,)):
 		criar_instancia_item = """ insert into instancia_item(id_item, nivel)
-									values(9, 20)"""
+									values(9, 20);"""
 		adicionar_item_mochila = """ 
 									insert into mochila_guarda(mochila, item)
 									values(1, (select id from instancia_item ORDER BY id DESC LIMIT 1));									
@@ -184,8 +184,9 @@ def comprar_armadura_ursina():
 		cur.execute(adicionar_item_mochila)
 		cur.execute(descontar_gold)
 
-		conn.commit
-		print("Compra feita")
+		conn.commit()
+		print("Armadura Legendária Ursina adicionada à mochila!")
+		falar_com_bram()
 
 	else:
 		print("Você não tem gold suficiente para comprar este item!")
