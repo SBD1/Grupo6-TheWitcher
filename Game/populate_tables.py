@@ -44,7 +44,7 @@ def populate_tables():
         ('Botas de Capitão', 'equipamento', NULL, 192.0, NULL, 3.72, NULL, 2, 8, 10.0),
         ('Botas do Executor', 'equipamento', NULL, 158.0, NULL, 3.37, NULL, 0, 6, 8.0),
         ('Espada Iris', 'arma', 'Uma espada comum, forjada com ferro de baixa qualidade', 16.0, NULL, 2.04, 1.5, 16, 0, 13.0),
-        ('Espada assina de bruxas', 'arma', NULL, 130.0, NULL, 2.06, 1.6, 34, 8, 20.0),
+        ('Espada assassina de bruxas', 'arma', NULL, 130.0, NULL, 2.06, 1.6, 34, 8, 20.0),
         ('Espada de guerreiro Wild Hunt', 'arma', NULL, 366.0, NULL, 4.25, 1.6, 58, 12, 15.0),
         ('Espada da ordem da rosa em chamas', 'arma', NULL, 106.0, NULL, 2.04, NULL, 30, 20, 20.0),
         ('Espada do caçador de bruxos', 'arma', NULL, 755.0, NULL, 2.31, NULL, 42, 27, 18.0),

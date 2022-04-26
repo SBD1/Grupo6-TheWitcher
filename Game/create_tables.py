@@ -175,7 +175,7 @@ def create_tables():
             id_npc int4 NULL,
             id_item int4 NULL,
         CONSTRAINT fk_negocia_npc FOREIGN KEY (id_npc) REFERENCES NPC(id) ON DELETE RESTRICT,
-        CONSTRAINT fk_negocia_item FOREIGN KEY (id_item) REFERENCES instancia_item(id) ON DELETE RESTRICT
+        CONSTRAINT fk_negocia_item FOREIGN KEY (id_item) REFERENCES item(id) ON DELETE RESTRICT
         );
         """,
 

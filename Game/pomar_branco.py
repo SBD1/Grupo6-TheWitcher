@@ -119,26 +119,25 @@ def ver_produtos():
 	falar_com_bram()
 
 def comprar_produtos():
-	print(" .: comprar armadura legendária ursina :. ")
-	print(" .: Ver produtos :. ")
-	print(" .: Comprar produtos :. ")
-	print(" .: Aprimorar equipamentos :. ")
+	print(" .: Comprar Armadura legendária ursina :. ")
+	print(" .: Comprar Espada assassina de bruxas :. ")
+	print(" .: Comprar Espada da ordem da rosa das chamas :. ")
 	print(" .: Sair :. ")
 	while True:
 		option = input("> ")
 
-		if option.lower() not in ['comprar armadura legendária ursina', 'comprar ', 'comprar','sair']:
+		if option.lower() not in ['comprar armadura legendária ursina', 'comprar espada assassina de bruxas', 'comprar espada da ordem da rosa das chamas','sair']:
 			print("Comando Inválido, Tente Novamente.")
 			continue
 
 		if option.lower() == ("comprar armadura legendária ursina"):
 			comprar_armadura_ursina()
 			break
-		if option.lower() == ("comprar produtos"):
-			comprar_produtos()
+		if option.lower() == ("comprar espada assassina de bruxas"):
+			comprar_espada_assassina()
 			break
-		if option.lower() == ("aprimorar equipamentos"):
-			aprimorar_equipamentos()
+		if option.lower() == ("comprar espada da ordem da rosa das chamas"):
+			comprar_espada_ordem()
 			break
 		elif option.lower() == ("sair"):
 			print("Volte sempre!")
@@ -192,6 +191,96 @@ def comprar_armadura_ursina():
 		print("Você não tem gold suficiente para comprar este item!")
 		falar_com_bram()
 
+def comprar_espada_assassina():
+	preco = "select preco from item where nome = 'Espada assina de bruxas' limit 1; "
+	gold = "select gold from personagem where id = 1;"
+
+	cur.execute(gold)
+	pega_gold = cur.fetchall()
+
+	for g in pega_gold:
+		print(f"{g[0]}")	
+
+	cur.execute(preco)
+	pega_preco = cur.fetchall()
+
+	for p in pega_preco:
+		print(f"{p[0]}")
+
+	cur.callproc('verifica_se_gold_maior_que_preco', (g[0], p[0]))
+
+	is_maior = cur.fetchone()
+
+	print(is_maior)
+	
+	if(is_maior == (True,)):
+		criar_instancia_item = """ insert into instancia_item(id_item, nivel)
+									values(21, 20);"""
+		adicionar_item_mochila = """ 
+									insert into mochila_guarda(mochila, item)
+									values(1, (select id from instancia_item ORDER BY id DESC LIMIT 1));									
+									"""
+		descontar_gold = f"""
+						update personagem set gold = gold - {p[0]}
+						
+		"""
+		cur.execute(criar_instancia_item)
+		cur.execute(adicionar_item_mochila)
+		cur.execute(descontar_gold)
+
+		conn.commit()
+		print("Espada Assassina de Bruxas adicionada à mochila!")
+		falar_com_bram()
+
+	else:
+		print("Você não tem gold suficiente para comprar este item!")
+		falar_com_bram()
+
+
+def comprar_espada_ordem():
+	preco = "select preco from item where nome = 'Espada da ordem da rosa em chamas' limit 1; "
+	gold = "select gold from personagem where id = 1;"
+
+	cur.execute(gold)
+	pega_gold = cur.fetchall()
+
+	for g in pega_gold:
+		print(f"{g[0]}")	
+
+	cur.execute(preco)
+	pega_preco = cur.fetchall()
+
+	for p in pega_preco:
+		print(f"{p[0]}")
+
+	cur.callproc('verifica_se_gold_maior_que_preco', (g[0], p[0]))
+
+	is_maior = cur.fetchone()
+
+	print(is_maior)
+	
+	if(is_maior == (True,)):
+		criar_instancia_item = """ insert into instancia_item(id_item, nivel)
+									values(23, 20);"""
+		adicionar_item_mochila = """ 
+									insert into mochila_guarda(mochila, item)
+									values(1, (select id from instancia_item ORDER BY id DESC LIMIT 1));									
+									"""
+		descontar_gold = f"""
+						update personagem set gold = gold - {p[0]}
+						
+		"""
+		cur.execute(criar_instancia_item)
+		cur.execute(adicionar_item_mochila)
+		cur.execute(descontar_gold)
+
+		conn.commit()
+		print("Espada da Ordem da Rosa em Chamas adicionada à mochila!")
+		falar_com_bram()
+
+	else:
+		print("Você não tem gold suficiente para comprar este item!")
+		falar_com_bram()
 
 
 def aprimorar_equipamentos():
