@@ -178,7 +178,8 @@ def ver_mochila():
 						group by i.nome"""
 	mochila = cur.execute(ver_mochila)
 	rows = cur.fetchall()
-	if (mochila == None):
+
+	if not rows:
 		print("Sua mochila está vazia")
 	else:
 		for r in rows:
