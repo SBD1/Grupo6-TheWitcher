@@ -76,7 +76,8 @@ def populate_tables():
         ('Crows Perch', 'Fortaleza', 'Temeria', 'Velen'),
         ('Orquídia Branca', 'Vila', 'Temeria', 'Orquídea Branca'),
         ('Ard Skellig', 'Cidade', 'Temeria', 'Skellige'),
-        ('Colina', 'Campo', 'Temeria', 'Velen');
+        ('Colina', 'Campo', 'Temeria', 'Velen'),
+        ('Cabine', 'Residencia', 'Temeria', 'Velen');
         """,
 
         """
@@ -91,7 +92,8 @@ def populate_tables():
         ('Uma torre de pedra parcialmente destruída pela guerra', 1),
         ('Uma vila antes conhecida como Hovel que agora está em cinzas', 3),
         ('Uma colina em frente a uma torre com tijolos vermelhos', 5),
-        ('Uma grande construção de madeira, com uma bigorna e um barril ao lado da porta', 3);
+        ('Uma grande construção de madeira, com uma bigorna e um barril ao lado da porta', 3),
+        ('Uma cabana com alguns pessoas na frente', 6);
         """,
 
         """
@@ -146,7 +148,9 @@ def populate_tables():
         (1, NULL),
         (29, NULL),
         (20, NULL),
-        (24, NULL);
+        (24, NULL),
+        (5, NULL),
+        (7, NULL);
         """,
 
         """
@@ -203,7 +207,9 @@ def populate_tables():
         (9, NULL, NULL, 16),
         (1, 8, NULL, 23),
         (1, NUll, 4, NULL),
-        (11, 10, NULL, NULL);
+        (11, 10, NULL, NULL),
+        (6, NULL, NULL, 26),
+        (6, NULL, NULL, 27);
         """,
 
         """
