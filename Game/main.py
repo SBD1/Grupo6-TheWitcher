@@ -5,7 +5,7 @@ import crows_perch
 import pomar_branco as pb
 import ard_skellig as ask
 import kaer_morhen as kaer
-import taverna as tav
+import Averum as tav
 import sys
 import os
 from create_tables import create_tables

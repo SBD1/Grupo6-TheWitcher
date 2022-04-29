@@ -17,9 +17,9 @@ def listar_areas_averum():
     for r in rows:
         print(r)
 
-    print(" .: Explorar uma casa abondonada  :. ")
-    print(" .: Entrar em um seleiro   :. ")
-    print(" .: Menu Geral :. ")
+    print("Explorar uma casa abondonada  :")
+    print("Entrar em um seleiro   :")
+    print("Menu Geral :")
 
 
 
@@ -67,8 +67,146 @@ def listar_areas_averum():
             main.general_options()
             break
 
+
+
+
+
     def seleiro():
-        print("Você entrou em uma casa abondonada e encontra um rapaz com suprimentos")
+        print("Você entrou no seleiro e em cima da mesa acha um pergaminho, você tem a opção de escolher se quer fazer o contrato, ou não \n")
+        print("Aceitar Contrato")
+        print ("Rejeitar contrato")
+
+        while True:
+            option = input("> ")
+
+            if option.lower() not in ['aceitar contrato', 'rejeitar contrato']:
+                print("Comando inválido, escolha outra opção!!")
+                continue
+            if option.lower() == ("aceitar contrato"):
+                contrato_aceito()
+                break
+            if option.lower() == ("rejeitar contrato"):
+                listar_areas_averum()
+                break
+            elif option.lower() == ("menu geral"):
+                main.general_options_menu()
+                main.general_options()
+                break
+
+
+
+
+
+
+    def contrato_aceito():
+        print("Você aceitou o contrato e terá que ir à uma caverna atrás de um tesouro escondido no fundo desta caverna")
+
+        contrato_ativo = f"update contrato set is_ativo = {True} where id = 10"
+        cur.execute(contrato_ativo)
+        conn.commit()
+
+        print("Entrar na Caverna")
+        print("Voltar para Averum")
+        print("Menu Geral")
+
+        while True:
+            option = input("> ")
+
+            if option.lower() not in ['entrar na caverna', 'voltar para averum', 'menu geral']:
+                print("Comando inválido, escolha outra opção!!")
+                continue
+            if option.lower() == ("entrar na caverna"):
+                caverna()
+                break
+            if option.lower() == ("voltar para averum"):
+                listar_areas_averum()
+                break
+            elif option.lower() == ("menu geral"):
+                main.general_options_menu()
+                main.general_options()
+                break
+
+
+
+
+
+
+    def caverna():
+        print("Você agora tem um contrato ativo \n")
+        print("Quando já está na caverna, você encontra um monstro.")
+        print("Matar o monstro :")
+        print("Sair da Caverna :")
+        print("Menu Geral :")
+
+        while True:
+
+            option = input("> ")
+
+            
+            if option.lower() not in ['matar o monstro', 'sair da caverna', 'menu geral']:
+                print("Comando inválido, escolha outra opção!!")
+                continue
+            if option.lower() == ("matar o monstro"):
+                matar_monstro()
+                break
+            if option.lower() == ("sair da caverna"):
+                listar_areas_averum()
+                break
+            elif option.lower() == ("menu geral"):
+                main.general_options_menu()
+                main.general_options()
+                break
+
+
+
+
+
+    def matar_monstro():
+        print("a")
+
+        recompensa_mochila = """
+        insert into mochila_guarda (mochila, item) 
+        VALUES (1, (select ii.id from instancia_item ii 
+                    left join item i on i.id = ii.id_item where i.nome = 'Recompensa da Caverna' limit 1));	
+        """
+
+        recompensa = """
+		update personagem set gold = personagem.gold + c.gold from contrato c where c.id =  2
+	"""
+
+        cur.execute(recompensa_mochila)
+        cur.execute(recompensa)
+
+        print("A recompensa foi adicionada a sua mochila")
+
+        desativar_contrato = """
+		update contrato set is_ativo = False where id = 2
+	    """
+
+        cur.execute(desativar_contrato)
+
+        conn.commit()
+
+        print("Voltar para Averum :")
+        print("Menu Geral")
+
+        while True:
+
+            option = input("> ")
+
+            if option.lower() not in ['voltar para averum', 'menugeral']:
+                print("Comando inválido, escolha outra opção!!")
+                continue
+            if option.lower() == ("voltar para averum"):
+                listar_areas_averum()
+                break
+            elif option.lower() == ("menu geral"):
+                main.general_options_menu()
+                main.general_options()
+                break
+
+
+        
     
     def pedir_suprimentos():
 
@@ -126,10 +264,12 @@ def listar_areas_averum():
 
         print("O item foi adicionado na mochila.")
 
-        print(" .: Voltar para Ard Skellig :. ")
-        print(" .: Menu Geral :.")
+        print("Sair da casa de Zakanon :")
+        print("Menu Geral :")
         
         while True:
+            option = input("> ")
+
             if option.lower() == ("sair da casa de zakanon"):
                 listar_areas_averum()
                 break
