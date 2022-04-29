@@ -83,7 +83,7 @@ def general_options_menu():
 	print(" .: Ir para Crows Perch :. ")
 	print(" .: Ir para Ard Skellig :. ")
 	print(" .: Ir para Pomar Branco :. ")
-	print(" .: Taverna Pluma flamejante :. ")
+	print(" .: Ir para Averum :. ")
 	print(" .: Ajuda :. ")
 	print(" .: Sair :. ")
 	general_options()

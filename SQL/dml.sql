@@ -40,7 +40,8 @@ INSERT INTO item (nome, tipo, descricao, preco, efeito, peso, alcance, ataque, d
 ('Flecha com ponta de prata', 'flecha', NULL, 12.0, NULL, 0.4, NULL, NULL, NULL, NULL),
 ('Cabeça de Berseker', 'item_missao', NULL, 12.0, NULL, 0.4, NULL, NULL, NULL, NULL),
 ('Cabeça de Nithral', 'item_missao', NULL, 14.0, NULL, 1, NULL, NULL, NULL, NULL),
-('Asas de Katakan', 'item_missao', NULL, 10.0, NULL, 1, NULL, NULL, NULL, NULL);
+('Asas de Katakan', 'item_missao', NULL, 10.0, NULL, 1, NULL, NULL, NULL, NULL),
+('Espada do Himmeska' 'arma', NULL, 508.0, NULL, 3.55, NULL, 42, 19, 20.0);
 
 INSERT INTO npc (nome, raca, classe) VALUES 
 ('Halbjorn', 'humano', 'civil'),
@@ -78,7 +79,8 @@ INSERT INTO area (descricao, id_mapa) VALUES
 ('Um forte abandonado que se tornou habitado por Witchers', 1),
 ('Uma torre de pedra parcialmente destruída pela guerra', 1),
 ('Uma vila antes conhecida como Hovel que agora está em cinzas', 3),
-('Uma colina em frente a uma torre com tijolos vermelhos', 5);
+('Uma colina em frente a uma torre com tijolos vermelhos', 5),
+('Uma cidade devastada pela guerra, com poucos recursos', 6);
 
 INSERT INTO monstro (nome, ataque, defesa, vida, classe, descricao) VALUES
 ('Urso',NULL ,NULL ,NULL ,'Besta', 'Um urso pardo gigante'),
