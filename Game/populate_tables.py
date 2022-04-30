@@ -150,7 +150,8 @@ def populate_tables():
         (20, NULL),
         (24, NULL),
         (5, NULL),
-        (7, NULL);
+        (7, NULL),
+        (8, NULL);
         """,
 
         """
