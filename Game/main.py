@@ -104,14 +104,14 @@ def general_options():
 		ask.listar_areas_ard_skellig()
 	elif option.lower() == ("ir para pomar branco"):
 		pb.listar_areas_pomar_branco()
-	elif option.lower() == ("Taverna Pluma flamejante"):
-		tav.listar_areas_taverna()
+	elif option.lower() == ("Ir para Averum"):
+		tav.listar_areas_averum()
 	elif option.lower() == ("sair"):
 		sys.exit()
 	elif option.lower() == ("ajuda"):
 		help_menu()
 
-	while option.lower() not in ['personagem', 'ver mochila', 'listar contratos ativos', 'ir para kaer morhen', 'ir para crows perch', 'ir para ard skellig', 'ir para pomar branco','ajuda', 'sair']:
+	while option.lower() not in ['personagem', 'ver mochila', 'listar contratos ativos', 'ir para kaer morhen', 'ir para crows perch', 'ir para ard skellig', 'ir para pomar branco', 'ir para averum', 'ajuda', 'sair']:
 		print("Comando Inválido, Tente Novamente.")
 		option = input("> ")
 		if option.lower() == ("personagem"):
@@ -128,8 +128,8 @@ def general_options():
 			ask.listar_areas_ard_skellig()
 		elif option.lower() == ("ir para pomar branco"):
 			pb.listar_areas_pomar_branco()	
-		elif option.lower() == ("Taverna Pluma flamejante"):
-			tav.listar_areas_taverna()
+		elif option.lower() == ("ir para averum"):
+			tav.listar_areas_averum()
 		elif option.lower() == ("sair"):
 			sys.exit()
 		elif option.lower() == ("ajuda"):
