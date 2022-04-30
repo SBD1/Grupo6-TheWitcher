@@ -324,7 +324,7 @@ def falar_com_vesimir():
 	print(" .: Deixar Contrato :.")
 	option = input("> ")
 	if option.lower() == ("pegar contrato"):
-		contrato_besta_pomar_branco()
+		contrato_amardilha_forktail()
 	elif option.lower() == ("deixar contrato"):
 		print("Tudo bem, Witcher. Se mudar de ideia, estarei aqui!")
 		main.general_options_menu()
@@ -333,12 +333,12 @@ def falar_com_vesimir():
 		print("Comando Inválido, Tente Novamente.")
 		option = input("> ")
 		if option.lower() == ("pegar contrato"):
-			contrato_besta_pomar_branco()
+			contrato_amardilha_forktail()
 		elif option.lower() == ("deixar contrato"):
 			main.general_options_menu()
 			main.general_options()
 
-def contrato_besta_pomar_branco():
+def contrato_amardilha_forktail():
 	contrato_ativo = f"update contrato set is_ativo = {True} where id = 9"
 	cur.execute(contrato_ativo)
 	conn.commit()
