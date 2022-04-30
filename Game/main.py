@@ -104,7 +104,7 @@ def general_options():
 		ask.listar_areas_ard_skellig()
 	elif option.lower() == ("ir para pomar branco"):
 		pb.listar_areas_pomar_branco()
-	elif option.lower() == ("Ir para Averum"):
+	elif option.lower() == ("ir para Averum"):
 		tav.listar_areas_averum()
 	elif option.lower() == ("sair"):
 		sys.exit()

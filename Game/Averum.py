@@ -43,12 +43,12 @@ def listar_areas_averum():
 
 
 
-    #Casa abondonada
-    def casa_abondonada():
-        print("Você entrou em uma casa abondonada e encontra um rapaz com suprimentos")
-        print("Pedir Suprimentos")
-        print("Voltar para Averum")
-        print("Menu Geral")
+#Casa abondonada
+def casa_abondonada():
+    print("Você entrou em uma casa abondonada e encontra um rapaz com suprimentos")
+    print("Pedir Suprimentos")
+    print("Voltar para Averum")
+    print("Menu Geral")
 
     while True:
         option = input("> ")
@@ -71,7 +71,7 @@ def listar_areas_averum():
 
 
 
-    def seleiro():
+def seleiro():
         print("Você entrou no seleiro e em cima da mesa acha um pergaminho, você tem a opção de escolher se quer fazer o contrato, ou não \n")
         print("Aceitar Contrato")
         print ("Rejeitar contrato")
@@ -98,7 +98,7 @@ def listar_areas_averum():
 
 
 
-    def contrato_aceito():
+def contrato_aceito():
         print("Você aceitou o contrato e terá que ir à uma caverna atrás de um tesouro escondido no fundo desta caverna")
 
         contrato_ativo = f"update contrato set is_ativo = {True} where id = 10"
@@ -131,7 +131,7 @@ def listar_areas_averum():
 
 
 
-    def caverna():
+def caverna():
         print("Você agora tem um contrato ativo \n")
         print("Quando já está na caverna, você encontra um monstro.")
         print("Matar o monstro :")
@@ -161,7 +161,7 @@ def listar_areas_averum():
 
 
 
-    def matar_monstro():
+def matar_monstro():
         print("a")
 
         recompensa_mochila = """
@@ -208,7 +208,7 @@ def listar_areas_averum():
 
         
     
-    def pedir_suprimentos():
+def pedir_suprimentos():
 
         print("Você entrou em uma casa abondonada e encontra um rapaz com suprimentos \n" )
         print("Este rapaz é Zakanon, um witcher que ficou na cidade. \n ")
@@ -235,7 +235,7 @@ def listar_areas_averum():
                 main.general_options()
                 break
 
-    def itens_zakanon():
+def itens_zakanon():
         
         print("Pegar os itens de Zakanon:")
 
